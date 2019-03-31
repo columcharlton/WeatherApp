@@ -1,0 +1,1326 @@
+﻿<div id="message">@(new HtmlString(@ViewBag.a))</div>
+
+
+
+<html lang="en">
+<script async="" src="https://www.google-analytics.com/analytics.js"></script>
+<script type="text/javascript">window["_gaUserPrefs"] = { ioo: function () { return true; } }</script>
+<head>
+    <meta charset="utf-8" lang="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
+    <meta name="apple-itunes-app" content="app-id=517329357, affiliate-data=darkskynet">
+    <meta name="google-play-app" content="app-id=net.darksky.darksky">
+
+    <meta name="description" content="Dark Sky is the most accurate source of hyperlocal weather information: with down-to-the-minute forecasts for your exact location, you'll never get caught in the rain again. (It's like magic!)">
+
+    <!-- Facebook OpenGraph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content=" Weather">
+    <meta property="og:description" content="Dark Sky is the most accurate source of hyperlocal weather information: with down-to-the-minute forecasts for your exact location, you'll never get caught in the rain again. (It's like magic!)">
+    <meta property="og:site_name" content="Dark Sky">
+    <meta property="og:image" content="https://darksky.net/images/logo.png">
+    <meta property="og:image:type" content="image/png">
+
+    <!-- Twitter app card -->
+    <meta name="twitter:card" content="app">
+    <meta name="twitter:site" content="DarkSkyApp">
+    <meta name="twitter:description" content="With down-to-the-minute forecasts for your exact location from Dark Sky, you'll never get caught in the rain again. (It's like magic!)">
+    <meta name="twitter:app:name:iphone" content="Dark Sky - Hyperlocal Weather, Radar, and Storm Alerts">
+    <meta name="twitter:app:id:iphone" content="517329357">
+    <meta name="twitter:app:name:ipad" content="Dark Sky - Hyperlocal Weather, Radar, and Storm Alerts">
+    <meta name="twitter:app:id:ipad" content="517329357">
+    <meta name="twitter:app:name:googleplay" content="Dark Sky - Hyperlocal Weather">
+    <meta name="twitter:app:id:googleplay" content="net.darksky.darksky">
+
+    <!---->
+    <script type="application/ld+json">
+        {
+        "context": "http://schema.org",
+        "type": "Organization",
+        "url"  : "https://darksky.net",
+        "logo" : "https://darksky.net/images/logo.png",
+        "sameAs": [
+        "https://www.linkedin.com/company/the-dark-sky-company",
+        "https://twitter.com/darkskyapp"
+        ]
+        }
+    </script>
+
+    <title>Dark Sky - Gort na Glaise, Galway City, County Galway</title>
+
+    <script async="" src="//storage.googleapis.com/outfox/dnt_min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="/css/lib/pikaday.css">
+    <link rel="stylesheet" href="/css/lib/selectric.css">
+    <link rel="stylesheet" href="/css/lib/jquery.smartbanner.css">
+
+    <link href="/dist/css/styles.min.css?version=1.2.4" rel="stylesheet">
+
+
+    <link rel="apple-touch-icon" sizes="128x128" href="/images/logo.png">
+</head>
+
+<body class="forecast">
+
+    <nav>
+        <div class="inner">
+            <a class="logo" href="/">
+                <img src="/images/darkskylogo.png" alt="Dark Sky Logo">
+            </a>
+            <a href="/app" class="headerAppLink">
+                <span id="phone-icon"><img src="/images/mobile-app-icon.png" alt="Smartphone Icon"></span>App
+            </a>
+            <a href="/maps">
+                Maps
+            </a>
+            <a href="/dev">
+                Dark Sky API
+            </a>
+            <a href="/help/website">
+                Help
+            </a>
+            <a href="/about">
+                About
+            </a>
+            <a class="twitter" href="https://twitter.com/darkskyapp" style="text-decoration:none">
+                <img src="/images/twitter.png" alt="Twitter Logo">
+            </a>
+        </div>
+    </nav>
+
+    <!-- views/partials/header.ejs -->
+
+    <div id="header">
+        <a class="backToForecast" href="/forecast/53.2842,-9.0378/si12/en">← Go Back</a>
+
+        <form id="searchForm">
+            <a class="currentLocationButton" style="">
+                <img width="16" height="16" src="/images/current-location.png" alt="Current Location Button">
+            </a>
+
+            <input type="text" value="">
+
+            <a class="searchButton">
+                <img width="16" height="16" src="/images/search.png" alt="Search Button">
+            </a>
+
+            <div id="savedLocations" style="display: none;">
+                <div class="inner"></div>
+            </div>
+        </form>
+
+        <div class="options">
+            <div class="selectric-wrapper selectric-units">
+                <div class="selectric-hide-select">
+                    <select class="units" tabindex="-1">
+                        <option value="us">˚F,&nbsp;mph</option>
+                        <option value="si">˚C,&nbsp;m/s</option>
+                        <option value="ca">˚C,&nbsp;km/h</option>
+                        <option value="uk2">˚C,&nbsp;mph</option>
+                    </select>
+                </div><div class="selectric"><span class="label">˚C,&nbsp;m/s</span><b class="button">▾</b></div><div class="selectric-items" tabindex="-1"><div class="selectric-scroll"><ul><li data-index="0" class="">˚F,&nbsp;mph</li><li data-index="1" class="selected">˚C,&nbsp;m/s</li><li data-index="2" class="">˚C,&nbsp;km/h</li><li data-index="3" class="last">˚C,&nbsp;mph</li></ul></div></div><input class="selectric-input" tabindex="0">
+            </div>
+
+            <div class="selectric-wrapper selectric-language">
+                <div class="selectric-hide-select">
+                    <select class="language" tabindex="-1">
+                        <option value="de">Deutsch</option>
+                        <option value="en">English</option>
+                        <option value="es">Español</option>
+                        <option value="fr">Français</option>
+                        <option value="it">Italiano</option>
+                        <option value="nl">Nederlands</option>
+                        <option value="tr">Türk</option>
+                        <option value="ar">عربي</option>
+                        <option value="zh">中文</option>
+                        <option value="zh-tw">繁體中文</option>
+                        <option value="ja">日本語</option>
+                        <option value="x-pig-latin">Pig Latin</option>
+                    </select>
+                </div><div class="selectric"><span class="label">English</span><b class="button">▾</b></div><div class="selectric-items" tabindex="-1"><div class="selectric-scroll"><ul><li data-index="0" class="">Deutsch</li><li data-index="1" class="selected">English</li><li data-index="2" class="">Español</li><li data-index="3" class="">Français</li><li data-index="4" class="">Italiano</li><li data-index="5" class="">Nederlands</li><li data-index="6" class="">Türk</li><li data-index="7" class="">عربي</li><li data-index="8" class="">中文</li><li data-index="9" class="">繁體中文</li><li data-index="10" class="">日本語</li><li data-index="11" class="last">Pig Latin</li></ul></div></div><input class="selectric-input" tabindex="0">
+            </div>
+        </div>
+
+    </div>
+
+    <div id="currentDetailsWrapper">
+        <img class="gradient-scroll" src="/images/gradient-scroll.png" alt="Gradient">
+        <div id="currentDetails">
+            <div class="wind">
+                <span class="label swip">Wind:</span>
+                <span class="val swap">
+                    <span class="num swip">3</span>
+                    <span class="unit swap">m/s</span>
+
+                    <span class="direction" title="N" style="display:inline-block;-ms-transform:rotate(357deg);-webkit-transform:rotate(357deg);transform:rotate(357deg);">↑</span>
+                </span>
+            </div>
+
+            <div class="humidity">
+                <span class="label swip">Humidity:</span>
+                <span class="val swap">
+                    <span class="num swip">89</span><span class="unit swap">%</span>
+                </span>
+            </div>
+
+            <div class="dew_point">
+                <span class="label swip">Dew Pt:</span>
+                <span class="val swap">
+                    <span class="num">3</span><span class="unit">˚</span>
+                </span>
+            </div>
+
+            <div class="current_details_break"></div>
+
+            <div class="uv_index uv0">
+                <span class="label swip">UV Index:</span>
+                <span class="val swap">
+                    <span class="num">0</span>
+                </span>
+            </div>
+
+            <div class="visibility">
+
+                <span class="label swip">Visibility:</span>
+                <span class="val swap">
+                    <span class="num swip">8</span>
+                    <span class="unit swap">km</span>
+                </span>
+            </div>
+
+            <div class="pressure">
+                <span class="label swip">Pressure:</span>
+                <span class="val swap">
+                    <span class="num swip">1008</span>
+                    <span class="unit swap">hPa</span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="center">
+
+
+        <div id="governmentAlert">
+            <a href="https://www.met.ie/warnings" target="_blank">
+                <span class="bang">!</span>
+                Moderate Snow-ice Warning
+            </a>
+        </div>
+
+
+        <div id="title">
+            <span class="currently">
+                <span class="rain-icon currently-icon swip">
+                    <img width="84" height="84" src="/images/weather-icons/rain.png" alt="rain Icon">
+                </span>
+                <span class="desc swap">
+                    <span class="summary swap">5˚&nbsp;Light Rain.</span>
+                    <span class="summary-high-low">
+                        <span><span class="high-low-label">Feels Like:&nbsp;</span>3˚</span>
+                        <span><span class="high-low-label">Low:&nbsp;</span>4˚</span>
+                        <span><span class="high-low-label">High:&nbsp;</span>8˚</span>
+                    </span>
+                </span>
+            </span>
+
+
+            <span class="next swap">
+
+                Light rain starting later this evening and windy starting tomorrow&nbsp;morning.
+            </span>
+        </div>
+
+
+        <div id="wobbleContainer" style="width: 350px;">
+            <div class="labels">
+                <span class="label"><span class="text"><span class="swip">10</span><span class="swap">min</span></span></span>
+                <span class="label"></span>
+                <span class="label"><span class="text"><span class="swip">30</span><span class="swap">min</span></span></span>
+                <span class="label"></span>
+                <span class="label"><span class="text"><span class="swip">50</span><span class="swap">min</span></span></span>
+                <span class="label last"></span>
+            </div>
+
+            <canvas id="wobbleCanvas" width="700" height="160" style="width: 350px; height: 80px;"></canvas>
+
+            <div class="intensityLabels">
+                <div class="heavy"><span>Heavy</span></div>
+                <div class="med"><span>Medium</span></div>
+                <div class="light"><span>Light</span></div>
+            </div>
+        </div>
+        <div id="nextHourClear">
+            <strong class="swiap">Next Hour</strong>: <span class="swap">Light rain for the hour.</span>
+        </div>
+
+
+    </div>
+
+    <div class="scroll-container">
+        <div id="timeline" class="timeline_container" style="width: 800px;">
+            <div class="timeline">
+                <div class="stripes"><span class="timeline-stripe-3 first" style="width: 34.3333px; left: 0px;"></span><span class="timeline-stripe-4" style="width: 67.6667px; left: 33.3333px;"><span>Light Rain</span></span><span class="timeline-stripe-3" style="width: 101px; left: 100px;"><span>Overcast</span></span><span class="timeline-stripe-2" style="width: 599px; left: 200px;"><span>Mostly Cloudy</span></span></div>
+                <div class="hour_ticks"><span class="even first" style="left: 0px;"></span><span class="odd second" style="left: 33.3333px;"></span><span class="even" style="left: 66.6667px;"></span><span class="odd" style="left: 100px;"></span><span class="even" style="left: 133.333px;"></span><span class="odd" style="left: 166.667px;"></span><span class="even" style="left: 200px;"></span><span class="odd" style="left: 233.333px;"></span><span class="even" style="left: 266.667px;"></span><span class="odd" style="left: 300px;"></span><span class="even" style="left: 333.333px;"></span><span class="odd" style="left: 366.667px;"></span><span class="even" style="left: 400px;"></span><span class="odd" style="left: 433.333px;"></span><span class="even" style="left: 466.667px;"></span><span class="odd" style="left: 500px;"></span><span class="even" style="left: 533.333px;"></span><span class="odd" style="left: 566.667px;"></span><span class="even" style="left: 600px;"></span><span class="odd" style="left: 633.333px;"></span><span class="even" style="left: 666.667px;"></span><span class="odd" style="left: 700px;"></span><span class="even" style="left: 733.333px;"></span><span class="odd" style="left: 766.667px;"></span></div>
+                <div class="hours"><span class="hour first" style="left: 1px;"><span class="Now">Now</span></span><span class="hour" style="left: 33.3333px;"></span><span class="hour" style="left: 66.6667px;"><span class="10pm">10pm</span></span><span class="hour" style="left: 100px;"></span><span class="hour" style="left: 133.333px;"><span class="12am">12am</span></span><span class="hour" style="left: 166.667px;"></span><span class="hour" style="left: 200px;"><span class="2am">2am</span></span><span class="hour" style="left: 233.333px;"></span><span class="hour" style="left: 266.667px;"><span class="4am">4am</span></span><span class="hour" style="left: 300px;"></span><span class="hour" style="left: 333.333px;"><span class="6am">6am</span></span><span class="hour" style="left: 366.667px;"></span><span class="hour" style="left: 400px;"><span class="8am">8am</span></span><span class="hour" style="left: 433.333px;"></span><span class="hour" style="left: 466.667px;"><span class="10am">10am</span></span><span class="hour" style="left: 500px;"></span><span class="hour" style="left: 533.333px;"><span class="12pm">12pm</span></span><span class="hour" style="left: 566.667px;"></span><span class="hour" style="left: 600px;"><span class="2pm">2pm</span></span><span class="hour" style="left: 633.333px;"></span><span class="hour" style="left: 666.667px;"><span class="4pm">4pm</span></span><span class="hour" style="left: 700px;"></span><span class="hour" style="left: 733.333px;"><span class="6pm">6pm</span></span><span class="hour" style="left: 766.667px;"></span></div>
+                <div class="temps"><span class="first" style="opacity: 0.605088; left: 1px;"><span>5°</span></span><span style="opacity: 0.306416; left: 66.6667px;"><span>4°</span></span><span style="opacity: 0.266593; left: 133.333px;"><span>4°</span></span><span style="opacity: 0.25; left: 200px;"><span>4°</span></span><span style="opacity: 0.303097; left: 266.667px;"><span>4°</span></span><span style="opacity: 0.482301; left: 333.333px;"><span>5°</span></span><span style="opacity: 0.445796; left: 400px;"><span>5°</span></span><span style="opacity: 0.615044; left: 466.667px;"><span>5°</span></span><span style="opacity: 0.890487; left: 533.333px;"><span>6°</span></span><span style="opacity: 1; left: 600px;"><span>7°</span></span><span style="opacity: 0.926991; left: 666.667px;"><span>6°</span></span><span style="opacity: 0.634956; left: 733.333px;"><span>5°</span></span></div>
+            </div>
+            <span class="now" style="left: 23px;"></span>
+        </div>
+    </div>
+
+    <div id="map-container">
+        <iframe id="embedded-map" src="//maps.darksky.net/atradar,53.2842,-9.0378,9?marker=53.2842,-9.0378&amp;linkto=maps"></iframe>
+    </div>
+
+    <div id="week" class="center">
+
+        <div class="summary">
+            Light rain today through Friday, with high temperatures rising to 11°C on&nbsp;Friday.
+        </div>
+
+
+
+
+
+        <a class="day" data-day="0">
+            <span>
+                <span class="skycon">
+                    <img src="/images/weather-icons/rain.png" class="rain-icon" alt="rain Icon">
+                </span>
+
+                <span class="name">
+
+                    Today
+
+                </span>
+
+            </span>
+
+            <span class="tempRange">
+                <span class="minTemp" style="left:-4%">4˚</span>
+
+                <span class="bar" style="width:63%; margin-left:-4%"></span>
+
+                <span class="maxTemp" style="left:59%">8˚</span>
+            </span>
+
+            <span class="toggle">
+                <span class="open">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18" viewBox="0 0 18 18">
+                        <defs>
+                            <style>
+                                .cls-1 {
+                                    fill: #778;
+                                }
+                            </style>
+                        </defs>
+                        <circle class="cls-1" cx="9" cy="9" r="9"></circle>
+                        <image x="8" y="4" width="2" height="10" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAAKAQMAAACkKx0KAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABlBMVEX///8AAABVwtN+AAAAAWJLR0QB/wIt3gAAAAlwSFlzAAAuIwAALiMBeKU/dgAAAAtJREFUCNdjYMAEAAAUAAHlhrBKAAAAAElFTkSuQmCC"></image>
+                        <image data-name="Layer 1 copy" x="4" y="8" width="10" height="2" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAACAgMAAAAcD6VDAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACVBMVEX///////8AAACO9MPsAAAAAXRSTlP9g+pWxwAAAAFiS0dEAmYLfGQAAAAJcEhZcwAALiMAAC4jAXilP3YAAAAQSURBVAjXYwgNDWAQDQ0AAAciAbVeQnWtAAAAAElFTkSuQmCC"></image>
+                    </svg>
+                </span>
+                <span class="close">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18" viewBox="0 0 18 18">
+                        <defs>
+                            <style>
+                                .cls-1 {
+                                    fill: #778;
+                                }
+                            </style>
+                        </defs>
+                        <circle class="cls-1" cx="9" cy="9" r="9"></circle>
+                        <image data-name="Layer 1 copy" x="4" y="8" width="10" height="2" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAACAgMAAAAcD6VDAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACVBMVEX///////8AAACO9MPsAAAAAXRSTlP9g+pWxwAAAAFiS0dEAmYLfGQAAAAJcEhZcwAALiMAAC4jAXilP3YAAAAQSURBVAjXYwgNDWAQDQ0AAAciAbVeQnWtAAAAAElFTkSuQmCC"></image>
+                    </svg>
+
+                </span>
+            </span>
+        </a>
+
+        <div class="dayDetails">
+
+            <div class="summary_container">
+                <div class="summary">Dangerously windy in the morning and light rain starting in the evening.</div>
+
+                <div class="dayExtras">
+                    <div class="highLowTemp swip">
+                        <span class="highTemp swip">
+                            <span class="temp">4˚</span>
+                            <span class="time">11pm</span>
+                        </span>
+
+                        <span class="arrow">→</span>
+
+                        <span class="lowTemp swap">
+                            <span class="temp">8˚</span>
+                            <span class="time">2pm</span>
+                        </span>
+                    </div>
+
+                    <div class="sunTimes">
+
+                        <span class="sunrise swip">
+                            <img src="/images/sunrise.png" width="28" height="30" alt="Sunrise Icon">
+                            <span class="time">7:06am</span>
+                        </span>
+
+
+
+                        <span class="sunset swap">
+                            <img src="/images/sunset.png" width="28" height="30" alt="Sunset Icon">
+                            <span class="time">6:29pm</span>
+                        </span>
+
+                    </div>
+
+                    <div class="precipAccum swap">
+                        <span class="label swip">Rain</span>
+                        <span class="val swap">
+
+                            <span class="num swip">6.4</span>
+                            <span class="unit swap">mm</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-container-scroll">
+                <div class="timeline_container">
+                    <div class="timeline">
+                        <div class="stripes"></div>
+                        <div class="hour_ticks"></div>
+                        <div class="hours"></div>
+                        <div class="temps"></div>
+                    </div>
+                </div>
+            </div>
+
+            <a class="moreDetails" href="/details/53.2842,-9.0378/2019-3-9/si12/en" rel="nofollow">More Details</a>
+        </div>
+
+
+        <a class="day" data-day="1">
+            <span>
+                <span class="skycon">
+                    <img src="/images/weather-icons/wind.png" class="wind-icon" alt="wind Icon">
+                </span>
+
+                <span class="name">
+
+                    Sun
+
+                </span>
+
+            </span>
+
+            <span class="tempRange">
+                <span class="minTemp" style="left:-4%">4˚</span>
+
+                <span class="bar" style="width:47%; margin-left:-4%"></span>
+
+                <span class="maxTemp" style="left:43%">7˚</span>
+            </span>
+
+            <span class="toggle">
+                <span class="open">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18" viewBox="0 0 18 18">
+                        <defs>
+                            <style>
+                                .cls-1 {
+                                    fill: #778;
+                                }
+                            </style>
+                        </defs>
+                        <circle class="cls-1" cx="9" cy="9" r="9"></circle>
+                        <image x="8" y="4" width="2" height="10" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAAKAQMAAACkKx0KAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABlBMVEX///8AAABVwtN+AAAAAWJLR0QB/wIt3gAAAAlwSFlzAAAuIwAALiMBeKU/dgAAAAtJREFUCNdjYMAEAAAUAAHlhrBKAAAAAElFTkSuQmCC"></image>
+                        <image data-name="Layer 1 copy" x="4" y="8" width="10" height="2" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAACAgMAAAAcD6VDAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACVBMVEX///////8AAACO9MPsAAAAAXRSTlP9g+pWxwAAAAFiS0dEAmYLfGQAAAAJcEhZcwAALiMAAC4jAXilP3YAAAAQSURBVAjXYwgNDWAQDQ0AAAciAbVeQnWtAAAAAElFTkSuQmCC"></image>
+                    </svg>
+                </span>
+                <span class="close">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18" viewBox="0 0 18 18">
+                        <defs>
+                            <style>
+                                .cls-1 {
+                                    fill: #778;
+                                }
+                            </style>
+                        </defs>
+                        <circle class="cls-1" cx="9" cy="9" r="9"></circle>
+                        <image data-name="Layer 1 copy" x="4" y="8" width="10" height="2" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAACAgMAAAAcD6VDAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACVBMVEX///////8AAACO9MPsAAAAAXRSTlP9g+pWxwAAAAFiS0dEAmYLfGQAAAAJcEhZcwAALiMAAC4jAXilP3YAAAAQSURBVAjXYwgNDWAQDQ0AAAciAbVeQnWtAAAAAElFTkSuQmCC"></image>
+                    </svg>
+
+                </span>
+            </span>
+        </a>
+
+        <div class="dayDetails">
+
+            <div class="summary_container">
+                <div class="summary">Windy and mostly cloudy throughout the day.</div>
+
+                <div class="dayExtras">
+                    <div class="highLowTemp swip">
+                        <span class="highTemp swip">
+                            <span class="temp">4˚</span>
+                            <span class="time">2am</span>
+                        </span>
+
+                        <span class="arrow">→</span>
+
+                        <span class="lowTemp swap">
+                            <span class="temp">7˚</span>
+                            <span class="time">2pm</span>
+                        </span>
+                    </div>
+
+                    <div class="sunTimes">
+
+                        <span class="sunrise swip">
+                            <img src="/images/sunrise.png" width="28" height="30" alt="Sunrise Icon">
+                            <span class="time">7:04am</span>
+                        </span>
+
+
+
+                        <span class="sunset swap">
+                            <img src="/images/sunset.png" width="28" height="30" alt="Sunset Icon">
+                            <span class="time">6:31pm</span>
+                        </span>
+
+                    </div>
+
+                    <div class="precipAccum swap">
+                        <span class="label swip">Rain</span>
+                        <span class="val swap">
+
+                            <span class="num swip">8.8</span>
+                            <span class="unit swap">mm</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-container-scroll">
+                <div class="timeline_container">
+                    <div class="timeline">
+                        <div class="stripes"></div>
+                        <div class="hour_ticks"></div>
+                        <div class="hours"></div>
+                        <div class="temps"></div>
+                    </div>
+                </div>
+            </div>
+
+            <a class="moreDetails" href="/details/53.2842,-9.0378/2019-3-10/si12/en" rel="nofollow">More Details</a>
+        </div>
+
+
+        <a class="day" data-day="2">
+            <span>
+                <span class="skycon">
+                    <img src="/images/weather-icons/rain.png" class="rain-icon" alt="rain Icon">
+                </span>
+
+                <span class="name">
+
+                    Mon
+
+                </span>
+
+            </span>
+
+            <span class="tempRange">
+                <span class="minTemp" style="left:11%">5˚</span>
+
+                <span class="bar" style="width:63%; margin-left:11%"></span>
+
+                <span class="maxTemp" style="left:74%">9˚</span>
+            </span>
+
+            <span class="toggle">
+                <span class="open">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18" viewBox="0 0 18 18">
+                        <defs>
+                            <style>
+                                .cls-1 {
+                                    fill: #778;
+                                }
+                            </style>
+                        </defs>
+                        <circle class="cls-1" cx="9" cy="9" r="9"></circle>
+                        <image x="8" y="4" width="2" height="10" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAAKAQMAAACkKx0KAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABlBMVEX///8AAABVwtN+AAAAAWJLR0QB/wIt3gAAAAlwSFlzAAAuIwAALiMBeKU/dgAAAAtJREFUCNdjYMAEAAAUAAHlhrBKAAAAAElFTkSuQmCC"></image>
+                        <image data-name="Layer 1 copy" x="4" y="8" width="10" height="2" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAACAgMAAAAcD6VDAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACVBMVEX///////8AAACO9MPsAAAAAXRSTlP9g+pWxwAAAAFiS0dEAmYLfGQAAAAJcEhZcwAALiMAAC4jAXilP3YAAAAQSURBVAjXYwgNDWAQDQ0AAAciAbVeQnWtAAAAAElFTkSuQmCC"></image>
+                    </svg>
+                </span>
+                <span class="close">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18" viewBox="0 0 18 18">
+                        <defs>
+                            <style>
+                                .cls-1 {
+                                    fill: #778;
+                                }
+                            </style>
+                        </defs>
+                        <circle class="cls-1" cx="9" cy="9" r="9"></circle>
+                        <image data-name="Layer 1 copy" x="4" y="8" width="10" height="2" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAACAgMAAAAcD6VDAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACVBMVEX///////8AAACO9MPsAAAAAXRSTlP9g+pWxwAAAAFiS0dEAmYLfGQAAAAJcEhZcwAALiMAAC4jAXilP3YAAAAQSURBVAjXYwgNDWAQDQ0AAAciAbVeQnWtAAAAAElFTkSuQmCC"></image>
+                    </svg>
+
+                </span>
+            </span>
+        </a>
+
+        <div class="dayDetails">
+
+            <div class="summary_container">
+                <div class="summary">Windy starting in the afternoon and rain starting in the evening.</div>
+
+                <div class="dayExtras">
+                    <div class="highLowTemp swip">
+                        <span class="highTemp swip">
+                            <span class="temp">5˚</span>
+                            <span class="time">12am</span>
+                        </span>
+
+                        <span class="arrow">→</span>
+
+                        <span class="lowTemp swap">
+                            <span class="temp">9˚</span>
+                            <span class="time">1pm</span>
+                        </span>
+                    </div>
+
+                    <div class="sunTimes">
+
+                        <span class="sunrise swip">
+                            <img src="/images/sunrise.png" width="28" height="30" alt="Sunrise Icon">
+                            <span class="time">7:01am</span>
+                        </span>
+
+
+
+                        <span class="sunset swap">
+                            <img src="/images/sunset.png" width="28" height="30" alt="Sunset Icon">
+                            <span class="time">6:33pm</span>
+                        </span>
+
+                    </div>
+
+                    <div class="precipAccum swap">
+                        <span class="label swip">Rain</span>
+                        <span class="val swap">
+
+                            <span class="num swip">11.8</span>
+                            <span class="unit swap">mm</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-container-scroll">
+                <div class="timeline_container">
+                    <div class="timeline">
+                        <div class="stripes"></div>
+                        <div class="hour_ticks"></div>
+                        <div class="hours"></div>
+                        <div class="temps"></div>
+                    </div>
+                </div>
+            </div>
+
+            <a class="moreDetails" href="/details/53.2842,-9.0378/2019-3-11/si12/en" rel="nofollow">More Details</a>
+        </div>
+
+
+        <a class="day" data-day="3">
+            <span>
+                <span class="skycon">
+                    <img src="/images/weather-icons/rain.png" class="rain-icon" alt="rain Icon">
+                </span>
+
+                <span class="name">
+
+                    Tue
+
+                </span>
+
+            </span>
+
+            <span class="tempRange">
+                <span class="minTemp" style="left:11%">5˚</span>
+
+                <span class="bar" style="width:47%; margin-left:11%"></span>
+
+                <span class="maxTemp" style="left:58%">8˚</span>
+            </span>
+
+            <span class="toggle">
+                <span class="open">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18" viewBox="0 0 18 18">
+                        <defs>
+                            <style>
+                                .cls-1 {
+                                    fill: #778;
+                                }
+                            </style>
+                        </defs>
+                        <circle class="cls-1" cx="9" cy="9" r="9"></circle>
+                        <image x="8" y="4" width="2" height="10" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAAKAQMAAACkKx0KAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABlBMVEX///8AAABVwtN+AAAAAWJLR0QB/wIt3gAAAAlwSFlzAAAuIwAALiMBeKU/dgAAAAtJREFUCNdjYMAEAAAUAAHlhrBKAAAAAElFTkSuQmCC"></image>
+                        <image data-name="Layer 1 copy" x="4" y="8" width="10" height="2" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAACAgMAAAAcD6VDAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACVBMVEX///////8AAACO9MPsAAAAAXRSTlP9g+pWxwAAAAFiS0dEAmYLfGQAAAAJcEhZcwAALiMAAC4jAXilP3YAAAAQSURBVAjXYwgNDWAQDQ0AAAciAbVeQnWtAAAAAElFTkSuQmCC"></image>
+                    </svg>
+                </span>
+                <span class="close">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18" viewBox="0 0 18 18">
+                        <defs>
+                            <style>
+                                .cls-1 {
+                                    fill: #778;
+                                }
+                            </style>
+                        </defs>
+                        <circle class="cls-1" cx="9" cy="9" r="9"></circle>
+                        <image data-name="Layer 1 copy" x="4" y="8" width="10" height="2" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAACAgMAAAAcD6VDAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACVBMVEX///////8AAACO9MPsAAAAAXRSTlP9g+pWxwAAAAFiS0dEAmYLfGQAAAAJcEhZcwAALiMAAC4jAXilP3YAAAAQSURBVAjXYwgNDWAQDQ0AAAciAbVeQnWtAAAAAElFTkSuQmCC"></image>
+                    </svg>
+
+                </span>
+            </span>
+        </a>
+
+        <div class="dayDetails">
+
+            <div class="summary_container">
+                <div class="summary">Dangerously windy throughout the day and light rain in the evening.</div>
+
+                <div class="dayExtras">
+                    <div class="highLowTemp swip">
+                        <span class="highTemp swip">
+                            <span class="temp">5˚</span>
+                            <span class="time">6am</span>
+                        </span>
+
+                        <span class="arrow">→</span>
+
+                        <span class="lowTemp swap">
+                            <span class="temp">8˚</span>
+                            <span class="time">2pm</span>
+                        </span>
+                    </div>
+
+                    <div class="sunTimes">
+
+                        <span class="sunrise swip">
+                            <img src="/images/sunrise.png" width="28" height="30" alt="Sunrise Icon">
+                            <span class="time">6:59am</span>
+                        </span>
+
+
+
+                        <span class="sunset swap">
+                            <img src="/images/sunset.png" width="28" height="30" alt="Sunset Icon">
+                            <span class="time">6:35pm</span>
+                        </span>
+
+                    </div>
+
+                    <div class="precipAccum swap">
+                        <span class="label swip">Rain</span>
+                        <span class="val swap">
+
+                            <span class="num swip">10.2</span>
+                            <span class="unit swap">mm</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-container-scroll">
+                <div class="timeline_container">
+                    <div class="timeline">
+                        <div class="stripes"></div>
+                        <div class="hour_ticks"></div>
+                        <div class="hours"></div>
+                        <div class="temps"></div>
+                    </div>
+                </div>
+            </div>
+
+            <a class="moreDetails" href="/details/53.2842,-9.0378/2019-3-12/si12/en" rel="nofollow">More Details</a>
+        </div>
+
+
+        <a class="day" data-day="4">
+            <span>
+                <span class="skycon">
+                    <img src="/images/weather-icons/wind.png" class="wind-icon" alt="wind Icon">
+                </span>
+
+                <span class="name">
+
+                    Wed
+
+                </span>
+
+            </span>
+
+            <span class="tempRange">
+                <span class="minTemp" style="left:43%">7˚</span>
+
+                <span class="bar" style="width:47%; margin-left:43%"></span>
+
+                <span class="maxTemp" style="left:90%">10˚</span>
+            </span>
+
+            <span class="toggle">
+                <span class="open">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18" viewBox="0 0 18 18">
+                        <defs>
+                            <style>
+                                .cls-1 {
+                                    fill: #778;
+                                }
+                            </style>
+                        </defs>
+                        <circle class="cls-1" cx="9" cy="9" r="9"></circle>
+                        <image x="8" y="4" width="2" height="10" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAAKAQMAAACkKx0KAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABlBMVEX///8AAABVwtN+AAAAAWJLR0QB/wIt3gAAAAlwSFlzAAAuIwAALiMBeKU/dgAAAAtJREFUCNdjYMAEAAAUAAHlhrBKAAAAAElFTkSuQmCC"></image>
+                        <image data-name="Layer 1 copy" x="4" y="8" width="10" height="2" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAACAgMAAAAcD6VDAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACVBMVEX///////8AAACO9MPsAAAAAXRSTlP9g+pWxwAAAAFiS0dEAmYLfGQAAAAJcEhZcwAALiMAAC4jAXilP3YAAAAQSURBVAjXYwgNDWAQDQ0AAAciAbVeQnWtAAAAAElFTkSuQmCC"></image>
+                    </svg>
+                </span>
+                <span class="close">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18" viewBox="0 0 18 18">
+                        <defs>
+                            <style>
+                                .cls-1 {
+                                    fill: #778;
+                                }
+                            </style>
+                        </defs>
+                        <circle class="cls-1" cx="9" cy="9" r="9"></circle>
+                        <image data-name="Layer 1 copy" x="4" y="8" width="10" height="2" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAACAgMAAAAcD6VDAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACVBMVEX///////8AAACO9MPsAAAAAXRSTlP9g+pWxwAAAAFiS0dEAmYLfGQAAAAJcEhZcwAALiMAAC4jAXilP3YAAAAQSURBVAjXYwgNDWAQDQ0AAAciAbVeQnWtAAAAAElFTkSuQmCC"></image>
+                    </svg>
+
+                </span>
+            </span>
+        </a>
+
+        <div class="dayDetails">
+
+            <div class="summary_container">
+                <div class="summary">Dangerously windy until afternoon and mostly cloudy throughout the day.</div>
+
+                <div class="dayExtras">
+                    <div class="highLowTemp swip">
+                        <span class="highTemp swip">
+                            <span class="temp">7˚</span>
+                            <span class="time">3am</span>
+                        </span>
+
+                        <span class="arrow">→</span>
+
+                        <span class="lowTemp swap">
+                            <span class="temp">10˚</span>
+                            <span class="time">2pm</span>
+                        </span>
+                    </div>
+
+                    <div class="sunTimes">
+
+                        <span class="sunrise swip">
+                            <img src="/images/sunrise.png" width="28" height="30" alt="Sunrise Icon">
+                            <span class="time">6:57am</span>
+                        </span>
+
+
+
+                        <span class="sunset swap">
+                            <img src="/images/sunset.png" width="28" height="30" alt="Sunset Icon">
+                            <span class="time">6:36pm</span>
+                        </span>
+
+                    </div>
+
+                    <div class="precipAccum swap">
+                        <span class="label swip">Rain</span>
+                        <span class="val swap">
+
+                            <span class="num swip">1.9</span>
+                            <span class="unit swap">mm</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-container-scroll">
+                <div class="timeline_container">
+                    <div class="timeline">
+                        <div class="stripes"></div>
+                        <div class="hour_ticks"></div>
+                        <div class="hours"></div>
+                        <div class="temps"></div>
+                    </div>
+                </div>
+            </div>
+
+            <a class="moreDetails" href="/details/53.2842,-9.0378/2019-3-13/si12/en" rel="nofollow">More Details</a>
+        </div>
+
+
+        <a class="day" data-day="5">
+            <span>
+                <span class="skycon">
+                    <img src="/images/weather-icons/wind.png" class="wind-icon" alt="wind Icon">
+                </span>
+
+                <span class="name">
+
+                    Thu
+
+                </span>
+
+            </span>
+
+            <span class="tempRange">
+                <span class="minTemp" style="left:59%">8˚</span>
+
+                <span class="bar" style="width:47%; margin-left:59%"></span>
+
+                <span class="maxTemp" style="left:106%">11˚</span>
+            </span>
+
+            <span class="toggle">
+                <span class="open">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18" viewBox="0 0 18 18">
+                        <defs>
+                            <style>
+                                .cls-1 {
+                                    fill: #778;
+                                }
+                            </style>
+                        </defs>
+                        <circle class="cls-1" cx="9" cy="9" r="9"></circle>
+                        <image x="8" y="4" width="2" height="10" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAAKAQMAAACkKx0KAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABlBMVEX///8AAABVwtN+AAAAAWJLR0QB/wIt3gAAAAlwSFlzAAAuIwAALiMBeKU/dgAAAAtJREFUCNdjYMAEAAAUAAHlhrBKAAAAAElFTkSuQmCC"></image>
+                        <image data-name="Layer 1 copy" x="4" y="8" width="10" height="2" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAACAgMAAAAcD6VDAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACVBMVEX///////8AAACO9MPsAAAAAXRSTlP9g+pWxwAAAAFiS0dEAmYLfGQAAAAJcEhZcwAALiMAAC4jAXilP3YAAAAQSURBVAjXYwgNDWAQDQ0AAAciAbVeQnWtAAAAAElFTkSuQmCC"></image>
+                    </svg>
+                </span>
+                <span class="close">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18" viewBox="0 0 18 18">
+                        <defs>
+                            <style>
+                                .cls-1 {
+                                    fill: #778;
+                                }
+                            </style>
+                        </defs>
+                        <circle class="cls-1" cx="9" cy="9" r="9"></circle>
+                        <image data-name="Layer 1 copy" x="4" y="8" width="10" height="2" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAACAgMAAAAcD6VDAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACVBMVEX///////8AAACO9MPsAAAAAXRSTlP9g+pWxwAAAAFiS0dEAmYLfGQAAAAJcEhZcwAALiMAAC4jAXilP3YAAAAQSURBVAjXYwgNDWAQDQ0AAAciAbVeQnWtAAAAAElFTkSuQmCC"></image>
+                    </svg>
+
+                </span>
+            </span>
+        </a>
+
+        <div class="dayDetails">
+
+            <div class="summary_container">
+                <div class="summary">Windy and overcast throughout the day.</div>
+
+                <div class="dayExtras">
+                    <div class="highLowTemp swip">
+                        <span class="highTemp swip">
+                            <span class="temp">8˚</span>
+                            <span class="time">12am</span>
+                        </span>
+
+                        <span class="arrow">→</span>
+
+                        <span class="lowTemp swap">
+                            <span class="temp">11˚</span>
+                            <span class="time">11pm</span>
+                        </span>
+                    </div>
+
+                    <div class="sunTimes">
+
+                        <span class="sunrise swip">
+                            <img src="/images/sunrise.png" width="28" height="30" alt="Sunrise Icon">
+                            <span class="time">6:54am</span>
+                        </span>
+
+
+
+                        <span class="sunset swap">
+                            <img src="/images/sunset.png" width="28" height="30" alt="Sunset Icon">
+                            <span class="time">6:38pm</span>
+                        </span>
+
+                    </div>
+
+                    <div class="precipAccum swap">
+                        <span class="label swip">Rain</span>
+                        <span class="val swap">
+
+                            <span class="num swip">3.3</span>
+                            <span class="unit swap">mm</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-container-scroll">
+                <div class="timeline_container">
+                    <div class="timeline">
+                        <div class="stripes"></div>
+                        <div class="hour_ticks"></div>
+                        <div class="hours"></div>
+                        <div class="temps"></div>
+                    </div>
+                </div>
+            </div>
+
+            <a class="moreDetails" href="/details/53.2842,-9.0378/2019-3-14/si12/en" rel="nofollow">More Details</a>
+        </div>
+
+
+        <a class="day" data-day="6">
+            <span>
+                <span class="skycon">
+                    <img src="/images/weather-icons/rain.png" class="rain-icon" alt="rain Icon">
+                </span>
+
+                <span class="name">
+
+                    Fri
+
+                </span>
+
+            </span>
+
+            <span class="tempRange">
+                <span class="minTemp" style="left:43%">7˚</span>
+
+                <span class="bar" style="width:63%; margin-left:43%"></span>
+
+                <span class="maxTemp" style="left:106%">11˚</span>
+            </span>
+
+            <span class="toggle">
+                <span class="open">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18" viewBox="0 0 18 18">
+                        <defs>
+                            <style>
+                                .cls-1 {
+                                    fill: #778;
+                                }
+                            </style>
+                        </defs>
+                        <circle class="cls-1" cx="9" cy="9" r="9"></circle>
+                        <image x="8" y="4" width="2" height="10" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAAKAQMAAACkKx0KAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABlBMVEX///8AAABVwtN+AAAAAWJLR0QB/wIt3gAAAAlwSFlzAAAuIwAALiMBeKU/dgAAAAtJREFUCNdjYMAEAAAUAAHlhrBKAAAAAElFTkSuQmCC"></image>
+                        <image data-name="Layer 1 copy" x="4" y="8" width="10" height="2" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAACAgMAAAAcD6VDAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACVBMVEX///////8AAACO9MPsAAAAAXRSTlP9g+pWxwAAAAFiS0dEAmYLfGQAAAAJcEhZcwAALiMAAC4jAXilP3YAAAAQSURBVAjXYwgNDWAQDQ0AAAciAbVeQnWtAAAAAElFTkSuQmCC"></image>
+                    </svg>
+                </span>
+                <span class="close">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18" viewBox="0 0 18 18">
+                        <defs>
+                            <style>
+                                .cls-1 {
+                                    fill: #778;
+                                }
+                            </style>
+                        </defs>
+                        <circle class="cls-1" cx="9" cy="9" r="9"></circle>
+                        <image data-name="Layer 1 copy" x="4" y="8" width="10" height="2" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAACAgMAAAAcD6VDAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACVBMVEX///////8AAACO9MPsAAAAAXRSTlP9g+pWxwAAAAFiS0dEAmYLfGQAAAAJcEhZcwAALiMAAC4jAXilP3YAAAAQSURBVAjXYwgNDWAQDQ0AAAciAbVeQnWtAAAAAElFTkSuQmCC"></image>
+                    </svg>
+
+                </span>
+            </span>
+        </a>
+
+        <div class="dayDetails">
+
+            <div class="summary_container">
+                <div class="summary">Windy until evening and light rain in the morning.</div>
+
+                <div class="dayExtras">
+                    <div class="highLowTemp swip">
+                        <span class="highTemp swip">
+                            <span class="temp">7˚</span>
+                            <span class="time">11pm</span>
+                        </span>
+
+                        <span class="arrow">→</span>
+
+                        <span class="lowTemp swap">
+                            <span class="temp">11˚</span>
+                            <span class="time">3am</span>
+                        </span>
+                    </div>
+
+                    <div class="sunTimes">
+
+                        <span class="sunrise swip">
+                            <img src="/images/sunrise.png" width="28" height="30" alt="Sunrise Icon">
+                            <span class="time">6:52am</span>
+                        </span>
+
+
+
+                        <span class="sunset swap">
+                            <img src="/images/sunset.png" width="28" height="30" alt="Sunset Icon">
+                            <span class="time">6:40pm</span>
+                        </span>
+
+                    </div>
+
+                    <div class="precipAccum swap">
+                        <span class="label swip">Rain</span>
+                        <span class="val swap">
+
+                            <span class="num swip">8.6</span>
+                            <span class="unit swap">mm</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-container-scroll">
+                <div class="timeline_container">
+                    <div class="timeline">
+                        <div class="stripes"></div>
+                        <div class="hour_ticks"></div>
+                        <div class="hours"></div>
+                        <div class="temps"></div>
+                    </div>
+                </div>
+            </div>
+
+            <a class="moreDetails" href="/details/53.2842,-9.0378/2019-3-15/si12/en" rel="nofollow">More Details</a>
+        </div>
+
+
+        <a class="day" data-day="7">
+            <span>
+                <span class="skycon">
+                    <img src="/images/weather-icons/wind.png" class="wind-icon" alt="wind Icon">
+                </span>
+
+                <span class="name">
+
+                    Sat
+
+                </span>
+
+            </span>
+
+            <span class="tempRange">
+                <span class="minTemp" style="left:11%">5˚</span>
+
+                <span class="bar" style="width:47%; margin-left:11%"></span>
+
+                <span class="maxTemp" style="left:58%">8˚</span>
+            </span>
+
+            <span class="toggle">
+                <span class="open">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18" viewBox="0 0 18 18">
+                        <defs>
+                            <style>
+                                .cls-1 {
+                                    fill: #778;
+                                }
+                            </style>
+                        </defs>
+                        <circle class="cls-1" cx="9" cy="9" r="9"></circle>
+                        <image x="8" y="4" width="2" height="10" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAAKAQMAAACkKx0KAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABlBMVEX///8AAABVwtN+AAAAAWJLR0QB/wIt3gAAAAlwSFlzAAAuIwAALiMBeKU/dgAAAAtJREFUCNdjYMAEAAAUAAHlhrBKAAAAAElFTkSuQmCC"></image>
+                        <image data-name="Layer 1 copy" x="4" y="8" width="10" height="2" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAACAgMAAAAcD6VDAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACVBMVEX///////8AAACO9MPsAAAAAXRSTlP9g+pWxwAAAAFiS0dEAmYLfGQAAAAJcEhZcwAALiMAAC4jAXilP3YAAAAQSURBVAjXYwgNDWAQDQ0AAAciAbVeQnWtAAAAAElFTkSuQmCC"></image>
+                    </svg>
+                </span>
+                <span class="close">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18" viewBox="0 0 18 18">
+                        <defs>
+                            <style>
+                                .cls-1 {
+                                    fill: #778;
+                                }
+                            </style>
+                        </defs>
+                        <circle class="cls-1" cx="9" cy="9" r="9"></circle>
+                        <image data-name="Layer 1 copy" x="4" y="8" width="10" height="2" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAACAgMAAAAcD6VDAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACVBMVEX///////8AAACO9MPsAAAAAXRSTlP9g+pWxwAAAAFiS0dEAmYLfGQAAAAJcEhZcwAALiMAAC4jAXilP3YAAAAQSURBVAjXYwgNDWAQDQ0AAAciAbVeQnWtAAAAAElFTkSuQmCC"></image>
+                    </svg>
+
+                </span>
+            </span>
+        </a>
+
+        <div class="dayDetails last">
+
+            <div class="summary_container">
+                <div class="summary">Foggy until evening and breezy until afternoon.</div>
+
+                <div class="dayExtras">
+                    <div class="highLowTemp swip">
+                        <span class="highTemp swip">
+                            <span class="temp">5˚</span>
+                            <span class="time">4am</span>
+                        </span>
+
+                        <span class="arrow">→</span>
+
+                        <span class="lowTemp swap">
+                            <span class="temp">8˚</span>
+                            <span class="time">3pm</span>
+                        </span>
+                    </div>
+
+                    <div class="sunTimes">
+
+                        <span class="sunrise swip">
+                            <img src="/images/sunrise.png" width="28" height="30" alt="Sunrise Icon">
+                            <span class="time">6:49am</span>
+                        </span>
+
+
+
+                        <span class="sunset swap">
+                            <img src="/images/sunset.png" width="28" height="30" alt="Sunset Icon">
+                            <span class="time">6:42pm</span>
+                        </span>
+
+                    </div>
+
+                    <div class="precipAccum swap">
+                        <span class="label swip">Rain</span>
+                        <span class="val swap">
+
+                            <span class="num swip">4</span>
+                            <span class="unit swap">mm</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-container-scroll">
+                <div class="timeline_container">
+                    <div class="timeline">
+                        <div class="stripes"></div>
+                        <div class="hour_ticks"></div>
+                        <div class="hours"></div>
+                        <div class="temps"></div>
+                    </div>
+                </div>
+            </div>
+
+            <a class="moreDetails" href="/details/53.2842,-9.0378/2019-3-16/si12/en" rel="nofollow">More Details</a>
+        </div>
+
+    </div>
+
+    <div id="timeMachine" class="center">
+        <div class="description">
+            Explore the weather in the past or future:
+        </div>
+        <div class="buttonContainer">
+            <a class="button" rel="nofollow">Time Machine</a>
+        </div>
+        <div class="calendar" style="display:none"><div class="pika-single"><div class="pika-lendar"><div id="pika-title-id" class="pika-title" role="heading" aria-live="assertive"><div class="pika-label">March<select class="pika-select pika-select-month" tabindex="-1"><option value="0">January</option><option value="1">February</option><option value="2" selected="selected">March</option><option value="3">April</option><option value="4">May</option><option value="5">June</option><option value="6">July</option><option value="7">August</option><option value="8">September</option><option value="9">October</option><option value="10">November</option><option value="11">December</option></select></div><div class="pika-label">2019<select class="pika-select pika-select-year" tabindex="-1"><option value="2009">2009</option><option value="2010">2010</option><option value="2011">2011</option><option value="2012">2012</option><option value="2013">2013</option><option value="2014">2014</option><option value="2015">2015</option><option value="2016">2016</option><option value="2017">2017</option><option value="2018">2018</option><option value="2019" selected="selected">2019</option><option value="2020">2020</option><option value="2021">2021</option><option value="2022">2022</option><option value="2023">2023</option><option value="2024">2024</option><option value="2025">2025</option><option value="2026">2026</option><option value="2027">2027</option><option value="2028">2028</option><option value="2029">2029</option></select></div><button class="pika-prev" type="button">undefined</button><button class="pika-next" type="button">undefined</button></div><table cellpadding="0" cellspacing="0" class="pika-table" role="grid" aria-labelledby="pika-title-id"><thead><tr><th scope="col"><abbr title="Sunday">Sun</abbr></th><th scope="col"><abbr title="Monday">Mon</abbr></th><th scope="col"><abbr title="Tuesday">Tue</abbr></th><th scope="col"><abbr title="Wednesday">Wed</abbr></th><th scope="col"><abbr title="Thursday">Thu</abbr></th><th scope="col"><abbr title="Friday">Fri</abbr></th><th scope="col"><abbr title="Saturday">Sat</abbr></th></tr></thead><tbody><tr class="pika-row"><td class="is-empty"></td><td class="is-empty"></td><td class="is-empty"></td><td class="is-empty"></td><td class="is-empty"></td><td data-day="1" class="" aria-selected="false"><button class="pika-button pika-day" type="button" data-pika-year="2019" data-pika-month="2" data-pika-day="1">1</button></td><td data-day="2" class="" aria-selected="false"><button class="pika-button pika-day" type="button" data-pika-year="2019" data-pika-month="2" data-pika-day="2">2</button></td></tr><tr class="pika-row"><td data-day="3" class="" aria-selected="false"><button class="pika-button pika-day" type="button" data-pika-year="2019" data-pika-month="2" data-pika-day="3">3</button></td><td data-day="4" class="" aria-selected="false"><button class="pika-button pika-day" type="button" data-pika-year="2019" data-pika-month="2" data-pika-day="4">4</button></td><td data-day="5" class="" aria-selected="false"><button class="pika-button pika-day" type="button" data-pika-year="2019" data-pika-month="2" data-pika-day="5">5</button></td><td data-day="6" class="" aria-selected="false"><button class="pika-button pika-day" type="button" data-pika-year="2019" data-pika-month="2" data-pika-day="6">6</button></td><td data-day="7" class="" aria-selected="false"><button class="pika-button pika-day" type="button" data-pika-year="2019" data-pika-month="2" data-pika-day="7">7</button></td><td data-day="8" class="" aria-selected="false"><button class="pika-button pika-day" type="button" data-pika-year="2019" data-pika-month="2" data-pika-day="8">8</button></td><td data-day="9" class="is-today" aria-selected="false"><button class="pika-button pika-day" type="button" data-pika-year="2019" data-pika-month="2" data-pika-day="9">9</button></td></tr><tr class="pika-row"><td data-day="10" class="" aria-selected="false"><button class="pika-button pika-day" type="button" data-pika-year="2019" data-pika-month="2" data-pika-day="10">10</button></td><td data-day="11" class="" aria-selected="false"><button class="pika-button pika-day" type="button" data-pika-year="2019" data-pika-month="2" data-pika-day="11">11</button></td><td data-day="12" class="" aria-selected="false"><button class="pika-button pika-day" type="button" data-pika-year="2019" data-pika-month="2" data-pika-day="12">12</button></td><td data-day="13" class="" aria-selected="false"><button class="pika-button pika-day" type="button" data-pika-year="2019" data-pika-month="2" data-pika-day="13">13</button></td><td data-day="14" class="" aria-selected="false"><button class="pika-button pika-day" type="button" data-pika-year="2019" data-pika-month="2" data-pika-day="14">14</button></td><td data-day="15" class="" aria-selected="false"><button class="pika-button pika-day" type="button" data-pika-year="2019" data-pika-month="2" data-pika-day="15">15</button></td><td data-day="16" class="" aria-selected="false"><button class="pika-button pika-day" type="button" data-pika-year="2019" data-pika-month="2" data-pika-day="16">16</button></td></tr><tr class="pika-row"><td data-day="17" class="" aria-selected="false"><button class="pika-button pika-day" type="button" data-pika-year="2019" data-pika-month="2" data-pika-day="17">17</button></td><td data-day="18" class="" aria-selected="false"><button class="pika-button pika-day" type="button" data-pika-year="2019" data-pika-month="2" data-pika-day="18">18</button></td><td data-day="19" class="" aria-selected="false"><button class="pika-button pika-day" type="button" data-pika-year="2019" data-pika-month="2" data-pika-day="19">19</button></td><td data-day="20" class="" aria-selected="false"><button class="pika-button pika-day" type="button" data-pika-year="2019" data-pika-month="2" data-pika-day="20">20</button></td><td data-day="21" class="" aria-selected="false"><button class="pika-button pika-day" type="button" data-pika-year="2019" data-pika-month="2" data-pika-day="21">21</button></td><td data-day="22" class="" aria-selected="false"><button class="pika-button pika-day" type="button" data-pika-year="2019" data-pika-month="2" data-pika-day="22">22</button></td><td data-day="23" class="" aria-selected="false"><button class="pika-button pika-day" type="button" data-pika-year="2019" data-pika-month="2" data-pika-day="23">23</button></td></tr><tr class="pika-row"><td data-day="24" class="" aria-selected="false"><button class="pika-button pika-day" type="button" data-pika-year="2019" data-pika-month="2" data-pika-day="24">24</button></td><td data-day="25" class="" aria-selected="false"><button class="pika-button pika-day" type="button" data-pika-year="2019" data-pika-month="2" data-pika-day="25">25</button></td><td data-day="26" class="" aria-selected="false"><button class="pika-button pika-day" type="button" data-pika-year="2019" data-pika-month="2" data-pika-day="26">26</button></td><td data-day="27" class="" aria-selected="false"><button class="pika-button pika-day" type="button" data-pika-year="2019" data-pika-month="2" data-pika-day="27">27</button></td><td data-day="28" class="" aria-selected="false"><button class="pika-button pika-day" type="button" data-pika-year="2019" data-pika-month="2" data-pika-day="28">28</button></td><td data-day="29" class="" aria-selected="false"><button class="pika-button pika-day" type="button" data-pika-year="2019" data-pika-month="2" data-pika-day="29">29</button></td><td data-day="30" class="" aria-selected="false"><button class="pika-button pika-day" type="button" data-pika-year="2019" data-pika-month="2" data-pika-day="30">30</button></td></tr><tr class="pika-row"><td data-day="31" class="" aria-selected="false"><button class="pika-button pika-day" type="button" data-pika-year="2019" data-pika-month="2" data-pika-day="31">31</button></td><td class="is-empty"></td><td class="is-empty"></td><td class="is-empty"></td><td class="is-empty"></td><td class="is-empty"></td><td class="is-empty"></td></tr></tbody></table></div></div></div>
+    </div>
+
+    <!-- views/partials/footer.ejs -->
+    <div id="footer">
+
+
+
+        <div id="units-container" class="">
+            <div class="options">
+                <div class="selectric-wrapper selectric-units">
+                    <div class="selectric-hide-select">
+                        <select class="units" tabindex="-1" style="">
+                            <option value="us">˚F,&nbsp;mph</option>
+                            <option value="si">˚C,&nbsp;m/s</option>
+                            <option value="ca">˚C,&nbsp;km/h</option>
+                            <option value="uk2">˚C,&nbsp;mph</option>
+                        </select>
+                    </div><div class="selectric"><span class="label">˚C,&nbsp;m/s</span><b class="button">▾</b></div><div class="selectric-items" tabindex="-1"><div class="selectric-scroll"><ul><li data-index="0" class="">˚F,&nbsp;mph</li><li data-index="1" class="selected">˚C,&nbsp;m/s</li><li data-index="2" class="">˚C,&nbsp;km/h</li><li data-index="3" class="last">˚C,&nbsp;mph</li></ul></div></div><input class="selectric-input" tabindex="0">
+                </div>
+
+                <div class="selectric-wrapper selectric-language">
+                    <div class="selectric-hide-select">
+                        <select class="language" tabindex="-1" style="">
+                            <option value="de">Deutsch</option>
+                            <option value="en">English</option>
+                            <option value="es">Español</option>
+                            <option value="fr">Français</option>
+                            <option value="it">Italiano</option>
+                            <option value="nl">Nederlands</option>
+                            <option value="tr">Türk</option>
+                            <option value="ar">عربي</option>
+                            <option value="zh">中文</option>
+                            <option value="ja">日本語</option>
+                            <option value="x-pig-latin">Pig Latin</option>
+                        </select>
+                    </div><div class="selectric"><span class="label">English</span><b class="button">▾</b></div><div class="selectric-items" tabindex="-1"><div class="selectric-scroll"><ul><li data-index="0" class="">Deutsch</li><li data-index="1" class="selected">English</li><li data-index="2" class="">Español</li><li data-index="3" class="">Français</li><li data-index="4" class="">Italiano</li><li data-index="5" class="">Nederlands</li><li data-index="6" class="">Türk</li><li data-index="7" class="">عربي</li><li data-index="8" class="">中文</li><li data-index="9" class="">日本語</li><li data-index="10" class="last">Pig Latin</li></ul></div></div><input class="selectric-input" tabindex="0">
+                </div>
+            </div>
+        </div>
+
+
+        <div id="footer-section-container">
+            <div class="footer-section contribute">
+                <p><img alt="Dark Sky Logo" src="/images/darkskylogo.png"> Dark Sky</p>
+                <h4>Want To Use Our Data?</h4>
+                <ul>
+                    <li><a href="/dev">Dark Sky API</a></li>
+                </ul>
+            </div>
+            <div class="footer-section interactive">
+                <ul>
+                    <li><a href="/app" class="outboundFooterLink">iOS and Android</a></li>
+                    <li><a href="/sports">Sports</a></li>
+                    <li><a href="/widgets">Embed Widgets</a></li>
+                    <li><a href="http://github.com/darkskyapp" target="_blank">Github</a></li>
+                </ul>
+            </div>
+            <div class="footer-section information">
+                <ul>
+                    <li><a href="/tos">Terms of Service</a></li>
+                    <li><a href="https://blog.darksky.net/">Blog</a></li>
+                    <li><a href="/help">Help</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/privacy">Privacy</a></li>
+                    <li><a href="/jobs">Jobs</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <span class="copyright">©2012–9 The Dark Sky Company, LLC.&nbsp;</span>
+            <span class="trademark">"Dark Sky" and the raindrop logo are trademarks of The Dark Sky Company, LLC.</span>
+        </div>
+    </div>
+
+
+    <script>
+        var latitude = 53.2842,
+            longitude = -9.0378,
+            forecastTime = 1552164106,
+            tz_offset = 0,
+            units = "si",
+            language = "en",
+            timeFormat = "12",
+            languageReversed = false,
+            conditions = { "clear": "clear", "light-clouds": "partly cloudy", "heavy-clouds": "overcast", "medium-rain": "rain", "very-light-rain": "drizzle", "light-rain": "light rain", "heavy-rain": "heavy rain", "medium-sleet": "sleet", "very-light-sleet": "light sleet", "light-sleet": "light sleet", "heavy-sleet": "heavy sleet", "medium-snow": "snow", "very-light-snow": "flurries", "light-snow": "light snow", "heavy-snow": "heavy snow" },
+            calendar_i18n = { "months": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"], "weekdays": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], "weekdaysShort": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"] },
+            minutely = [{ "time": 1552164060, "precipIntensity": 1.143, "precipIntensityError": 0.3302, "precipProbability": 1, "precipType": "rain" }, { "time": 1552164120, "precipIntensity": 1.143, "precipIntensityError": 0.3556, "precipProbability": 1, "precipType": "rain" }, { "time": 1552164180, "precipIntensity": 1.1176, "precipIntensityError": 0.381, "precipProbability": 1, "precipType": "rain" }, { "time": 1552164240, "precipIntensity": 1.1176, "precipIntensityError": 0.4064, "precipProbability": 1, "precipType": "rain" }, { "time": 1552164300, "precipIntensity": 1.1176, "precipIntensityError": 0.4064, "precipProbability": 1, "precipType": "rain" }, { "time": 1552164360, "precipIntensity": 1.1176, "precipIntensityError": 0.4318, "precipProbability": 1, "precipType": "rain" }, { "time": 1552164420, "precipIntensity": 1.1176, "precipIntensityError": 0.4318, "precipProbability": 1, "precipType": "rain" }, { "time": 1552164480, "precipIntensity": 1.1176, "precipIntensityError": 0.4318, "precipProbability": 1, "precipType": "rain" }, { "time": 1552164540, "precipIntensity": 1.1176, "precipIntensityError": 0.4318, "precipProbability": 1, "precipType": "rain" }, { "time": 1552164600, "precipIntensity": 1.1176, "precipIntensityError": 0.4572, "precipProbability": 1, "precipType": "rain" }, { "time": 1552164660, "precipIntensity": 1.1176, "precipIntensityError": 0.4572, "precipProbability": 1, "precipType": "rain" }, { "time": 1552164720, "precipIntensity": 1.1176, "precipIntensityError": 0.4572, "precipProbability": 1, "precipType": "rain" }, { "time": 1552164780, "precipIntensity": 1.1176, "precipIntensityError": 0.4826, "precipProbability": 1, "precipType": "rain" }, { "time": 1552164840, "precipIntensity": 1.1176, "precipIntensityError": 0.4826, "precipProbability": 1, "precipType": "rain" }, { "time": 1552164900, "precipIntensity": 1.1176, "precipIntensityError": 0.4826, "precipProbability": 1, "precipType": "rain" }, { "time": 1552164960, "precipIntensity": 1.1176, "precipIntensityError": 0.4826, "precipProbability": 1, "precipType": "rain" }, { "time": 1552165020, "precipIntensity": 1.0922, "precipIntensityError": 0.4826, "precipProbability": 1, "precipType": "rain" }, { "time": 1552165080, "precipIntensity": 1.0922, "precipIntensityError": 0.508, "precipProbability": 1, "precipType": "rain" }, { "time": 1552165140, "precipIntensity": 1.0922, "precipIntensityError": 0.508, "precipProbability": 1, "precipType": "rain" }, { "time": 1552165200, "precipIntensity": 1.0922, "precipIntensityError": 0.5334, "precipProbability": 1, "precipType": "rain" }, { "time": 1552165260, "precipIntensity": 1.0668, "precipIntensityError": 0.5334, "precipProbability": 1, "precipType": "rain" }, { "time": 1552165320, "precipIntensity": 1.0668, "precipIntensityError": 0.5334, "precipProbability": 1, "precipType": "rain" }, { "time": 1552165380, "precipIntensity": 1.0668, "precipIntensityError": 0.5334, "precipProbability": 1, "precipType": "rain" }, { "time": 1552165440, "precipIntensity": 1.0414, "precipIntensityError": 0.5334, "precipProbability": 1, "precipType": "rain" }, { "time": 1552165500, "precipIntensity": 1.0414, "precipIntensityError": 0.5334, "precipProbability": 1, "precipType": "rain" }, { "time": 1552165560, "precipIntensity": 1.016, "precipIntensityError": 0.5334, "precipProbability": 1, "precipType": "rain" }, { "time": 1552165620, "precipIntensity": 1.0414, "precipIntensityError": 0.5588, "precipProbability": 1, "precipType": "rain" }, { "time": 1552165680, "precipIntensity": 1.016, "precipIntensityError": 0.5334, "precipProbability": 1, "precipType": "rain" }, { "time": 1552165740, "precipIntensity": 0.9906, "precipIntensityError": 0.5334, "precipProbability": 1, "precipType": "rain" }, { "time": 1552165800, "precipIntensity": 0.9906, "precipIntensityError": 0.5588, "precipProbability": 1, "precipType": "rain" }, { "time": 1552165860, "precipIntensity": 0.9906, "precipIntensityError": 0.5334, "precipProbability": 1, "precipType": "rain" }, { "time": 1552165920, "precipIntensity": 0.9906, "precipIntensityError": 0.5588, "precipProbability": 1, "precipType": "rain" }, { "time": 1552165980, "precipIntensity": 0.9906, "precipIntensityError": 0.5588, "precipProbability": 1, "precipType": "rain" }, { "time": 1552166040, "precipIntensity": 0.9652, "precipIntensityError": 0.5334, "precipProbability": 1, "precipType": "rain" }, { "time": 1552166100, "precipIntensity": 0.9652, "precipIntensityError": 0.5334, "precipProbability": 1, "precipType": "rain" }, { "time": 1552166160, "precipIntensity": 0.9652, "precipIntensityError": 0.5334, "precipProbability": 1, "precipType": "rain" }, { "time": 1552166220, "precipIntensity": 0.9652, "precipIntensityError": 0.5588, "precipProbability": 1, "precipType": "rain" }, { "time": 1552166280, "precipIntensity": 0.9652, "precipIntensityError": 0.5588, "precipProbability": 1, "precipType": "rain" }, { "time": 1552166340, "precipIntensity": 0.9398, "precipIntensityError": 0.5334, "precipProbability": 1, "precipType": "rain" }, { "time": 1552166400, "precipIntensity": 0.9398, "precipIntensityError": 0.5334, "precipProbability": 1, "precipType": "rain" }, { "time": 1552166460, "precipIntensity": 0.9398, "precipIntensityError": 0.5334, "precipProbability": 1, "precipType": "rain" }, { "time": 1552166520, "precipIntensity": 0.9398, "precipIntensityError": 0.5334, "precipProbability": 1, "precipType": "rain" }, { "time": 1552166580, "precipIntensity": 0.9398, "precipIntensityError": 0.5334, "precipProbability": 1, "precipType": "rain" }, { "time": 1552166640, "precipIntensity": 0.9398, "precipIntensityError": 0.5334, "precipProbability": 1, "precipType": "rain" }, { "time": 1552166700, "precipIntensity": 0.9398, "precipIntensityError": 0.5334, "precipProbability": 1, "precipType": "rain" }, { "time": 1552166760, "precipIntensity": 0.9398, "precipIntensityError": 0.5588, "precipProbability": 1, "precipType": "rain" }, { "time": 1552166820, "precipIntensity": 0.9144, "precipIntensityError": 0.5334, "precipProbability": 1, "precipType": "rain" }, { "time": 1552166880, "precipIntensity": 0.9398, "precipIntensityError": 0.5334, "precipProbability": 1, "precipType": "rain" }, { "time": 1552166940, "precipIntensity": 0.9398, "precipIntensityError": 0.5588, "precipProbability": 1, "precipType": "rain" }, { "time": 1552167000, "precipIntensity": 0.9398, "precipIntensityError": 0.5334, "precipProbability": 1, "precipType": "rain" }, { "time": 1552167060, "precipIntensity": 0.9398, "precipIntensityError": 0.5334, "precipProbability": 1, "precipType": "rain" }, { "time": 1552167120, "precipIntensity": 0.9398, "precipIntensityError": 0.5588, "precipProbability": 1, "precipType": "rain" }, { "time": 1552167180, "precipIntensity": 0.9398, "precipIntensityError": 0.5334, "precipProbability": 1, "precipType": "rain" }, { "time": 1552167240, "precipIntensity": 0.9398, "precipIntensityError": 0.5588, "precipProbability": 1, "precipType": "rain" }, { "time": 1552167300, "precipIntensity": 0.9398, "precipIntensityError": 0.5334, "precipProbability": 1, "precipType": "rain" }, { "time": 1552167360, "precipIntensity": 0.9398, "precipIntensityError": 0.5334, "precipProbability": 1, "precipType": "rain" }, { "time": 1552167420, "precipIntensity": 0.9144, "precipIntensityError": 0.5334, "precipProbability": 1, "precipType": "rain" }, { "time": 1552167480, "precipIntensity": 0.9398, "precipIntensityError": 0.5588, "precipProbability": 1, "precipType": "rain" }, { "time": 1552167540, "precipIntensity": 0.9144, "precipIntensityError": 0.5334, "precipProbability": 0.99, "precipType": "rain" }, { "time": 1552167600, "precipIntensity": 0.9398, "precipIntensityError": 0.5588, "precipProbability": 0.99, "precipType": "rain" }, { "time": 1552167660, "precipIntensity": 0.9398, "precipIntensityError": 0.5588, "precipProbability": 0.99, "precipType": "rain" }],
+            cityName = "",
+            cityNameOnly = false,
+            hours = [{ "time": 1552161600, "summary": "Overcast", "icon": "cloudy", "precipIntensity": 0.4369, "precipProbability": 0.51, "precipType": "rain", "temperature": 5.34, "apparentTemperature": 2.91, "dewPoint": 3.08, "humidity": 0.85, "pressure": 1008.69, "windSpeed": 3.01, "windGust": 4.56, "windBearing": 197, "cloudCover": 0.99, "uvIndex": 0, "visibility": 10.43, "ozone": 368.09 }, { "time": 1552165200, "summary": "Light Rain", "icon": "rain", "precipIntensity": 0.9754, "precipProbability": 1, "precipType": "rain", "temperature": 4.72, "apparentTemperature": 2.27, "dewPoint": 3.36, "humidity": 0.91, "pressure": 1007.57, "windSpeed": 2.87, "windGust": 4.46, "windBearing": 169, "cloudCover": 1, "uvIndex": 0, "visibility": 6.49, "ozone": 380.27 }, { "time": 1552168800, "summary": "Light Rain", "icon": "rain", "precipIntensity": 0.7264, "precipProbability": 1, "precipType": "rain", "temperature": 4.44, "apparentTemperature": 2.14, "dewPoint": 3.38, "humidity": 0.93, "pressure": 1006.49, "windSpeed": 2.61, "windGust": 4.27, "windBearing": 149, "cloudCover": 1, "uvIndex": 0, "visibility": 6.29, "ozone": 393.5 }, { "time": 1552172400, "summary": "Overcast", "icon": "cloudy", "precipIntensity": 0.5207, "precipProbability": 0.61, "precipType": "rain", "temperature": 4.37, "apparentTemperature": 2.24, "dewPoint": 3.27, "humidity": 0.93, "pressure": 1005.43, "windSpeed": 2.39, "windGust": 4.19, "windBearing": 135, "cloudCover": 1, "uvIndex": 0, "visibility": 8.14, "ozone": 407.55 }, { "time": 1552176000, "summary": "Overcast", "icon": "cloudy", "precipIntensity": 0.4216, "precipProbability": 0.59, "precipType": "rain", "temperature": 4.32, "apparentTemperature": 2.09, "dewPoint": 3.16, "humidity": 0.92, "pressure": 1004.58, "windSpeed": 2.5, "windGust": 4.7, "windBearing": 135, "cloudCover": 1, "uvIndex": 0, "visibility": 10.7, "ozone": 419.87 }, { "time": 1552179600, "summary": "Overcast", "icon": "cloudy", "precipIntensity": 0.3785, "precipProbability": 0.56, "precipType": "rain", "temperature": 4.28, "apparentTemperature": 1.66, "dewPoint": 3.19, "humidity": 0.93, "pressure": 1003.96, "windSpeed": 2.97, "windGust": 5.99, "windBearing": 163, "cloudCover": 0.95, "uvIndex": 0, "visibility": 15.47, "ozone": 429.33 }, { "time": 1552183200, "summary": "Mostly Cloudy", "icon": "partly-cloudy-night", "precipIntensity": 0.3988, "precipProbability": 0.52, "precipType": "rain", "temperature": 4.27, "apparentTemperature": 1.11, "dewPoint": 3.27, "humidity": 0.93, "pressure": 1003.53, "windSpeed": 3.76, "windGust": 7.93, "windBearing": 203, "cloudCover": 0.89, "uvIndex": 0, "visibility": 16.09, "ozone": 437.03 }, { "time": 1552186800, "summary": "Mostly Cloudy", "icon": "partly-cloudy-night", "precipIntensity": 0.4394, "precipProbability": 0.5, "precipType": "rain", "temperature": 4.31, "apparentTemperature": 0.43, "dewPoint": 3.16, "humidity": 0.92, "pressure": 1003.49, "windSpeed": 5.08, "windGust": 10.27, "windBearing": 206, "cloudCover": 0.85, "uvIndex": 0, "visibility": 16.09, "ozone": 443.71 }, { "time": 1552190400, "summary": "Mostly Cloudy", "icon": "partly-cloudy-night", "precipIntensity": 0.4089, "precipProbability": 0.55, "precipType": "rain", "temperature": 4.43, "apparentTemperature": -0.34, "dewPoint": 2.87, "humidity": 0.9, "pressure": 1003.96, "windSpeed": 7.33, "windGust": 13.38, "windBearing": 133, "cloudCover": 0.83, "uvIndex": 0, "visibility": 16.09, "ozone": 449.94 }, { "time": 1552194000, "summary": "Breezy and Mostly Cloudy", "icon": "wind", "precipIntensity": 0.4013, "precipProbability": 0.57, "precipType": "rain", "temperature": 4.43, "apparentTemperature": -1.21, "dewPoint": 2.79, "humidity": 0.89, "pressure": 1004.81, "windSpeed": 10.17, "windGust": 17.14, "windBearing": 10, "cloudCover": 0.82, "uvIndex": 0, "visibility": 14.13, "ozone": 455.32 }, { "time": 1552197600, "summary": "Windy and Mostly Cloudy", "icon": "wind", "precipIntensity": 0.4318, "precipProbability": 0.37, "precipType": "rain", "temperature": 4.97, "apparentTemperature": -1.06, "dewPoint": 0.88, "humidity": 0.75, "pressure": 1005.81, "windSpeed": 12.45, "windGust": 20, "windBearing": 279, "cloudCover": 0.83, "uvIndex": 0, "visibility": 8.92, "ozone": 459.44 }, { "time": 1552201200, "summary": "Windy and Mostly Cloudy", "icon": "wind", "precipIntensity": 0.4191, "precipProbability": 0.33, "precipType": "rain", "temperature": 4.96, "apparentTemperature": -1.14, "dewPoint": 0.51, "humidity": 0.73, "pressure": 1006.97, "windSpeed": 12.79, "windGust": 20.77, "windBearing": 266, "cloudCover": 0.79, "uvIndex": 0, "visibility": 8.21, "ozone": 461.88 }, { "time": 1552204800, "summary": "Windy and Mostly Cloudy", "icon": "wind", "precipIntensity": 0.3886, "precipProbability": 0.27, "precipType": "rain", "temperature": 4.86, "apparentTemperature": -1.26, "dewPoint": 0.39, "humidity": 0.73, "pressure": 1008.29, "windSpeed": 12.72, "windGust": 20.34, "windBearing": 275, "cloudCover": 0.74, "uvIndex": 0, "visibility": 9.3, "ozone": 462.98, "solar": { "azimuth": 17, "altitude": 7, "dni": 197.21, "ghi": 39.5, "dhi": 14.64, "etr": 1190.31 } }, { "time": 1552208400, "summary": "Windy and Mostly Cloudy", "icon": "wind", "precipIntensity": 0.348, "precipProbability": 0.24, "precipType": "rain", "temperature": 4.88, "apparentTemperature": -1.37, "dewPoint": 0.31, "humidity": 0.72, "pressure": 1009.49, "windSpeed": 13.39, "windGust": 19.84, "windBearing": 277, "cloudCover": 0.72, "uvIndex": 0, "visibility": 9.99, "ozone": 464.62, "solar": { "azimuth": 30, "altitude": 15, "dni": 375.99, "ghi": 128.15, "dhi": 27.93, "etr": 1190.26 } }, { "time": 1552212000, "summary": "Windy and Mostly Cloudy", "icon": "wind", "precipIntensity": 0.2743, "precipProbability": 0.2, "precipType": "rain", "temperature": 5.37, "apparentTemperature": -0.64, "dewPoint": 0.4, "humidity": 0.7, "pressure": 1010.53, "windSpeed": 13.04, "windGust": 19.62, "windBearing": 279, "cloudCover": 0.76, "uvIndex": 1, "visibility": 9.61, "ozone": 467.86, "solar": { "azimuth": 44, "altitude": 23, "dni": 417.23, "ghi": 191.55, "dhi": 31, "etr": 1190.21 } }, { "time": 1552215600, "summary": "Windy and Mostly Cloudy", "icon": "wind", "precipIntensity": 0.2388, "precipProbability": 0.19, "precipType": "rain", "temperature": 5.87, "apparentTemperature": 0.1, "dewPoint": 0.45, "humidity": 0.68, "pressure": 1011.46, "windSpeed": 12.78, "windGust": 19.36, "windBearing": 274, "cloudCover": 0.83, "uvIndex": 1, "visibility": 9, "ozone": 471.32, "solar": { "azimuth": 59, "altitude": 28, "dni": 387.28, "ghi": 211.87, "dhi": 28.79, "etr": 1190.16 } }, { "time": 1552219200, "summary": "Windy and Mostly Cloudy", "icon": "wind", "precipIntensity": 0.2464, "precipProbability": 0.19, "precipType": "rain", "temperature": 6.2, "apparentTemperature": 0.57, "dewPoint": 0.44, "humidity": 0.67, "pressure": 1012.27, "windSpeed": 12.68, "windGust": 19.04, "windBearing": 276, "cloudCover": 0.87, "uvIndex": 1, "visibility": 8.79, "ozone": 473.23, "solar": { "azimuth": 76, "altitude": 32, "dni": 354.8, "ghi": 212.45, "dhi": 26.38, "etr": 1190.11 } }, { "time": 1552222800, "summary": "Windy and Mostly Cloudy", "icon": "wind", "precipIntensity": 0.2591, "precipProbability": 0.2, "precipType": "rain", "temperature": 6.41, "apparentTemperature": 0.9, "dewPoint": 0.47, "humidity": 0.66, "pressure": 1012.88, "windSpeed": 12.46, "windGust": 18.65, "windBearing": 279, "cloudCover": 0.88, "uvIndex": 1, "visibility": 9.35, "ozone": 472.46, "solar": { "azimuth": 94, "altitude": 32, "dni": 351.2, "ghi": 214.48, "dhi": 26.12, "etr": 1190.06 } }, { "time": 1552226400, "summary": "Windy and Mostly Cloudy", "icon": "wind", "precipIntensity": 0.3175, "precipProbability": 0.21, "precipType": "rain", "temperature": 6.53, "apparentTemperature": 1.09, "dewPoint": 0.42, "humidity": 0.65, "pressure": 1013.36, "windSpeed": 12.31, "windGust": 18.2, "windBearing": 278, "cloudCover": 0.86, "uvIndex": 1, "visibility": 10.32, "ozone": 470.28, "solar": { "azimuth": 111, "altitude": 31, "dni": 364.01, "ghi": 211.86, "dhi": 27.08, "etr": 1190.01 } }, { "time": 1552230000, "summary": "Windy and Mostly Cloudy", "icon": "wind", "precipIntensity": 0.3759, "precipProbability": 0.22, "precipType": "rain", "temperature": 6.44, "apparentTemperature": 1.02, "dewPoint": 0.35, "humidity": 0.65, "pressure": 1013.89, "windSpeed": 12.07, "windGust": 17.87, "windBearing": 279, "cloudCover": 0.83, "uvIndex": 1, "visibility": 11.18, "ozone": 467.75, "solar": { "azimuth": 127, "altitude": 26, "dni": 372.27, "ghi": 191.62, "dhi": 27.71, "etr": 1189.96 } }, { "time": 1552233600, "summary": "Windy and Mostly Cloudy", "icon": "wind", "precipIntensity": 0.3251, "precipProbability": 0.22, "precipType": "rain", "temperature": 6.31, "apparentTemperature": 0.92, "dewPoint": 0.26, "humidity": 0.65, "pressure": 1014.57, "windSpeed": 11.66, "windGust": 17.67, "windBearing": 278, "cloudCover": 0.79, "uvIndex": 0, "visibility": 11.97, "ozone": 464.82, "solar": { "azimuth": 142, "altitude": 20, "dni": 368.08, "ghi": 152.18, "dhi": 27.41, "etr": 1189.91 } }, { "time": 1552237200, "summary": "Windy and Mostly Cloudy", "icon": "wind", "precipIntensity": 0.2591, "precipProbability": 0.21, "precipType": "rain", "temperature": 5.95, "apparentTemperature": 0.5, "dewPoint": 0.08, "humidity": 0.66, "pressure": 1015.3, "windSpeed": 11.44, "windGust": 17.53, "windBearing": 287, "cloudCover": 0.74, "uvIndex": 0, "visibility": 12.79, "ozone": 461.45, "solar": { "azimuth": 156, "altitude": 12, "dni": 311.35, "ghi": 88.75, "dhi": 23.19, "etr": 1189.87 } }, { "time": 1552240800, "summary": "Windy and Mostly Cloudy", "icon": "wind", "precipIntensity": 0.2489, "precipProbability": 0.2, "precipType": "rain", "temperature": 5.43, "apparentTemperature": -0.12, "dewPoint": -0.32, "humidity": 0.66, "pressure": 1016.06, "windSpeed": 11.13, "windGust": 17.52, "windBearing": 281, "cloudCover": 0.7, "uvIndex": 0, "visibility": 13.07, "ozone": 459.44, "solar": { "azimuth": 168, "altitude": 4, "dni": 82.43, "ghi": 11.4, "dhi": 6.14, "etr": 1189.82 } }, { "time": 1552244400, "summary": "Windy and Mostly Cloudy", "icon": "wind", "precipIntensity": 0.2946, "precipProbability": 0.23, "precipType": "rain", "temperature": 5.03, "apparentTemperature": -0.61, "dewPoint": -0.13, "humidity": 0.69, "pressure": 1016.83, "windSpeed": 10.92, "windGust": 17.71, "windBearing": 276, "cloudCover": 0.69, "uvIndex": 0, "visibility": 12.12, "ozone": 460.2 }, { "time": 1552248000, "summary": "Windy and Mostly Cloudy", "icon": "wind", "precipIntensity": 0.414, "precipProbability": 0.29, "precipType": "rain", "temperature": 4.77, "apparentTemperature": -0.95, "dewPoint": 0.12, "humidity": 0.72, "pressure": 1017.63, "windSpeed": 10.94, "windGust": 18.03, "windBearing": 275, "cloudCover": 0.71, "uvIndex": 0, "visibility": 10.56, "ozone": 462.3 }, { "time": 1552251600, "summary": "Windy and Mostly Cloudy", "icon": "wind", "precipIntensity": 0.5283, "precipProbability": 0.35, "precipType": "rain", "temperature": 4.49, "apparentTemperature": -1.27, "dewPoint": 0.19, "humidity": 0.74, "pressure": 1018.37, "windSpeed": 10.68, "windGust": 18.29, "windBearing": 277, "cloudCover": 0.73, "uvIndex": 0, "visibility": 9.35, "ozone": 462.57 }, { "time": 1552255200, "summary": "Windy and Mostly Cloudy", "icon": "wind", "precipIntensity": 0.5359, "precipProbability": 0.31, "precipType": "rain", "temperature": 4.67, "apparentTemperature": -1.08, "dewPoint": 0.28, "humidity": 0.73, "pressure": 1019.06, "windSpeed": 10.93, "windGust": 18.6, "windBearing": 313, "cloudCover": 0.81, "uvIndex": 0, "visibility": 8.64, "ozone": 460.18 }, { "time": 1552258800, "summary": "Windy and Mostly Cloudy", "icon": "wind", "precipIntensity": 0.4953, "precipProbability": 0.2, "precipType": "rain", "temperature": 4.99, "apparentTemperature": -0.67, "dewPoint": 0.21, "humidity": 0.71, "pressure": 1019.72, "windSpeed": 10.94, "windGust": 18.79, "windBearing": 245, "cloudCover": 0.9, "uvIndex": 0, "visibility": 8.21, "ozone": 455.92 }, { "time": 1552262400, "summary": "Windy and Overcast", "icon": "wind", "precipIntensity": 0.4394, "precipProbability": 0.16, "precipType": "rain", "temperature": 5.31, "apparentTemperature": -0.27, "dewPoint": 0.38, "humidity": 0.71, "pressure": 1020.29, "windSpeed": 11.05, "windGust": 18.28, "windBearing": 280, "cloudCover": 0.95, "uvIndex": 0, "visibility": 8.48, "ozone": 450.33 }, { "time": 1552266000, "summary": "Breezy and Mostly Cloudy", "icon": "wind", "precipIntensity": 0.3607, "precipProbability": 0.14, "precipType": "rain", "temperature": 5.81, "apparentTemperature": 0.49, "dewPoint": 0.82, "humidity": 0.7, "pressure": 1020.82, "windSpeed": 10.67, "windGust": 16.51, "windBearing": 279, "cloudCover": 0.9, "uvIndex": 0, "visibility": 9.8, "ozone": 442.63 }, { "time": 1552269600, "summary": "Mostly Cloudy", "icon": "partly-cloudy-night", "precipIntensity": 0.2743, "precipProbability": 0.15, "precipType": "rain", "temperature": 5.81, "apparentTemperature": 0.76, "dewPoint": 1.44, "humidity": 0.74, "pressure": 1021.28, "windSpeed": 9.59, "windGust": 14.04, "windBearing": 266, "cloudCover": 0.8, "uvIndex": 0, "visibility": 11.86, "ozone": 433.49 }, { "time": 1552273200, "summary": "Mostly Cloudy", "icon": "partly-cloudy-night", "precipIntensity": 0.2261, "precipProbability": 0.14, "precipType": "rain", "temperature": 5.88, "apparentTemperature": 1.13, "dewPoint": 1.99, "humidity": 0.76, "pressure": 1021.58, "windSpeed": 8.61, "windGust": 12.05, "windBearing": 277, "cloudCover": 0.73, "uvIndex": 0, "visibility": 14.26, "ozone": 424.84 }, { "time": 1552276800, "summary": "Mostly Cloudy", "icon": "partly-cloudy-night", "precipIntensity": 0.2261, "precipProbability": 0.11, "precipType": "rain", "temperature": 6.26, "apparentTemperature": 2.14, "dewPoint": 2.21, "humidity": 0.75, "pressure": 1021.7, "windSpeed": 6.96, "windGust": 11.02, "windBearing": 13, "cloudCover": 0.75, "uvIndex": 0, "visibility": 16.09, "ozone": 417.69 }, { "time": 1552280400, "summary": "Mostly Cloudy", "icon": "partly-cloudy-night", "precipIntensity": 0.2515, "precipProbability": 0.11, "precipType": "rain", "temperature": 6.63, "apparentTemperature": 2.72, "dewPoint": 2.49, "humidity": 0.75, "pressure": 1021.7, "windSpeed": 6.67, "windGust": 10.55, "windBearing": 185, "cloudCover": 0.79, "uvIndex": 0, "visibility": 16.09, "ozone": 411 }, { "time": 1552284000, "summary": "Mostly Cloudy", "icon": "partly-cloudy-night", "precipIntensity": 0.2464, "precipProbability": 0.14, "precipType": "rain", "temperature": 6.99, "apparentTemperature": 3.19, "dewPoint": 2.9, "humidity": 0.75, "pressure": 1021.51, "windSpeed": 6.67, "windGust": 10.51, "windBearing": 262, "cloudCover": 0.82, "uvIndex": 0, "visibility": 16.09, "ozone": 404.37 }, { "time": 1552287600, "summary": "Mostly Cloudy", "icon": "partly-cloudy-night", "precipIntensity": 0.1829, "precipProbability": 0.14, "precipType": "rain", "temperature": 7.39, "apparentTemperature": 3.84, "dewPoint": 3.36, "humidity": 0.76, "pressure": 1021.21, "windSpeed": 6.25, "windGust": 10.8, "windBearing": 267, "cloudCover": 0.8, "uvIndex": 0, "visibility": 16.09, "ozone": 397.65 }, { "time": 1552291200, "summary": "Mostly Cloudy", "icon": "partly-cloudy-day", "precipIntensity": 0.1118, "precipProbability": 0.1, "precipType": "rain", "temperature": 7.75, "apparentTemperature": 4.36, "dewPoint": 3.87, "humidity": 0.76, "pressure": 1020.74, "windSpeed": 6.08, "windGust": 11.4, "windBearing": 239, "cloudCover": 0.76, "uvIndex": 0, "visibility": 16.09, "ozone": 391.06, "solar": { "azimuth": 17, "altitude": 8, "dni": 196.73, "ghi": 40.74, "dhi": 14.73, "etr": 1189.12 } }, { "time": 1552294800, "summary": "Mostly Cloudy", "icon": "partly-cloudy-day", "precipIntensity": 0.0737, "precipProbability": 0.08, "precipType": "rain", "temperature": 8.12, "apparentTemperature": 4.44, "dewPoint": 4.29, "humidity": 0.77, "pressure": 1020, "windSpeed": 7.28, "windGust": 12.19, "windBearing": 221, "cloudCover": 0.75, "uvIndex": 0, "visibility": 16.09, "ozone": 385.03, "solar": { "azimuth": 30, "altitude": 16, "dni": 355.24, "ghi": 123.49, "dhi": 26.6, "etr": 1189.07 } }, { "time": 1552298400, "summary": "Mostly Cloudy", "icon": "partly-cloudy-day", "precipIntensity": 0.0635, "precipProbability": 0.09, "precipType": "rain", "temperature": 8.69, "apparentTemperature": 4.93, "dewPoint": 4.56, "humidity": 0.75, "pressure": 1018.99, "windSpeed": 8.14, "windGust": 13.27, "windBearing": 216, "cloudCover": 0.79, "uvIndex": 1, "visibility": 16.09, "ozone": 379.61, "solar": { "azimuth": 44, "altitude": 23, "dni": 391.46, "ghi": 182.35, "dhi": 29.32, "etr": 1189.02 } }, { "time": 1552302000, "summary": "Mostly Cloudy", "icon": "partly-cloudy-day", "precipIntensity": 0.0737, "precipProbability": 0.1, "precipType": "rain", "temperature": 9.37, "apparentTemperature": 5.49, "dewPoint": 4.78, "humidity": 0.73, "pressure": 1017.73, "windSpeed": 9.5, "windGust": 14.6, "windBearing": 210, "cloudCover": 0.85, "uvIndex": 1, "visibility": 16.09, "ozone": 374.82, "solar": { "azimuth": 59, "altitude": 29, "dni": 367.95, "ghi": 203.73, "dhi": 27.57, "etr": 1188.97 } }, { "time": 1552305600, "summary": "Windy and Mostly Cloudy", "icon": "wind", "precipIntensity": 0.0889, "precipProbability": 0.2, "precipType": "rain", "temperature": 9.06, "apparentTemperature": 4.71, "dewPoint": 5.51, "humidity": 0.78, "pressure": 1016.19, "windSpeed": 11.18, "windGust": 15.84, "windBearing": 201, "cloudCover": 0.9, "uvIndex": 2, "visibility": 16.09, "ozone": 370.84, "solar": { "azimuth": 76, "altitude": 32, "dni": 327.7, "ghi": 198.35, "dhi": 24.56, "etr": 1188.92 } }, { "time": 1552309200, "summary": "Windy and Overcast", "icon": "wind", "precipIntensity": 0.0584, "precipProbability": 0.2, "precipType": "rain", "temperature": 9.38, "apparentTemperature": 5.12, "dewPoint": 5.61, "humidity": 0.77, "pressure": 1014.4, "windSpeed": 11.36, "windGust": 16.67, "windBearing": 199, "cloudCover": 0.94, "uvIndex": 2, "visibility": 16.09, "ozone": 367.7, "solar": { "azimuth": 94, "altitude": 33, "dni": 292.13, "ghi": 180.25, "dhi": 21.9, "etr": 1188.88 } }, { "time": 1552312800, "summary": "Windy and Overcast", "icon": "wind", "precipIntensity": 0.061, "precipProbability": 0.24, "precipType": "rain", "temperature": 9.33, "apparentTemperature": 5.06, "dewPoint": 5.73, "humidity": 0.78, "pressure": 1012.35, "windSpeed": 11.28, "windGust": 17.37, "windBearing": 197, "cloudCover": 0.97, "uvIndex": 2, "visibility": 16.09, "ozone": 365.2, "solar": { "azimuth": 111, "altitude": 31, "dni": 246.81, "ghi": 145.16, "dhi": 18.51, "etr": 1188.83 } }, { "time": 1552316400, "summary": "Windy and Overcast", "icon": "wind", "precipIntensity": 0.1143, "precipProbability": 0.31, "precipType": "rain", "temperature": 9.23, "apparentTemperature": 4.89, "dewPoint": 5.88, "humidity": 0.8, "pressure": 1009.88, "windSpeed": 11.44, "windGust": 18.43, "windBearing": 195, "cloudCover": 1, "uvIndex": 1, "visibility": 16.09, "ozone": 363.83, "solar": { "azimuth": 128, "altitude": 26, "dni": 209.45, "ghi": 109.05, "dhi": 15.71, "etr": 1188.78 } }, { "time": 1552320000, "summary": "Windy and Overcast", "icon": "wind", "precipIntensity": 0.315, "precipProbability": 0.38, "precipType": "rain", "temperature": 9.11, "apparentTemperature": 4.36, "dewPoint": 5.92, "humidity": 0.8, "pressure": 1006.49, "windSpeed": 13.43, "windGust": 20.52, "windBearing": 195, "cloudCover": 1, "uvIndex": 1, "visibility": 16.09, "ozone": 363.74, "solar": { "azimuth": 142, "altitude": 20, "dni": 189.1, "ghi": 79.27, "dhi": 14.19, "etr": 1188.73 } }, { "time": 1552323600, "summary": "Light Rain and Dangerously Windy", "icon": "rain", "precipIntensity": 0.9169, "precipProbability": 0.58, "precipType": "rain", "temperature": 8.96, "apparentTemperature": 3.98, "dewPoint": 6.39, "humidity": 0.84, "pressure": 1002.7, "windSpeed": 14.54, "windGust": 23.02, "windBearing": 193, "cloudCover": 1, "uvIndex": 0, "visibility": 10.44, "ozone": 364.68, "solar": { "azimuth": 156, "altitude": 12, "dni": 145.32, "ghi": 42.24, "dhi": 10.91, "etr": 1188.68 } }, { "time": 1552327200, "summary": "Rain and Dangerously Windy", "icon": "rain", "precipIntensity": 1.5164, "precipProbability": 0.79, "precipType": "rain", "temperature": 8.79, "apparentTemperature": 3.7, "dewPoint": 6.76, "humidity": 0.87, "pressure": 999.81, "windSpeed": 14.85, "windGust": 24.4, "windBearing": 193, "cloudCover": 1, "uvIndex": 0, "visibility": 6.45, "ozone": 366.54, "solar": { "azimuth": 168, "altitude": 4, "dni": 39.73, "ghi": 5.71, "dhi": 2.98, "etr": 1188.63 } }, { "time": 1552330800, "summary": "Rain and Dangerously Windy", "icon": "rain", "precipIntensity": 1.5367, "precipProbability": 0.82, "precipType": "rain", "temperature": 8.79, "apparentTemperature": 3.75, "dewPoint": 7.03, "humidity": 0.89, "pressure": 998.49, "windSpeed": 14.5, "windGust": 23.81, "windBearing": 201, "cloudCover": 1, "uvIndex": 0, "visibility": 7.18, "ozone": 369.23 }, { "time": 1552334400, "summary": "Rain and Dangerously Windy", "icon": "rain", "precipIntensity": 1.4199, "precipProbability": 0.79, "precipType": "rain", "temperature": 8.83, "apparentTemperature": 3.98, "dewPoint": 7.47, "humidity": 0.91, "pressure": 998.09, "windSpeed": 13.46, "windGust": 22.13, "windBearing": 245, "cloudCover": 1, "uvIndex": 0, "visibility": 9.9, "ozone": 373.04 }],
+            currently = { "time": 1552164106, "summary": "Light Rain", "icon": "rain", "nearestStormDistance": 0, "precipIntensity": 1.143, "precipIntensityError": 0.3505, "precipProbability": 1, "precipType": "rain", "temperature": 4.91, "apparentTemperature": 2.52, "dewPoint": 3.28, "humidity": 0.89, "pressure": 1007.91, "windSpeed": 2.84, "windGust": 4.49, "windBearing": 177, "cloudCover": 1, "uvIndex": 0, "visibility": 7.69, "ozone": 376.57 },
+            map_info = { "field": "radar", "zoom": 9, "lat": 53.2842, "lon": -9.0378 };
+    </script>
+
+    <script src="/dist/js/main.js"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewBag.Title = "Index2";
+}
+
+@model ClimateReport.Models.ClimateModel
+<!--Namespace -->
+<!--Css style sheet -->
+<style>
+    #SatyaDiv {
+        padding-left: 20px;
+    }
+
+        #SatyaDiv select, #SatyaDiv button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        #SatyaDiv #message table {
+            width: 100%;
+            border: solid 3px green;
+            color: green;
+            font-style: oblique;
+            font-family: Georgia;
+            font-weight: bold;
+            background: black;
+        }
+
+            #SatyaDiv #message table th {
+                text-align: left;
+                color: white;
+                font-style: oblique;
+                background: green;
+            }
+</style>
+
+
+
+
+@{ ViewBag.Title = "CLIMATE API IN ASP.NET MVC";}
+<h2 style="background-color: black;color: green; text-align: center; font-style: oblique">CLIMATE API TO GET CLIMATE REPORT OF PLACES</h2>
+<fieldset>
+    <legend style="font-family:Arial Black;color:black">CHECK LATEST CLIMATE REPORT</legend>
+    <div id="SatyaDiv">
+        <h4 style="color:black">Choose Place To Check Climate Report</h4>
+        @using (Html.BeginForm())
+        {
+            foreach (var city in Model.cities)
+            {
+                <span>
+                    @Html.RadioButtonFor(m => m.cities, city.Value) @city.Key
+                    <!--using an MVC premade function- Html.RadioButtonFor(m => m.cities, city.Value)
+                        .ATcity. Key will show the city names on the view.-->
+                </span>
+            }
+
+            <button name="submit">Show Report</button>
+        }
+        <div id="message">@(new HtmlString(Model.apiResponse))</div>
+    </div>
+</fieldset>
+
+<!-- jQuery Script used to change the colour of the radio button
+    script file reference path.-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+        $("input[id='cities']").change(function () {
+            $(this).parents("#SatyaDiv").find("span").css("background", "none");
+            $(this).parent().css("background", "green");
+        });
+    });
+</script>
+
+<!-- I used one popup message, which is based on tempdata variable value,
+    if the user did not select any radio button and just select Submit button. -->
+@if (TempData["SelectOption"] != null)
+{
+    <script type="text/javascript">
+
+        alert("Select Any One Place To Get Today's Latest Climate Report");
+    </script>
+}
+<!--Alternative message type instead of JavaScript alert. -->
+@*<div id="message">@(new HtmlString(Model.apiResponse))</div>
+    openWeatherMap.apiResponse = "Choose Your Correct City";*@
+
+<footer>
+    <p style="background-color: black; font-weight: bold; color:green; text-align: center; font-style: oblique">© @DateTime.Now.ToLocalTime()</p> @*Add Date Time*@
+</footer>
