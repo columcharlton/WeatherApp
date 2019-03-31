@@ -1,0 +1,19 @@
+﻿@model WeatherApp.Models.Coordinates
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@using (Html.BeginForm())
+{
+    <input type="text" name="reportLocation" />
+    
+    <input type="datetime-local" name="reportDate" />
+    <input type="submit" />
+}
+
+<div id="message">@(new HtmlString(@ViewBag.a))</div>
+

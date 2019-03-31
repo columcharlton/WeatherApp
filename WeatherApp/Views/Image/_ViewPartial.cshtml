@@ -1,0 +1,53 @@
+﻿@model WeatherApp.Models.Image
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImagePath)
+        </th>
+        <th></th>
+    </tr>
+
+
+    <tr>
+        <td>
+            @Model.ImageId
+        </td>
+
+        @*<td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>*@
+        <td>
+            @Model.Title
+        </td>
+        @*<td>
+                @Html.DisplayFor(modelItem => item.ImagePath)
+
+            </td>*@
+        <td>
+            @Model.ImagePath
+
+            <p>
+                @Html.ActionLink("Full sized Image", "View/" + @Model.ImageId)
+            </p>
+        </td>
+
+        <td>
+            <img src="@Url.Content(@Model.ImagePath)" alt="item.AlternateText" width="250" height="250" multiple />
+
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = @Model.ImageId }) |
+            @Html.ActionLink("Details", "Details", new { id = @Model.ImageId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = @Model.ImageId })
+        </td>
+    </tr>
+
+</table>

@@ -46,17 +46,30 @@ namespace WeatherApp.Controllers
                 return View();
             }
 
-            [HttpGet]
-            public ActionResult View(int id)
+        [HttpGet]
+        public ActionResult View(int id)
+        {
+            Image imageModel = new Image();
+
+            using (MvcImageDBEntities db = new MvcImageDBEntities())
             {
-                Image imageModel = new Image();
-
-                using (MvcImageDBEntities db = new MvcImageDBEntities())
-                {
-                    imageModel = db.Images.Where(x => x.ImageId == id).FirstOrDefault();
-                }
-
-                return View(imageModel);
+                imageModel = db.Images.Where(x => x.ImageId == id).FirstOrDefault();
             }
+
+            return View(imageModel);
         }
+
+        [HttpGet]
+        public ActionResult Display()
+        {
+            Image imageModel = new Image();
+
+            MvcImageDBEntities db = new MvcImageDBEntities();
+            
+
+            return View(db.Images.ToList());
+        }
+
+
+    }
     }

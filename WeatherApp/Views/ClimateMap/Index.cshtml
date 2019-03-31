@@ -95,30 +95,30 @@ Model.speed
         -->
     @*Now I need to store the result in my model so I can access it in my api controller*@
     @*<script>
-        type = "text/javascript" src = "https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=AIzaSyCY4XX-om0CBwXnmF0XbqM2M1kiUcOsZ3Q" >
+            type = "text/javascript" src = "https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=AIzaSyCY4XX-om0CBwXnmF0XbqM2M1kiUcOsZ3Q" >
 
-        </script>
-
-
-    <script>
-            function getReverseGeocodingData(lat, lng) {
-                var latlng = new google.maps.LatLng(lat, lng);
-                // This is making the Geocode request
-                var geocoder = new google.maps.Geocoder();
-                geocoder.geocode({ 'latLng': latlng }, function (results, status) {
-                    if (status !== google.maps.GeocoderStatus.OK) {
-                        alert(status);
-                    }
-                    // This is checking to see if the Geoeode Status is OK before proceeding
-                    if (status == google.maps.GeocoderStatus.OK) {
-                        console.log(results);
-                        var address = (results[0].formatted_address);
-                    }
-                });
-            }*@
+            </script>
 
 
-        @*</script>*@
+        <script>
+                function getReverseGeocodingData(lat, lng) {
+                    var latlng = new google.maps.LatLng(lat, lng);
+                    // This is making the Geocode request
+                    var geocoder = new google.maps.Geocoder();
+                    geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+                        if (status !== google.maps.GeocoderStatus.OK) {
+                            alert(status);
+                        }
+                        // This is checking to see if the Geoeode Status is OK before proceeding
+                        if (status == google.maps.GeocoderStatus.OK) {
+                            console.log(results);
+                            var address = (results[0].formatted_address);
+                        }
+                    });
+                }*@
+
+
+    @*</script>*@
 
 
     <!--
@@ -144,7 +144,7 @@ Model.speed
             </div>
         </div>
 
-        
+
     <!--
             <div class="container">
                 <div class="row">
@@ -269,39 +269,39 @@ Model.speed
         -->
     @*<script>
 
-        function success(pos) {
-            var crd = pos.coords;
+            function success(pos) {
+                var crd = pos.coords;
 
-            console.log('Your current position is:');
-            console.log(`Latitude : ${crd.latitude}`);
-            console.log(`Longitude: ${crd.longitude}`);
-
-
-            var model = new Object();
-            model.Latitude = crd.latitude;
-            model.Longitude = crd.longitude;
-
-            alert(model.Latitude);
-
-            jQuery.ajax({
-                type: "POST",
-                url: "@Url.Action("Index")",
-                dataType: "json",
-                contentType: "application/json; charset=utf-8",
-                data: JSON.stringify({ co: model }),
-                success: function (data) {
-                    alert(data);
-                },
-                failure: function (errMsg) {
-                    alert(errMsg);
-                }
-            });
-        }
+                console.log('Your current position is:');
+                console.log(`Latitude : ${crd.latitude}`);
+                console.log(`Longitude: ${crd.longitude}`);
 
 
-        navigator.geolocation.getCurrentPosition(success);
+                var model = new Object();
+                model.Latitude = crd.latitude;
+                model.Longitude = crd.longitude;
 
-    </script>*@
+                alert(model.Latitude);
+
+                jQuery.ajax({
+                    type: "POST",
+                    url: "@Url.Action("Index")",
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify({ co: model }),
+                    success: function (data) {
+                        alert(data);
+                    },
+                    failure: function (errMsg) {
+                        alert(errMsg);
+                    }
+                });
+            }
+
+
+            navigator.geolocation.getCurrentPosition(success);
+
+        </script>*@
 
     <!--
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
@@ -401,6 +401,8 @@ Model.speed
     </fieldset>
 
 
+
+   @* @Html.Partial("_ViewPartial");*@
 
 
 

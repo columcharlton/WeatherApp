@@ -6,6 +6,7 @@
 
 <h2>View</h2>
 
+
 <div>
     <h4>Image</h4>
     <hr />
@@ -23,13 +24,13 @@
         </dt>
 
         <dd>
-            <img src="@Url.Content(Model.ImagePath)" width="250" height="250" multiple />
+            <img src="@Url.Content(Model.ImagePath)" width="450" height="450" multiple />
         </dd>
 
     </dl>
 </div>
 <p>
    @* @Html.ActionLink("Edit", "Edit", new { id = Model.ImageId }) |*@
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Display")
 </p>
 

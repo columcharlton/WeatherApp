@@ -8,6 +8,10 @@ namespace WeatherApp
         // For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+      //      bundles.Add(new ScriptBundle("~/bundles/mainJs")
+      //.Include("~/Scripts/mainSite.js")
+      //.Include("~/Scripts/helperStuff.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
