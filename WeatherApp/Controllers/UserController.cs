@@ -29,16 +29,28 @@ namespace WeatherApp.Controllers
         {
             if (ModelState.IsValid) //Checks if the view is valid
             {
-                if (IsValid(user.Email, user.Password))
+                if (IsValid(user.Email, user.Password)) // & IsValid2(user.Email))
                 {
-                    FormsAuthentication.SetAuthCookie(user.Email, user.RememberMe);   //Needs security namespace
-                                                                                      //Setting this cookie was to true was an issue had to add a method to do so in the Global.asax file, Application_PostAuthenticateRequest()
+                    bool ans = IsValid2(user.Email);
 
+                    if (ans == true)
+                    {   //True for admin :)
 
+                        FormsAuthentication.SetAuthCookie(user.Email, user.RememberMe);   //Needs security namespace
+                        return RedirectToAction("Index", "Images");   //And then redirect to the main page
+
+                    }
+
+                    else       ////False for others :(
+
+                        FormsAuthentication.SetAuthCookie(user.Email, user.RememberMe);   //Needs security namespace //Setting this cookie was to true was an issue had to add a method to do so in the Global.asax file, Application_PostAuthenticateRequest()
                     //return RedirectToAction("Index", "Home");
                     return RedirectToAction("Index", "ClimateMap");   //And then redirect to the main page
 
                 }
+
+
+
                 else
                 {
                     ModelState.AddModelError("", "Login Data is incorrect");
@@ -116,17 +128,44 @@ namespace WeatherApp.Controllers
                     {
                         if(user.Password == crypto.Compute(password, user.PasswordSalt))
                         {
-
                         isValid = true;
 
+                        }
                     }
-                
-                    }
-            
             }
+            return isValid;
+        }
 
-                return isValid;
+        private bool IsValid2(string email) //Checks if you are Admin or not
+        {
+            bool isValid = false;
 
+            using (var db = new MvcImageDBEntities())
+            {
+                //I could try adding a condition here for admin yes or no
+                //var user = db.SystemUsers;
+
+                //SystemUser systemUser = new SystemUser();
+
+                //systemUser = db.SystemUsers.Where(x => x.Admin == true).FirstOrDefault();
+
+                var user = db.SystemUsers.FirstOrDefault(u => u.Email == email);
+
+
+                //ListOfFruits.Select(f => f.ID).Where( ... )
+
+                //var user2 = db.SystemUsers.Select(u => u.Admin);
+
+                if (user != null)
+                {
+                    if (user.Admin == true)
+                    {
+                        isValid = true;
+                    }
+
+                }
+            }
+            return isValid;
         }
 
     }

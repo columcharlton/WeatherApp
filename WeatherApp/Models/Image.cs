@@ -22,5 +22,6 @@ namespace WeatherApp.Models
         public string ImagePath { get; set; }
 
         public HttpPostedFileBase ImageFile { get; set; }
+
     }
 }
