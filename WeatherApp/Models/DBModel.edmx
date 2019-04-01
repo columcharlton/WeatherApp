@@ -15,13 +15,14 @@
         </EntityType>
         <EntityType Name="SystemUsers">
           <Key>
-            <PropertyRef Name="Email" />
+            <PropertyRef Name="AdminId" />
           </Key>
           <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="PasswordSalt" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="Admin" Type="bit" />
+          <Property Name="AdminId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityContainer Name="MvcImageDBModelStoreContainer">
           <EntitySet Name="Image" EntityType="Self.Image" Schema="dbo" store:Type="Tables" />
@@ -41,13 +42,14 @@
         </EntityType>
         <EntityType Name="SystemUser">
           <Key>
-            <PropertyRef Name="Email" />
+            <PropertyRef Name="AdminId" />
           </Key>
           <Property Name="UserId" Type="Guid" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PasswordSalt" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Admin" Type="Boolean" />
+          <Property Name="AdminId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityContainer Name="MvcImageDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Images" EntityType="Self.Image" />
@@ -71,6 +73,7 @@
           <EntitySetMapping Name="SystemUsers">
             <EntityTypeMapping TypeName="MvcImageDBModel.SystemUser">
               <MappingFragment StoreEntitySet="SystemUsers">
+                <ScalarProperty Name="AdminId" ColumnName="AdminId" />
                 <ScalarProperty Name="Admin" ColumnName="Admin" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Email" ColumnName="Email" />

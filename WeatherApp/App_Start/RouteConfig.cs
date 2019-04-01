@@ -13,6 +13,16 @@ namespace WeatherApp
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+
+
+            routes.MapRoute(
+            name: "Root",
+            url: "root/{id}",
+            defaults: new { controller = "ClimateMap", id = UrlParameter.Optional }
+                );
+
+
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

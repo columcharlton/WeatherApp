@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "AdminIndex";
+}
+
+<h2>AdminIndex</h2>
+
+
+<!--Routes to the SystemUsers folder-->
+@Html.RouteLink("All users" , "Default",
+    new { action = "Index", controller = "SystemUsers" })
+
+<br>
+<br>
+<!--Routes to the Images folder-->
+@Html.RouteLink("All Images" , "Default",
+    new { action = "Index", controller = "Images" })
+
+
+
+<br>
+<br>
+<!--Routes to the Images folder-->
+@Html.RouteLink("All Images" , "Default",
+    new { action = "_AdminImages", controller = "Images" })

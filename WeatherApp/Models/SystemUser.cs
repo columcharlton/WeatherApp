@@ -19,5 +19,6 @@ namespace WeatherApp.Models
         public string Password { get; set; }
         public string PasswordSalt { get; set; }
         public Nullable<bool> Admin { get; set; }
+        public int AdminId { get; set; }
     }
 }
