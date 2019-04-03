@@ -143,6 +143,9 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\ImagesController.cs" />
+    <Compile Include="Models\News.cs" />
+    <Compile Include="Models\NewsApi.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\PastWeatherController.cs" />
     <Compile Include="Controllers\SystemUsersController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -151,7 +154,6 @@
     </Compile>
     <Compile Include="Models\Coordinates.cs" />
     <Compile Include="Models\DarkSkiApi.cs" />
-    <Compile Include="Models\DarkSkiModel.cs" />
     <Compile Include="Models\DatepickerModel.cs" />
     <Compile Include="Models\DBModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -329,6 +331,9 @@
     <Content Include="Views\SystemUsers\_AdminSystem.cshtml" />
     <Content Include="Views\Images\_AdminImages.cshtml" />
     <Content Include="Views\Admin\AdminIndex.cshtml" />
+    <Content Include="Views\Admin\_View.cshtml" />
+    <Content Include="Views\News\NewsIndex.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

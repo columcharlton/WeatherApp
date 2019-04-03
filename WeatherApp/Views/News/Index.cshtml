@@ -1,0 +1,44 @@
+﻿@model WeatherApp.Models.News
+
+@*@model IEnumerable<WeatherApp.Models.News>*@
+
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div id="message">@(new HtmlString(@ViewBag.a))</div>
+
+
+
+
+
+@*@foreach (Docs item in raw)
+    {
+
+
+    }*@
+
+@Html.DisplayNameFor(model => model.headline)
+
+
+
+@*@foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.date
+            </td>
+
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>*@
+@*<td>
+                @item.headline
+            </td>
+
+            <td>
+                @item.rawjsonnews
+            </td>
+        </tr>
+    }*@

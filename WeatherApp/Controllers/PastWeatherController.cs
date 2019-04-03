@@ -19,10 +19,10 @@ namespace WeatherApp.Controllers
             return View();
 
         }
-        
+
         [HttpPost]
         public ActionResult Index(Coordinates co, string reportLocation, DateTime reportDate)
-        
+
         {
 
             List<double> Coo = new List<double>();
