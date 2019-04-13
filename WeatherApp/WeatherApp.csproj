@@ -140,9 +140,11 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ClimateMapController.cs" />
     <Compile Include="Controllers\DatepickerController.cs" />
+    <Compile Include="Controllers\GraphController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\ImagesController.cs" />
+    <Compile Include="Models\DataPoint.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\NewsApi.cs" />
     <Compile Include="Controllers\NewsController.cs" />
@@ -154,7 +156,6 @@
     </Compile>
     <Compile Include="Models\Coordinates.cs" />
     <Compile Include="Models\DarkSkiApi.cs" />
-    <Compile Include="Models\DatepickerModel.cs" />
     <Compile Include="Models\DBModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -294,6 +295,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Views\Image\_ViewPartial.cshtml" />
+    <Content Include="Views\PastWeather\Backuptomybackup.html" />
+    <Content Include="Views\Shared\HtmlPage1.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -334,6 +337,11 @@
     <Content Include="Views\Admin\_View.cshtml" />
     <Content Include="Views\News\NewsIndex.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\PastWeather\View2.cshtml" />
+    <Content Include="Views\PastWeather\_PartialIndex.cshtml" />
+    <Content Include="Views\ClimateMap\index4.cshtml" />
+    <Content Include="Views\Graph\Index.cshtml" />
+    <Content Include="Views\PastWeather\Backup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

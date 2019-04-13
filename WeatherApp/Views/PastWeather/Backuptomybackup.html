@@ -1,0 +1,124 @@
+﻿@model WeatherApp.Models.Coordinates
+
+
+@{
+    ViewBag.Title = "HistoryWeatherIndex";
+}
+<br />
+<br />
+<h2>Past weather</h2>
+
+
+
+
+
+
+<!-- Form,  a tag with a text box(Editor), adds attributes into the text box  -->
+@using (Html.BeginForm())
+{
+<br />
+<input type="text" name="reportLocation" />
+
+<input type="date" name="reportDate" />
+
+    @Html.EditorFor(model => model.dtmDate, new { htmlAttributes = new { @class = "datepicker" } })
+<br />
+
+<input type="submit" />
+
+
+
+<br />
+<br />
+<br />
+
+
+
+    @*@Html.EditorFor(model => model.dtmDate, new { htmlAttributes = new { @class = "datepicker" } })*@
+
+
+
+}
+
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+@section scripts{
+
+<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+
+
+<script>
+
+        $(function () {
+            $(".datepicker").datepicker({
+                dateFormat: "yy/mm/dd",
+                changeMonth: true,
+                changeYear: true,
+                //yearRange : "-10:+10"
+                //minDate: new Date(2017, 0, 1),
+                maxDate: new Date(2019, 0, 1),
+                showOn: "both",
+                buttonText: "<i class='fa fa-calendar'></i>"
+            });
+        });
+
+
+
+
+
+
+
+
+</script>
+
+
+
+<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+<script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.bundle.min.js"></script>
+
+
+<script>
+
+
+window.onload = function () {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	theme: "light1",
+	animationEnabled: true,
+	title: {
+		text: "Temperature Readings over a Day"
+	},
+	axisY: {
+		title: "Temperature",
+		maximum: 20,
+		gridThickness: 0
+	},
+	toolTip: {
+		shared: true
+	},
+	data: [{
+		type: "rangeSplineArea",
+        xValueFormatString: "MMM D",
+		yValueFormatString: "# c",
+		toolTipContent: "{x}<br><b>Real:</b> {y[0]}<br><b>Feel:</b> {y[1]}",
+        xValueType: "dateTime",
+		dataPoints:  @Html.Raw(ViewBag.DataPoints)
+	}]
+});
+chart.render();
+
+}
+
+
+</script>
+
+}

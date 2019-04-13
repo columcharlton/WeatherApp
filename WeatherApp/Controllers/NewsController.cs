@@ -14,101 +14,87 @@ namespace WeatherApp.Controllers
     public class NewsController : Controller
     {
         // GET: News
-        //public ActionResult Index()
-        //{
-        //    return View();
-        //}
+        public ActionResult Index()
+        {
+            return View();
+        }
 
 
-        //[HttpPost]
-        public ActionResult Index()//DateTime reportDate)
+        [HttpPost]
+        public ActionResult Index(DateTime reportDate)
 
         {
-            //DateTime Time = reportDate;
+            DateTime time = reportDate;
+            
+            //The month and year have to be separated as per the API documentation 
+            int day =   time.Day;
+            int month = time.Month;
+            int year = time.Year;
 
+            //Instantiating an object of the news model class
             News news = new News();
 
-            HttpWebRequest apiRequest = WebRequest.Create("https://api.nytimes.com/svc/archive/v1/1981/11.json?api-key=ZNClJjWLl8jmdrUDf8wFD34zhiGt7sjo") as HttpWebRequest;
-
-
-
+            HttpWebRequest apiRequest = WebRequest.Create("https://api.nytimes.com/svc/archive/v1/" 
+                + year + "/" + month + ".json?api-key=ZNClJjWLl8jmdrUDf8wFD34zhiGt7sjo") as HttpWebRequest;
+            
             string rawJSONNews = "";
-            //string apiResponse = "";
-
+            
             using (HttpWebResponse response = apiRequest.GetResponse() as HttpWebResponse)
             {
                 StreamReader reader = new StreamReader(response.GetResponseStream());
                 rawJSONNews = reader.ReadToEnd();
-                //apiResponse = reader.ReadToEnd();
-
+                
             }
 
-            RootObject2 rootObject = JsonConvert.DeserializeObject<RootObject2>(news.rawJSONNews);
-
-
-
-
-            StringBuilder sb = new StringBuilder();
-
-            //sb.Append("<table><tr><th>Weather Description</th></tr>");
-            
+            RootObject2 rootObject = JsonConvert.DeserializeObject<RootObject2>(rawJSONNews);
 
             
-
-           
-                foreach (Docs item in rootObject.response.docs  )
-                {
-                    sb.Append("<table><tr><th>Past weaher</th></tr>");
-
-                sb.Append("<tr><td>Summary</td><td>" + item.headline.main + "</td></tr>");
-                sb.Append("<tr><td>Time:</td><td>" + item.pub_date.Day + "</td></tr>");
-                sb.Append("</table>");
-
-                break;
-                }
-
-
-                //string headline;
-                //int date;
 
             //created a list to take in values from my object
-            List<News> c = new List<News>();
+            IList<News> newsList = new List<News>();
             
 
             foreach (Docs item in rootObject.response.docs)
             {
 
+                //Extracting required data from Api response
                 news.Headline = item.headline.main;
                 news.Date = item.pub_date.Day;
-                //c.Add(headline, date);
+                news.Lead = item.lead_paragraph;
+                news.Snippet = item.snippet;
+                news.Web_url = item.web_url;
 
-                break;
+                
+                //Adding that data in my News class through the constructor to set parameters
+                newsList.Add(new News() { Headline = news.Headline, Date = news.Date, Lead = news.Lead,
+                    Snippet = news.Snippet, Web_url = news.Web_url});
 
             }
 
 
-            //double e = c[0];
-            //double f = c[1];
+            //Searching through the recorded results for the day, the dataset is very difficult to manipulate
+            int date = day;
 
-            //string a = sb.ToString();
+            //Searching for the first instance of the required date
+            News i = newsList.FirstOrDefault(o => o.Date == date);
+            //Checking that that date exists and data is within it
+            if (i != null)
+                i.Date = date;
 
+            //Returning the required data to the view
+            ViewBag.date = reportDate;
+            ViewBag.headline = i.Headline;
+            ViewBag.lead = i.Lead;
+            ViewBag.snippet = i.Snippet;
+            ViewBag.url = i.Web_url;
 
+            
+            return View(); //returns the model data to the view
 
-
-            string a = sb.ToString();
-
-            ViewBag.a = a;
-
-            //TempData["Tag"] = a.ToString();
-
-            //rawJSON = sb.ToString();
-            //ViewData["Message"] = "Welcome";
-            ////System.Diagnostics.Debug.WriteLine("hello ");
-
-            //return View() ;    //Passing model class object
-            return View();
-            //return View("Index");
         }
 
+
     }
+
 }
+

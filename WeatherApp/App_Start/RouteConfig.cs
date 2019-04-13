@@ -15,11 +15,11 @@ namespace WeatherApp
 
 
 
-            routes.MapRoute(
-            name: "Root",
-            url: "root/{id}",
-            defaults: new { controller = "ClimateMap", id = UrlParameter.Optional }
-                );
+            //routes.MapRoute(
+            //name: "Root",
+            //url: "root/{id}",
+            //defaults: new { controller = "ClimateMap", id = UrlParameter.Optional }
+            //    );
 
 
 

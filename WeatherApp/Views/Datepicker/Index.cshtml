@@ -12,8 +12,8 @@
 
 <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
 
-<!--<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-    -->
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
 @section scripts{
 
     <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
@@ -23,16 +23,368 @@
 
         $(function () {
             $(".datepicker").datepicker({
-                //    dateFormat: "yy/mm/dd",
-                //    changeMonth: true,
-                //    changeYear: true,
-                //    //yearRange : "-10:+10"
-                //    minDate: new Date(2017, 0, 1),
-                //    maxDate: new Date(2018, 0, 1),
-                //    showOn: "both",
-                //    buttonText : "<i class='fa fa-calendar'></i>"
+                dateFormat: "yy/mm/dd",
+                changeMonth: true,
+                changeYear: true,
+                //yearRange : "-10:+10"
+                //minDate: new Date(2017, 0, 1),
+                maxDate: new Date(2019, 0, 1),
+                showOn: "both",
+                buttonText: "<i class='fa fa-calendar'></i>"
             });
         });
     </script>
 
 }
+
+
+
+@*<meta name="viewport" content="width=device-width" />
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <title>Line Chart</title>
+
+
+    <div id="chartContainer"></div>
+
+    <script type="text/javascript">
+
+
+
+        var data =
+            [{ x: 10, y: 71 },
+            { x: 20, y: 55 },
+            { x: 30, y: 50 },
+            { x: 40, y: 65 },
+            { x: 50, y: 95 },
+            { x: 60, y: 68 },
+            { x: 70, y: 28 },
+            { x: 80, y: 34 },
+            { x: 90, y: 14 },
+            { x: 100, y: 33 },
+            { x: 110, y: 42 },
+            { x: 120, y: 62 }];
+
+
+
+
+
+        window.onload = function () {
+            var chart = new CanvasJS.Chart("chartContainer", {
+                theme: "light2",
+                zoomEnabled: true,
+                animationEnabled: true,
+                title: {
+                    text: "Line Chart in ASP.Net MVC using CanvasJS"
+                },
+                subtitles: [
+                    {
+                        text: "Try Resizing the Browser"
+                    }
+                ],
+                axisY: {
+                    includeZero: false,
+                    //viewportMinimum: 14,
+                    //viewportMaximum: 96,
+                    //min: getMin(),
+                    //viewportMaximum: getMax(),
+                    viewportMinimum: getMin()
+
+                },
+                data: [
+                    {
+                        type: "line",
+                        dataPoints: data,
+
+                    }
+                ]
+            });
+            chart.render();
+        };
+
+
+        //Why would you do this??
+        function getMax() {
+            var max = 0;
+            data.forEach(function (x, i) {
+                max = Math.max(max, Math.max.apply(null, x.data));
+            });
+
+            return max + 100;
+        }
+
+
+        //This makes far more sense :)
+        function getMin() {
+            var min = 0;
+            data.forEach(function (i, y) {
+                min = Math.min(min, Math.min.apply(null, y.data));
+            });
+
+            return min + 10;
+        }
+
+    </script>*@
+
+
+
+@*<!DOCTYPE HTML>
+    <html>
+    <head>
+        <script type="text/javascript">
+            window.onload = function () {
+
+                var chart = new CanvasJS.Chart("chartContainer",
+                    {
+                        zoomEnabled: true,
+                        title: {
+                            text: "Try Zooming And Panning"
+                        },
+                        axisY: {
+                            includeZero: false
+                        },
+                        data: data,  // random generator below
+
+                    });
+
+                chart.render();
+            }
+
+            var limit = 1000;    //increase number of dataPoints by increasing this
+
+            var y = 0;
+            var data = []; var dataSeries = { type: "line" };
+            var dataPoints = [];
+            for (var i = 0; i < limit; i += 1) {
+                y += (Math.random() * 10 - 5);
+                dataPoints.push({
+                    x: i - limit / 2,
+                    y: y
+                });
+            }
+            dataSeries.dataPoints = dataPoints;
+            data.push(dataSeries);
+
+        </script>
+        <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    </head>
+    <body>
+        <div id="chartContainer" style="height: 300px; width: 100%;">
+        </div>
+    </body>
+    </html>*@
+@*<!DOCTYPE HTML>
+    <html>
+    <head>
+        <script type="text/javascript">
+            window.onload = function () {
+
+
+                var chart = new CanvasJS.Chart("chartContainer",
+                    {
+                        zoomEnabled: true,
+                        zoomType: "y",
+                        title: {
+                            text: "Chart With Initial Zoom Set"
+                        },
+                        legend: {
+                            horizontalAlign: "right",
+                            verticalAlign: "center"
+                        },
+                        axisY: {
+                            includeZero: false,
+                            viewportMinimum: -100,
+                            viewportMaximum: 100
+                        },
+
+                        data: data,  // random generator below
+
+                    });
+
+                chart.render();
+            }
+
+            var limit = 1000;    //increase number of dataPoints by increasing this
+
+            var y = 0;
+            var data = []; var dataSeries = { type: "line" };
+            var dataPoints = [];
+            for (var i = 0; i < limit; i += 1) {
+                y += (Math.random() * 8 - 4);
+                dataPoints.push({
+                    x: i - limit / 2,
+                    y: y
+                });
+            }
+            dataSeries.dataPoints = dataPoints;
+            data.push(dataSeries);
+
+        </script>
+        <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    </head>
+    <body>
+        <div id="chartContainer" style="height: 300px; width: 100%;">
+        </div>
+    </body>
+    </html>*@
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<meta name="viewport" content="width=device-width" />
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <title>Line Chart</title>
+
+
+    <div id="chartContainer1"></div>
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <div id="chartContainer2"></div>
+
+    <script type="text/javascript">
+
+
+
+        var data =
+            [{ x: 10, y: 71 },
+            { x: 20, y: 55 },
+            { x: 30, y: 50 },
+            { x: 40, y: 65 },
+            { x: 50, y: 95 },
+            { x: 60, y: 68 },
+            { x: 70, y: 28 },
+            { x: 80, y: 34 },
+            { x: 90, y: 14 },
+            { x: 100, y: 33 },
+            { x: 110, y: 42 },
+            { x: 120, y: 62 }];
+
+
+
+
+
+        window.onload = function () {
+            var chart1 = new CanvasJS.Chart("chartContainer1", {
+                title: {
+                    text: "Live Data"
+                },
+                height: 260,
+                //width: 320,
+                data: [{
+                    type: "line",
+                    dataPoints: [
+                        { label: "apple", y: 10 },
+                        { label: "orange", y: 15 },
+                        { label: "banana", y: 25 },
+                        { label: "mango", y: 30 },
+                        { label: "grape", y: 28 }
+                    ]
+                }]
+            });
+            var chart2 = new CanvasJS.Chart("chartContainer2", {
+                title: {
+                    text: "Live Data"
+                },
+
+                height: 260,
+                //width: 320,
+                data: [{
+                    type: "column",
+                    dataPoints: [
+                        { label: "apple", y: 10 },
+
+                        { label: "orange", y: 15 },
+                        { label: "banana", y: 25 },
+                        { label: "mango", y: 30 },
+                        { label: "grape", y: 28 }
+                    ]
+                }]
+            });
+
+            chart1.render();
+            chart2.render();
+        };
+
+    </script>*@
+
+
+
+@*<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Charts</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.bundle.min.js"></script>
+    <script>
+
+        var barChartData =
+            {
+                labels: [@Html.Raw(ViewBag.Productname_List)],
+                datasets: [{
+                    label: 'ProductWise Sales Count',
+                    backgroundColor: [
+                        "#f990a7",
+                        "#aad2ed",
+                        "#9966FF",
+                        "#99e5e5",
+                        "#f7bd83",
+                    ],
+                    borderWidth: 2,
+                    data: [@ViewBag.MobileCount_List]
+                }]
+            };
+
+            window.onload = function () {
+                var ctx1 = document.getElementById("barcanvas").getContext("2d");
+                window.myBar = new Chart(ctx1,
+                    {
+                        type: 'bar',
+                        data: barChartData,
+                        options:
+                            {
+                                title:
+                                {
+                                    display: true,
+                                    text: "ProductWise Sales Count"
+                                },
+                                responsive: true,
+                                maintainAspectRatio: true
+                            }
+                    });
+            }
+    </script>
+
+
+
+
+</head>
+<body>
+    <div style="text-align: center">
+        <canvas id="barcanvas"></canvas>
+    </div>
+    <div style="text-align: center">
+        Disclaimer:- This data is for demo it is
+        not real data it wont relate to any company
+    </div>
+</body>*@  

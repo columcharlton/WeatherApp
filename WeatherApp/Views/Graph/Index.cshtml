@@ -1,0 +1,303 @@
+﻿@*@{
+        Layout = null;
+    }
+
+    <!DOCTYPE HTML>
+    <html>
+    <head>
+        <script>
+            window.onload = function () {
+
+                var dataPoints = [];
+
+                var chart = new CanvasJS.Chart("chartContainer", {
+                    animationEnabled: true,
+                    theme: "light2",
+                    title: {
+                        text: "Pressure"
+                    },
+                    axisY: {
+                        title: "Pressure",
+                        titleFontSize: 24,
+                        includeZero: false,
+                        prefix: "",
+                        crosshair: {
+                            enabled: true,
+                            valueFormatString: "",
+                            snapToDataPoint: true
+                        }
+                    },
+                    axisX: {
+                        crosshair: {
+                            enabled: true,
+                            snapToDataPoint: true
+                        }
+                    },
+                    data: [{
+                        type: "line",
+                        yValueFormatString: "",
+                        xValueFormatString: "",
+                        dataPoints: dataPoints
+                    }]
+                });
+
+                function addData(data) {
+                    for (var i = 0; i < data.length; i++) {
+                        dataPoints.push({
+                            x: new Date(data[i].x),
+                            y: data[i].y
+                        });
+                    }
+                    chart.render();
+
+                }
+
+                $.getJSON("/Graph/json", addData);
+
+
+
+    }
+
+
+        </script>
+    </head>
+    <body>
+        <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+        <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+        <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+    </body>
+    </html>*@
+@*@{
+        Layout = null;
+    }
+
+    <!DOCTYPE HTML>
+    <html>
+    <head>
+        <script>
+    window.onload = function () {
+
+        var datapoints = [];
+
+    var chart = new CanvasJS.Chart("chartContainer", {
+        animationEnabled: true,
+        title: {
+            text: "Product Trends By Month"
+        },
+        axisY: {
+            includeZero: false
+        },
+        toolTip: {
+            shared: true
+        },
+        data: [{
+            type: "line",
+            name: "Pressure",
+            showInLegend: true,
+            dataPoints: datapoints =  @Html.Raw(ViewBag.DataPoints1)
+        }]
+        });
+        var chart2 = new CanvasJS.Chart("chartContainer2", {
+        animationEnabled: true,
+        title: {
+            text: "Product Trends By Month"
+        },
+        axisY: {
+            includeZero: false
+        },
+        toolTip: {
+            shared: true
+        },
+        data: [{
+            type: "line",
+            name: "Temperature",
+            showInLegend: true,
+            dataPoints: datapoints = addData(@Html.Raw(ViewBag.DataPoints2))
+        }]
+        });
+
+        function addData(data) {
+            for (var i = 0; i < data.length; i++) {
+                dataPoints.push({
+                    x: new Date(data[i].x),
+                    y: data[i].y
+                });
+            }
+        }
+
+    chart.render();
+    chart2.render();*@
+
+        }
+
+
+
+
+@*</script>
+    </head>
+    <body>
+        <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+        <br />
+        <br />
+        <br /><br /><br /><br /><br /><br />
+        <br />
+        <div id="chartContainer2" style="height: 370px; width: 100%;"></div>
+        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    </body>
+    </html>*@
+
+
+
+
+@*<   <meta name="viewport" content="width=device-width" />
+        <title>Charts</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.bundle.min.js"></script>
+        <script>
+
+            var barChartData =
+                {
+                    labels: [@Html.Raw(ViewBag.Productname_List)],
+                    datasets: [{
+                        label: 'ProductWise Sales Count',
+                        backgroundColor: [
+                            "#f990a7",
+                            "#aad2ed",
+                            "#9966FF",
+                            "#99e5e5",
+                            "#f7bd83",
+                        ],
+                        borderWidth: 2,
+                        data: [@ViewBag.MobileCount_List]
+                    }]
+                };
+
+                window.onload = function () {
+                    var ctx1 = document.getElementById("barcanvas").getContext("2d");
+                    window.myBar = new Chart(ctx1,
+                        {
+                            type: 'bar',
+                            data: barChartData,
+                            options:
+                                {
+                                    title:
+                                    {
+                                        display: true,
+                                        text: "ProductWise Sales Count"
+                                    },
+                                    responsive: true,
+                                    maintainAspectRatio: true
+                                }
+                        });
+                }
+        </script>
+
+
+
+
+    <   <div style="text-align: center">
+            <canvas id="barcanvas"></canvas>
+        </div>
+        <div style="text-align: center">
+            Disclaimer:- This data is for demo it is
+            not real data it wont relate to any company
+        </div>*@
+
+@*<!DOCTYPE HTML>
+    <html>
+    <head>
+        <script>
+    window.onload = function () {
+
+    var chart = new CanvasJS.Chart("chartContainer", {
+        theme: "light1",
+        animationEnabled: true,
+        title: {
+            text: "Blood Pressure & Body Temperature Readings over a Day"
+        },
+        axisY: {
+            title: "Pressure (in mmHg)",
+            maximum: 190,
+            gridThickness: 0
+        },
+        axisY2: {
+            title: "Body Temperature (in °C)",
+            includeZero: false,
+            suffix: " °C",
+            gridThickness: 0
+        },
+        toolTip: {
+            shared: true
+        },
+        data: [{
+            type: "rangeSplineArea",
+            xValueFormatString: "hh:MM TT",
+            yValueFormatString: "# mmHg",
+            toolTipContent: "{x}<br><b>Systolic:</b> {y[0]}<br><b>Diastolic:</b> {y[1]}",
+            xValueType: "dateTime",
+            dataPoints:  @Html.Raw(ViewBag.DataPoints1)
+        }, {
+            type: "spline",
+            axisYType: "secondary",
+            name: "Body Temperature",
+            yValueFormatString: "#.0 °C",
+            toolTipContent: "<b>{name}:</b> {y}",
+            xValueType: "dateTime",
+            dataPoints:  @Html.Raw(ViewBag.DataPoints2)
+        }]
+    });
+    chart.render();
+
+    }*@
+
+
+
+@{
+    Layout = null;
+}
+
+
+<title>Charts</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.bundle.min.js"></script>
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <script>
+window.onload = function () {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	theme: "light1",
+	animationEnabled: true,
+	title: {
+		text: "Temperature Readings over a Day"
+	},
+	axisY: {
+		title: "Temperature",
+		maximum: 20,
+		gridThickness: 0
+	},
+	toolTip: {
+		shared: true
+	},
+	data: [{
+		type: "rangeSplineArea",
+        xValueFormatString: "MMM D",
+		yValueFormatString: "# c",
+		toolTipContent: "{x}<br><b>Real:</b> {y[0]}<br><b>Feel:</b> {y[1]}",
+        xValueType: "dateTime",
+		dataPoints:  @Html.Raw(ViewBag.DataPoints)
+	}]
+});
+chart.render();
+
+}
+    </script>
+</head>
+<body>
+    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+</html>
+
+
+

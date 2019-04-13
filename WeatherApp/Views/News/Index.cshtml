@@ -1,44 +1,28 @@
-﻿@model WeatherApp.Models.News
+﻿@*{
+        @ViewBag.Title = "Index";
+    }*@
 
-@*@model IEnumerable<WeatherApp.Models.News>*@
+<h2>News</h2>
 
-    ViewBag.Title = "Index";
+
+@using (Html.BeginForm())
+{
+
+    <input type="date" name="reportDate" />
+    <input type="submit" />
 }
+<br>
 
-<h2>Index</h2>
+@ViewBag.date
+<br>
 
-<div id="message">@(new HtmlString(@ViewBag.a))</div>
-
-
-
-
-
-@*@foreach (Docs item in raw)
-    {
-
-
-    }*@
-
-@Html.DisplayNameFor(model => model.headline)
+<br>
+<div id="message">@(new HtmlString(@ViewBag.headline))</div>
+<br>
+<div id="message">@(new HtmlString(@ViewBag.lead))</div>
+<br>
+<div id="message">@(new HtmlString(@ViewBag.snippet))</div>
+<br>
+<div id="message">@(new HtmlString(@ViewBag.url))</div>
 
 
-
-@*@foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @item.date
-            </td>
-
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>*@
-@*<td>
-                @item.headline
-            </td>
-
-            <td>
-                @item.rawjsonnews
-            </td>
-        </tr>
-    }*@

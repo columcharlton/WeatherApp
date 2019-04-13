@@ -12,6 +12,7 @@ namespace WeatherApp.Controllers
         // GET: /Datepicker/
         public ActionResult Index()
         {
+
             return View();
         }
 	}

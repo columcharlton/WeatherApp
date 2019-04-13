@@ -1,0 +1,224 @@
+﻿@model WeatherApp.Models.Coordinates
+@*@model WeatherApp.Models.Graph*@
+
+
+@{
+    ViewBag.Title = "HistoryWeatherIndex";
+}
+
+<h2>PartialView</h2>
+
+
+<meta name="viewport" content="width=device-width" />
+<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<title>Line Chart</title>
+
+
+<div id="chartPressure"></div>
+
+<script type="text/javascript">
+
+
+    ////var data = [ViewBag.dddd];
+    var Pressure = [@ViewBag.Pressure];
+
+        window.onload = function () {
+            var chart1 = new CanvasJS.Chart("chartPressure", {
+                theme: "light2",
+                zoomEnabled: true,
+                animationEnabled: true,
+                title: {
+                    text: "Line Chart in ASP.Net MVC using CanvasJS"
+                },
+                subtitles: [
+                    {
+                        text: "Time vs Pressure"
+                    }
+                ],
+                axisY: {
+                    includeZero: false,
+
+                    //viewportMinimum: 980,
+                    //viewportMaximum: 1030,
+
+                    viewportMaximum: getMax(),
+                    viewportMinimum: getMin(),
+
+                },
+                data: [
+                    {
+                        type: "line",
+                        dataPoints: Pressure,
+                    }
+                ]
+            });
+            chart1.render();
+        };
+
+    //Why would you do this??
+    function getMax() {
+        var max = 1050;
+        Pressure.forEach(function (i, y) {
+            console.log(y);
+            max = Math.max(max, Math.max.apply(null, y.data));
+        });
+
+        console.log(max);
+
+        return max + 10;
+    }
+
+
+        //This makes far more sense :)
+        function getMin() {
+            var min = 980;
+            Pressure.forEach(function (i, y) {
+                min = Math.min(min, Math.min.apply(null, y.data));
+            });
+
+            console.log(min);
+
+            return min - 10;
+        }
+
+
+</script>
+
+
+
+
+
+@*<meta name="viewport" content="width=device-width" />
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <title>Line Chart</title>
+
+
+    <div id="chartTemperature"></div>
+
+    <script type="text/javascript">
+
+
+        ////var data = [ViewBag.dddd];
+        var Temperature = [@ViewBag.Temperature];
+
+            window.onload = function () {
+                var chart = new CanvasJS.Chart("chartTemperature", {
+                    theme: "light2",
+                    zoomEnabled: true,
+                    animationEnabled: true,
+                    title: {
+                        text: "Line Chart in ASP.Net MVC using CanvasJS"
+                    },
+                    subtitles: [
+                        {
+                            text: "Time vs Temperature"
+                        }
+                    ],
+                    axisY: {
+                        includeZero: false,
+
+                        //viewportMinimum: 980,
+                        //viewportMaximum: 1030,
+
+                        viewportMaximum: getMax(),
+                        viewportMinimum: getMin(),
+
+                    },
+                    data: [
+                        {
+                            type: "line",
+                            dataPoints: Temperature,
+                        }
+                    ]
+                });
+                chart.render();
+            };
+
+        //Why would you do this??
+        function getMax() {
+            var max = 35;
+            Temperature.forEach(function (i, y) {
+                max = Math.max(max, Math.max.apply(null, y.data));
+            });
+
+            console.log(max);
+
+            return max + 10;
+        }
+
+
+            //This makes far more sense :)
+            function getMin() {
+                var min = -15;
+                Temperature.forEach(function (i, y) {
+                    min = Math.min(min, Math.min.apply(null, y.data));
+                });
+
+                console.log(min);
+
+                return min - 10;
+            }
+
+
+    </script>*@
+
+
+@*<div id="message">@(new HtmlString(@ViewBag.a))</div>*@
+<div id="message">@Html.Raw(ViewBag.data)</div>
+
+
+@*@foreach(data item in data)*@
+
+@*@ViewData.Model.Time
+    @ViewData.Model.Pressure*@
+
+
+@*@{
+        var categories = (List<data>)ViewData["data"]; // Cast the list
+    }*@
+
+@*@foreach (var c in Model.Time) // Print the list
+    {
+        @c.
+    }*@
+
+@*@for (int i = 0; i < Model.Time.Capacity; i++) // Print the list
+    {
+
+    }*@
+
+@*@for (var i = 10; i < Model.Time.Capacity; i++)
+    {<p>Line @i</p>}*@
+
+
+@*@foreach (var item in Model)
+    {
+        <div>
+            @item.
+            <hr />
+        </div>
+    }*@
+
+
+@*<ul>
+        @foreach (var x in ViewData["data"])
+        {
+            <li>
+                @std.StudentName
+            </li>
+        }
+    </ul>*@
+
+
+<div id="message">@Html.Raw(ViewBag.abc)</div>
+<div id="message">@Html.Raw(ViewBag.bcd)</div>
+
+
+
+@*@foreach (var item in Model.abc)
+    {
+        @item
+
+    }*@
+
+

@@ -1,19 +1,619 @@
 ﻿@model WeatherApp.Models.Coordinates
 
+<meta name="viewport" content="width=device-width" />
+<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "HistoryWeatherIndex";
 }
+<br />
+<br />
+<h2>Past weather</h2>
 
-<h2>Index</h2>
 
+
+
+
+
+<!-- Form,  a tag with a text box(Editor), adds attributes into the text box  -->
 @using (Html.BeginForm())
 {
+    <br />
+
     <input type="text" name="reportLocation" />
-    
-    <input type="datetime-local" name="reportDate" />
+
+    <input type="date" name="reportDate" />
+
+    @*@Html.EditorFor(model => model.dtmDate, new { htmlAttributes = new { @class = "datepicker" } })*@
+    <br />
+
     <input type="submit" />
+
 }
 
-<div id="message">@(new HtmlString(@ViewBag.a))</div>
+@*<input data-provide="datepicker" />
+<div class="input-group date" data-provide="datepicker">*@
+
+@*</div>*@
+
+<br />
+<br />
+<br />
+
+
+
+
+
+
+
+
+
+    <div id="message">@(new HtmlString(@ViewBag.a))</div>
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <button onclick="myFunction()">See graphs</button>
+
+
+    @*<p id="demo"></p>*@
+
+
+
+    @*@{ Html.RenderAction("Index", "Home"); }*@
+
+    @*<div style="display: block">
+        @Html.Partial("_PartialIndex", Model)*@
+    @*</div>*@
+
+
+
+    <title>Line Chart</title>
+
+    <br />
+    <br />
+
+
+    <div id="chartPressure"></div>
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br /><br />
+
+    <div id="chartHumitity"></div>
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br /><br />
+
+    <div id="chartTemperature"></div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br /><br />
+
+    <div id="chartDewpoint"></div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br /><br />
+
+    <div id="chartUv"></div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br /><br />
+
+    <div id="chartWind"></div>
+
+
+    <script type="text/javascript">
+
+
+
+
+    //    document.getElementById("demo").addEventListener("click", myFunction);
+
+    //function myFunction() {
+
+
+
+
+        window.onload = function () {
+
+        //var Pressure = [ViewBag.Pressure];
+        var chart1 = new CanvasJS.Chart("chartPressure", {
+                theme: "light2",
+                zoomEnabled: true,
+                animationEnabled: true,
+                title: {
+                    text: "Time vs Pressure"
+                },
+
+                height: 260,
+                //width: 320,
+                subtitles: [
+                    {
+                        text: "Time vs Pressure"
+                    }
+                ],
+                axisY: {
+                    includeZero: false,
+
+
+                    //viewportMinimum: 980,
+                    //viewportMaximum: 1030,
+
+                    
+                },
+                data: [
+                    {
+                        type: "line",
+                        xValueFormatString: "MMM D",
+                        yValueFormatString: "# c",
+                        toolTipContent: "{x}<br><b>Time:</b> {y}<br><b>Pressurel:</b>",
+                        xValueType: "dateTime",
+
+                        dataPoints: @Html.Raw(ViewBag.Pressure),
+                    }
+                ]
+            });
+
+
+
+            //var Temperature = [ViewBag.Temperature];
+            var chart2 = new CanvasJS.Chart("chartTemperature", {
+                theme: "light2",
+                zoomEnabled: true,
+                animationEnabled: true,
+                title: {
+                    text: "Time vs Temperature"
+                },
+
+                height: 260,
+                //width: 320,
+                subtitles: [
+                    {
+                        text: "Time vs Temperature"
+                    }
+                ],
+                axisY: {
+                    includeZero: false,
+
+                    //viewportMinimum: -15,
+                    //viewportMaximum: 60,
+
+                    
+                },
+                data: [
+                    {
+                        type: "line",
+                        xValueFormatString: "MMM D",
+                        yValueFormatString: "# c",
+                        toolTipContent: "{x}<br><b>Time:</b> {y}<br><b>Temperature:</b>",
+                        xValueType: "dateTime",
+                        dataPoints: @Html.Raw(ViewBag.Temperature),
+                    }
+                ]
+            });
+
+
+            //var Dewpoint = [ViewBag.Dewpoint];
+            var chart3 = new CanvasJS.Chart("chartDewpoint", {
+                theme: "light2",
+                zoomEnabled: true,
+                animationEnabled: true,
+                title: {
+                    text: "Time vs Dewpoint"
+                },
+
+                height: 260,
+                //width: 320,
+                subtitles: [
+                    {
+                        text: "Time vs Dewpoint"
+                    }
+                ],
+                axisY: {
+                    includeZero: false,
+
+                    //viewportMinimum: 0,
+                    //viewportMaximum: 100,
+
+                    //viewportMaximum: getMax(),
+                    //viewportMinimum: getMin(),
+
+                },
+                data: [
+                    {
+                        type: "line",
+                        xValueFormatString: "MMM D",
+                        yValueFormatString: "# c",
+                        toolTipContent: "{x}<br><b>Time:</b> {y}<br><b>Pressurel:</b>",
+                        xValueType: "dateTime",
+
+                        dataPoints: @Html.Raw(ViewBag.Dewpoint),
+                    }
+                ]
+            });
+
+            //var Humitity = [ViewBag.Humitity]
+            var chart4 = new CanvasJS.Chart("chartHumitity", {
+                theme: "light2",
+                zoomEnabled: true,
+                animationEnabled: true,
+                title: {
+                    text: "Time vs Humitity"
+                },
+
+                height: 260,
+                //width: 320,
+                subtitles: [
+                    {
+                        text: "Time vs Humitity"
+                    }
+                ],
+                axisY: {
+                    includeZero: false,
+
+                    //viewportMinimum: 0,
+                    //viewportMaximum: 1,
+
+                    //viewportMaximum: getMax(),
+                    //viewportMinimum: getMin(),
+
+                },
+                data: [
+                    {
+                        type: "line",
+                        xValueFormatString: "MMM D",
+                        yValueFormatString: "# c",
+                        toolTipContent: "{x}<br><b>Time:</b> {y}<br><b>Pressurel:</b>",
+                        xValueType: "dateTime",
+
+                        dataPoints: @Html.Raw(ViewBag.Humitity),
+                    }
+                ]
+            });
+
+            //var Uv = [ViewBag.Uv]
+            var chart5 = new CanvasJS.Chart("chartUv", {
+                theme: "light2",
+                zoomEnabled: true,
+                animationEnabled: true,
+                title: {
+                    text: "Time vs Uv"
+                },
+
+                height: 260,
+                //width: 320,
+                subtitles: [
+                    {
+                        text: "Time vs Uv"
+                    }
+                ],
+                axisY: {
+                    includeZero: false,
+
+                    //viewportMinimum: 0,
+                    //viewportMaximum: 10,
+
+                    //viewportMaximum: getMax(),
+                    //viewportMinimum: getMin(),
+
+                },
+                data: [
+                    {
+                        type: "line",
+                        xValueFormatString: "MMM D",
+                        yValueFormatString: "# c",
+                        toolTipContent: "{x}<br><b>Time:</b> {y}<br><b>Pressurel:</b>",
+                        xValueType: "dateTime",
+
+                        dataPoints: @Html.Raw(ViewBag.Uv),
+                    }
+                ]
+            });
+
+            @*var Wind = [@ViewBag.Wind]*@
+            var chart6 = new CanvasJS.Chart("chartWind", {
+                theme: "light2",
+                zoomEnabled: true,
+                animationEnabled: true,
+                title: {
+                    text: "Time vs Wind"
+                },
+
+                height: 260,
+                //width: 320,
+                subtitles: [
+                    {
+                        text: "Time vs Wind"
+                    }
+                ],
+                axisY: {
+                    includeZero: false,
+
+                    //viewportMinimum: 0,
+                    //viewportMaximum: 100,
+
+                    //viewportMaximum: getMax(),
+                    //viewportMinimum: getMin(),
+
+                },
+                data: [
+                    {
+                        type: "line",
+                        xValueFormatString: "MMM D",
+                        yValueFormatString: "# c",
+                        toolTipContent: "{x}<br><b>Time:</b> {y}<br><b>Pressurel:</b>",
+                        xValueType: "dateTime",
+
+                        dataPoints: @Html.Raw(ViewBag.Wind)  ,
+                    }
+                ]
+            });
+
+            chart1.render();
+            chart2.render();
+            chart3.render();
+            chart4.render();
+            chart5.render();
+            chart6.render();
+
+
+
+
+
+        //Why would you do this??
+        @*function getMax() {
+            console.log(data2);
+
+            var data2 = @Html.Raw(ViewBag.DataPoints);
+            console.log(data2);
+
+            var max = 0;
+                        data2.forEach(function (i, y) {
+                max = Math.max(max, Math.max.apply(null, y.data2));
+
+
+            });
+
+            console.log(max);
+
+            return max + 10;
+        }
+
+
+        //This makes far more sense :)
+        function getMin(data2) {
+            console.log(data2);
+
+             //= Array.prototype.slice.call(document.querySelectorAll("y"));
+
+            //var divs = Array.from(document.getElementById('y').children).map
+
+            var divs = data2[0];
+            var y = divs;
+
+
+
+
+            var min = 0;
+            //min = Math.min(min, Math.min.apply(null, y.divs));
+
+
+            console.log(divs);
+            console.log(y);
+
+            //Array.prototype.forEach.call(node.childNodes, function (data2) {
+            //    // Do something with `child`
+            //    console.log(data2);
+
+            //});
+
+            //var min = 0;
+            //data2.forEach(function (i, y) {
+
+               
+            //    min = Math.min(min, Math.min.apply(null, y.data2));
+            //});
+
+            console.log(min);
+
+            return min - 10;
+        }*@
+
+    }
+
+
+    </script>
+
+
+
+
+
+    @*<meta name="viewport" content="width=device-width" />
+        <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+        <title>Line Chart</title>
+
+
+        <div id="chartTemperature"></div>
+
+        <script type="text/javascript">
+
+
+            ////var data = [ViewBag.dddd];
+            var Temperature = [@ViewBag.Temperature];
+
+                window.onload = function () {
+                    var chart = new CanvasJS.Chart("chartTemperature", {
+                        theme: "light2",
+                        zoomEnabled: true,
+                        animationEnabled: true,
+                        title: {
+                            text: "Line Chart in ASP.Net MVC using CanvasJS"
+                        },
+                        subtitles: [
+                            {
+                                text: "Time vs Temperature"
+                            }
+                        ],
+                        axisY: {
+                            includeZero: false,
+
+                            //viewportMinimum: 980,
+                            //viewportMaximum: 1030,
+
+                            viewportMaximum: getMax(),
+                            viewportMinimum: getMin(),
+
+                        },
+                        data: [
+                            {
+                                type: "line",
+                                dataPoints: Temperature,
+                            }
+                        ]
+                    });
+                    chart.render();
+                };
+
+            //Why would you do this??
+            function getMax() {
+                var max = 35;
+                Temperature.forEach(function (i, y) {
+                    max = Math.max(max, Math.max.apply(null, y.data));
+                });
+
+                console.log(max);
+
+                return max + 10;
+            }
+
+
+                //This makes far more sense :)
+                function getMin() {
+                    var min = -15;
+                    Temperature.forEach(function (i, y) {
+                        min = Math.min(min, Math.min.apply(null, y.data));
+                    });
+
+                    console.log(min);
+
+                    return min - 10;
+                }
+
+
+        </script>*@
+
+
+    @*<div id="message">@(new HtmlString(@ViewBag.a))</div>*@
+    <div id="message">@Html.Raw(ViewBag.data)</div>
+
+
+    @*@foreach(data item in data)*@
+
+    @*@ViewData.Model.Time
+        @ViewData.Model.Pressure*@
+
+
+    @*@{
+            var categories = (List<data>)ViewData["data"]; // Cast the list
+        }*@
+
+    @*@foreach (var c in Model.Time) // Print the list
+        {
+            @c.
+        }*@
+
+    @*@for (int i = 0; i < Model.Time.Capacity; i++) // Print the list
+        {
+
+        }*@
+
+    @*@for (var i = 10; i < Model.Time.Capacity; i++)
+        {<p>Line @i</p>}*@
+
+
+    @*@foreach (var item in Model)
+        {
+            <div>
+                @item.
+                <hr />
+            </div>
+        }*@
+
+
+    @*<ul>
+            @foreach (var x in ViewData["data"])
+            {
+                <li>
+                    @std.StudentName
+                </li>
+            }
+        </ul>*@
+
+
+    @*<div id="message">@Html.Raw(ViewBag.abc)</div>
+        <div id="message">@Html.Raw(ViewBag.bcd)</div>
+
+        <div id="message">@ViewData["TemperatureV"])</div>*@
+
+
+    }
 

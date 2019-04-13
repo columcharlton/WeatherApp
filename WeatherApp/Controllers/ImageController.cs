@@ -16,6 +16,9 @@ namespace WeatherApp.Controllers
                 return View();
             }
 
+
+            //Upon posting an image by the user, and setting the parameters set in the model, 
+           //the model is then passed to the method.
             [HttpPost]
             public ActionResult Add(Image imageModel)
             {
@@ -28,15 +31,7 @@ namespace WeatherApp.Controllers
                 fileName = Path.Combine(Server.MapPath("~/Image/"), fileName);
                 imageModel.ImageFile.SaveAs(fileName);
 
-                //image.ImageFile = fileName;
-
-                //imageModel.ImagePath = "~/Image/" + fileName;
-                //fileName = Path.Combine(Server.MapPath("~/Image/"), fileName);
-                //imageModel.ImageFile.SaveAs(fileName);
-
-                //image = imageModel;
-
-
+            
             using (MvcImageDBEntities db = new MvcImageDBEntities())
                 {
                     db.Images.Add(image);
@@ -46,11 +41,13 @@ namespace WeatherApp.Controllers
                 return View();
             }
 
+        //Action result to display an individual image
         [HttpGet]
         public ActionResult View(int id)
         {
             Image imageModel = new Image();
 
+            //Searching the data base for the first instance with the desired id
             using (MvcImageDBEntities db = new MvcImageDBEntities())
             {
                 imageModel = db.Images.Where(x => x.ImageId == id).FirstOrDefault();
@@ -59,6 +56,7 @@ namespace WeatherApp.Controllers
             return View(imageModel);
         }
 
+        //Action result to display a list of images
         [HttpGet]
         public ActionResult Display()
         {
@@ -66,12 +64,8 @@ namespace WeatherApp.Controllers
 
             MvcImageDBEntities db = new MvcImageDBEntities();
             
-
-            return View(db.Images.ToList());
+            return View(db.Images.ToList()); //Returns a list of images
         }
-
-
-
 
 
     }

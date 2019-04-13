@@ -23,7 +23,10 @@ namespace WeatherApp
         {
             // Code that runs on application startup
             AreaRegistration.RegisterAllAreas();
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
+
         }
 
         //Used this code to set the auth cookie to true, no idea what it does

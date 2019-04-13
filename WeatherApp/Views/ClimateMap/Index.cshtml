@@ -1,13 +1,4 @@
-﻿<!--
-model ClimateReport.Models.ClimateApi
-Model.apiResponse
-Model.cities
-
-
-
-Model.speed
--->
-@model WeatherApp.Models.Coordinates
+﻿@model WeatherApp.Models.Coordinates
 
 
 <style>
@@ -368,82 +359,389 @@ Model.speed
         -->
 
 
-
-    @using (Html.BeginForm())
-    {
-        <input type="text" name="reportName" />
-        <input type="submit" />
-    }
+    <div class="row">
+        <div class="col-sm-5"></div>
 
 
-    <fieldset>
-        <legend style="font-family:Arial Black;color:black"></legend>
-        <div id="SatyaDiv">
-            <h4 style="color:black"></h4>
+        @using (Html.BeginForm())
+        {
+            <input type="text" value="Search" name="reportName" />
+            <input type="submit" value="Search"  />
+        }
 
-            <!-- Html.Partial("PartialView")-->
-            <div id="message">@(new HtmlString(@ViewBag.a))</div>
+    </div>
 
-            @*<div id="message"> @Html.Raw(ViewBag.a)</div>
+    <br>
+    <br>
+    <div class=container>
+        <div class="row">
+            <div class="col-sm-2">
+                <span class='tempfont'>WindSpeed:</span>
+                @ViewBag.CWindspeed m/s
+                @ViewBag.CWindbearing direction later
+            </div>
+            <div class="col-sm-2">
+                <span class='tempfont'>Humidity:</span>
+                @ViewBag.CHumidity %
+            </div>
+            <div class="col-sm-2">
+                <span class='tempfont'>DewPoint:</span>
+                @ViewBag.CDewpoint
+            </div>
+            <div class="col-sm-2">
+                <span class='tempfont'>UVindex:</span>
+                @ViewBag.CUvindex
+            </div>
+            <div class="col-sm-2">
+                <span class='tempfont'>Visibilty:</span>
+                @ViewBag.CVisibility k/m
+            </div>
+            <div class="col-sm-2">
+                <span class='tempfont'>Pressure:</span>
+                @ViewBag.CPressure hPa
+            </div>
+        </div>
+    </div>
 
-                <p>@Html.Raw(ViewBag.a as string)</p>
+    <br>
+    <br>
 
-                <p><strong>Tag: @TempData["Tag"]</strong></p>*@
 
-            @* <div id="message">(new HtmlString(Model.apiResponse))</div>*@
-            @*<div id="message">@(new HtmlString(Model.rawJSON))</div>*@
+    <div class="container">
+        <div class="centered text-center">
 
-            @*            <p> @Html.DisplayFor(m => m.rawJSON)</p>;*@
+            <!--
+                <span class="partly-cloudy-day-icon-currently currently-icon swip">
+                    <img width="84" height="84" src="/images/weather-icons/partly-cloudy-day.png" alt="partly-cloudy-day Icon">
+                </span>
+                    if is then else then ....@ViewBag.Cicon -->
 
+            <span class='tempfont'>@ViewBag.Ctemperature&#176;  </span>
+            <span class='tempfont'>@ViewBag.CSummary</span>
+        </div>
+    </div>
+
+
+
+
+    <br>
+    <br>
+
+
+
+    <div class="container">
+        <div class="centered text-center">
 
 
         </div>
-    </fieldset>
+    </div>
+
+
+    <!--
+
+    Thia will be for hourly weather
+        just need the summary  and time
+        -->
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script type="text/javascript">
+        google.charts.load("current", { packages: ["timeline"] });
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+
+            var container = document.getElementById('Hourly');
+
+            var chart = new google.visualization.Timeline(container);
+
+            var dataTableHourly = new google.visualization.DataTable();
+            dataTableHourly.addColumn({ type: 'string', id: 'Today' });
+            dataTableHourly.addColumn({ type: 'string', id: 'Summary' });
+            dataTableHourly.addColumn({ type: 'date', id: 'Start' });
+            dataTableHourly.addColumn({ type: 'date', id: 'End' });
+
+            dataTableHourly.addRows([
+
+
+                ['Today', '@ViewBag.HourlySummary0', new Date(@ViewBag.HourlyDate0) , new Date(@ViewBag.HourlyDate1)],
+                ['Today', '@ViewBag.HourlySummary1', new Date(@ViewBag.HourlyDate1) , new Date(@ViewBag.HourlyDate2)],
+                ['Today', '@ViewBag.HourlySummary2', new Date(@ViewBag.HourlyDate2) , new Date(@ViewBag.HourlyDate3)],
+                ['Today', '@ViewBag.HourlySummary3', new Date(@ViewBag.HourlyDate3) , new Date(@ViewBag.HourlyDate4)],
+
+            ]);
+
+            chart.draw(dataTableHourly);
+        }
+    </script>
+
+
+    <div class="container">
+    </div>
+    <div id="Hourly" style="height: 200px;"></div>
 
 
 
-   @* @Html.Partial("_ViewPartial");*@
+
+
+
+
+
+
+
+
+
+
+
+
+    @*@foreach (DailyTime item in model)
+        {
+
+            @ViewBag[DailyTime]
+
+        }
+
+        @ViewBag[DailySummary]
+        @ViewBag[DailyIcon]*@
+
+
+    @* @Html.Partial("_ViewPartial");*@
+
+
+
+
+
+    <script type="text/javascript">
+        google.charts.load("current", { packages: ["timeline"] });
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+
+            var container = document.getElementById('Weekly');
+
+            var chart = new google.visualization.Timeline(container);
+
+            var dataTable = new google.visualization.DataTable();
+            dataTable.addColumn({ type: 'string', id: 'Week Overview' });
+            dataTable.addColumn({ type: 'string', id: 'Summary' });
+            dataTable.addColumn({ type: 'date', id: 'Start' });
+            dataTable.addColumn({ type: 'date', id: 'End' });
+
+            dataTable.addRows([
+
+                ['This Week', '@ViewBag.DailySummary0', new Date(@ViewBag.Date0) , new Date(@ViewBag.Date1)],
+                ['This Week', '@ViewBag.DailySummary1', new Date(@ViewBag.Date1) , new Date(@ViewBag.Date2)],
+                ['This Week', '@ViewBag.DailySummary2', new Date(@ViewBag.Date2) , new Date(@ViewBag.Date3)],
+                ['This Week', '@ViewBag.DailySummary3', new Date(@ViewBag.Date3) , new Date(@ViewBag.Date4)],
+                ['This Week', '@ViewBag.DailySummary4', new Date(@ViewBag.Date4) , new Date(@ViewBag.Date5)],
+                ['This Week', '@ViewBag.DailySummary5', new Date(@ViewBag.Date5) , new Date(@ViewBag.Date6)],
+                ['This Week', '@ViewBag.DailySummary6', new Date(@ViewBag.Date6) , new Date(@ViewBag.Date7)],
+
+
+
+                @*['@ViewBag.Day0', '@ViewBag.DailySummary0', new Date(@ViewBag.Date0) , new Date(@ViewBag.Date1)],
+                ['@ViewBag.Day1', '@ViewBag.DailySummary1', new Date(@ViewBag.Date1) , new Date(@ViewBag.Date2)],
+                ['@ViewBag.Day2', '@ViewBag.DailySummary2', new Date(@ViewBag.Date2) , new Date(@ViewBag.Date3)],
+                ['@ViewBag.Day3', '@ViewBag.DailySummary3', new Date(@ViewBag.Date3) , new Date(@ViewBag.Date4)],
+                ['@ViewBag.Day4', '@ViewBag.DailySummary4', new Date(@ViewBag.Date4) , new Date(@ViewBag.Date5)],
+                ['@ViewBag.Day5', '@ViewBag.DailySummary5', new Date(@ViewBag.Date5) , new Date(@ViewBag.Date6)],
+                ['@ViewBag.Day6', '@ViewBag.DailySummary6', new Date(@ViewBag.Date6) , new Date(@ViewBag.Date7)],
+
+
+                ['Today', '@ViewBag.DailySummary2', new Date(1797, 2, 4), new Date(1801, 2, 4)],
+                ['Today', '@ViewBag.DailySummary3', new Date(1801, 2, 4), new Date(1809, 2, 4)],
+                ['Today', '@ViewBag.DailySummary4', new Date(1795, 2, 4) , new Date(1797, 2, 4)],
+                ['Today', '@ViewBag.DailySummary5', new Date(1797, 2, 4), new Date(1801, 2, 4)],
+                ['Today', '@ViewBag.DailySummary6', new Date(1801, 2, 4), new Date(1809, 2, 4)],
+                ['Today', '@ViewBag.DailySummary7', new Date(1801, 2, 4), new Date(1809, 2, 4)],*@
+
+            ]);
+
+            chart.draw(dataTable);
+        }
+    </script>
+
+
+    <div class="container">
+    </div>
+    <div id="Weekly" style="height: 200px;"></div>
 
 
 
 
     <div class="container">
-        <h2>Accordion Example</h2>
-        <p><strong>Note:</strong> The <strong>data-parent</strong> attribute makes sure that all collapsible elements under the specified parent will be closed when one of the collapsible item is shown.</p>
+        <h2>Weekly data</h2>
         <div class="panel-group" id="accordion">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Collapsible Group 1</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Today @ViewBag.DailyTime1</a>
                     </h4>
                 </div>
                 <div id="collapse1" class="panel-collapse collapse in">
                     <div class="panel-body">
-                        Hello
+
+
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    @ViewBag.DailyTime1
+                                </th>
+                                <th>
+                                    @ViewBag.DailySummary1;
+                                </th>
+                                <th>
+                                    @ViewBag.DailyIcon1;
+                                </th>
+
+                            </tr>
+                        </table>
+
                     </div>
                 </div>
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Collapsible Group 2</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">@ViewBag.DailyTime2</a>
                     </h4>
                 </div>
                 <div id="collapse2" class="panel-collapse collapse">
                     <div class="panel-body">
-                        To you all
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    @ViewBag.DailyTime2
+                                </th>
+                                <th>
+                                    @ViewBag.DailySummary2;
+                                </th>
+                                <th>
+                                    @ViewBag.DailyIcon2;
+                                </th>
+
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Collapsible Group 3</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">@ViewBag.DailyTime3</a>
                     </h4>
                 </div>
                 <div id="collapse3" class="panel-collapse collapse">
                     <div class="panel-body">
-                        All
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    @ViewBag.DailyTime3
+                                </th>
+                                <th>
+                                    @ViewBag.DailySummary3;
+                                </th>
+                                <th>
+                                    @ViewBag.DailyIcon3;
+                                </th>
+
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">@ViewBag.DailyTime4</a>
+                    </h4>
+                </div>
+                <div id="collapse3" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    @ViewBag.DailyTime4
+                                </th>
+                                <th>
+                                    @ViewBag.DailySummary4;
+                                </th>
+                                <th>
+                                    @ViewBag.DailyIcon4;
+                                </th>
+
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div><div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">@ViewBag.DailyTime5</a>
+                    </h4>
+                </div>
+                <div id="collapse3" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    @ViewBag.DailyTime5
+                                </th>
+                                <th>
+                                    @ViewBag.DailySummary5;
+                                </th>
+                                <th>
+                                    @ViewBag.DailyIcon5;
+                                </th>
+
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div><div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">@ViewBag.DailyTime6</a>
+                    </h4>
+                </div>
+                <div id="collapse3" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    @ViewBag.DailyTime6
+                                </th>
+                                <th>
+                                    @ViewBag.DailySummary6;
+                                </th>
+                                <th>
+                                    @ViewBag.DailyIcon6;
+                                </th>
+
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div><div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">@ViewBag.DailyTime7</a>
+                    </h4>
+                </div>
+                <div id="collapse3" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    @ViewBag.DailyTime7
+                                </th>
+                                <th>
+                                    @ViewBag.DailySummary7;
+                                </th>
+                                <th>
+                                    @ViewBag.DailyIcon7;
+                                </th>
+
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -465,4 +763,64 @@ Model.speed
 <footer>
     <p style="background-color: black; font-weight: bold; color:green; text-align: center; font-style: oblique">© @DateTime.Now.ToLocalTime()</p> Add Date Time calender
 </footer>
+
+
+
+
+
+
+@*<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script type="text/javascript">
+        google.charts.load("current", { packages: ["timeline"] });
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+
+            var container = document.getElementById('example3.1');
+
+            var chart = new google.visualization.Timeline(container);
+
+            var dataTable = new google.visualization.DataTable();
+            dataTable.addColumn({ type: 'string', id: 'Position' });
+            dataTable.addColumn({ type: 'string', id: 'Name' });
+            dataTable.addColumn({ type: 'date', id: 'Start' });
+            dataTable.addColumn({ type: 'date', id: 'End' });
+            dataTable.addRows([
+
+                ['Today', 'Mostly cloudy', new Date(1789, 3, 30), new Date(1797, 2, 4)],
+                ['Today', 'Overcast', new Date(1797, 2, 4), new Date(1801, 2, 4)],
+                ['Today', 'Sunny', new Date(1801, 2, 4), new Date(1809, 2, 4)],
+
+            ]);
+
+            chart.draw(dataTable);
+        }
+    </script>*@
+
+
+
+
+<fieldset>
+    <legend style="font-family:Arial Black;color:black"></legend>
+    <div id="SatyaDiv">
+        <h4 style="color:black"></h4>
+
+        <!-- Html.Partial("PartialView")-->
+        <div id="message">@(new HtmlString(@ViewBag.a))</div>
+
+        @*<div id="message"> @Html.Raw(ViewBag.a)</div>
+
+            <p>@Html.Raw(ViewBag.a as string)</p>
+
+            <p><strong>Tag: @TempData["Tag"]</strong></p>*@
+
+        @* <div id="message">(new HtmlString(Model.apiResponse))</div>*@
+        @*<div id="message">@(new HtmlString(Model.rawJSON))</div>*@
+
+        @*            <p> @Html.DisplayFor(m => m.rawJSON)</p>;*@
+
+
+
+    </div>
+</fieldset>
 
