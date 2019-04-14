@@ -5,8 +5,8 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="472e21026fc640dba7e7f3fee493604d" Name="Diagram1">
-        <EntityTypeShape EntityType="MvcImageDBModel.Image" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MvcImageDBModel.SystemUser" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MvcImageDBModel.Image" Width="1.5" PointX="0.875" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MvcImageDBModel.SystemUser" Width="1.5" PointX="2.75" PointY="1.25" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

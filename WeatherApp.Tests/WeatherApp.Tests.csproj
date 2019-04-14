@@ -101,6 +101,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\ClimateMapControllerTest.cs" />
+    <Compile Include="Controllers\PastWeatherControllerTest.cs" />
+    <Compile Include="Controllers\ImageControllerTest.cs" />
+    <Compile Include="Controllers\NewsControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
   </ItemGroup>

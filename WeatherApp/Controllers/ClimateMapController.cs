@@ -20,7 +20,13 @@ namespace WeatherApp.Controllers
     public class ClimateMapController : Controller
     {
 
-        
+        //public ActionResult Index()
+        //{
+
+        //    return View();
+        //}
+
+
         [HttpGet]
         public ActionResult Index()
         {
