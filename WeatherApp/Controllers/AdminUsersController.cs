@@ -10,7 +10,7 @@ using WeatherApp.Models;
 
 namespace WeatherApp.Controllers
 {
-    public class SystemUsersController : Controller
+    public class AdminUsersController : Controller
     {
         private MvcImageDBEntities db = new MvcImageDBEntities();
 

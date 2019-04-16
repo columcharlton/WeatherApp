@@ -10,7 +10,7 @@ using WeatherApp.Models;
 
 namespace WeatherApp.Controllers
 {
-    public class ImagesController : Controller
+    public class AdminImagesController : Controller
     {
         private MvcImageDBEntities db = new MvcImageDBEntities();
 
@@ -41,22 +41,22 @@ namespace WeatherApp.Controllers
             return View();
         }
 
-        // POST: Images/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ImageId,Title,ImagePath")] Image image)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Images.Add(image);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+        //// POST: Images/Create
+        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include = "ImageId,Title,ImagePath")] Image image)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Images.Add(image);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
 
-            return View(image);
-        }
+        //    return View(image);
+        //}
 
         // GET: Images/Edit/5
         public ActionResult Edit(int? id)

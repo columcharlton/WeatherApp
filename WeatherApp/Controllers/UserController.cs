@@ -37,19 +37,17 @@ namespace WeatherApp.Controllers
                     {   //True for admin :)
 
                         FormsAuthentication.SetAuthCookie(user.Email, user.RememberMe);   //Needs security namespace
-                        return RedirectToAction("Index", "Images");   //And then redirect to the main page
+                        return RedirectToAction("Admin", "Admin");   //And then redirect to the main page
 
                     }
 
                     else       ////False for others :(
 
                         FormsAuthentication.SetAuthCookie(user.Email, user.RememberMe);   //Needs security namespace //Setting this cookie was to true was an issue had to add a method to do so in the Global.asax file, Application_PostAuthenticateRequest()
-                    //return RedirectToAction("Index", "Home");
+
                     return RedirectToAction("Index", "ClimateMap");   //And then redirect to the main page
 
                 }
-
-
 
                 else
                 {
@@ -106,7 +104,6 @@ namespace WeatherApp.Controllers
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
-            //return RedirectToAction("Index", "Home");
             return RedirectToAction("Index", "ClimateMap");   //And then redirect to the main page
 
         }
@@ -142,19 +139,9 @@ namespace WeatherApp.Controllers
 
             using (var db = new MvcImageDBEntities())
             {
-                //I could try adding a condition here for admin yes or no
-                //var user = db.SystemUsers;
+                
+             var user = db.SystemUsers.FirstOrDefault(u => u.Email == email);
 
-                //SystemUser systemUser = new SystemUser();
-
-                //systemUser = db.SystemUsers.Where(x => x.Admin == true).FirstOrDefault();
-
-                var user = db.SystemUsers.FirstOrDefault(u => u.Email == email);
-
-
-                //ListOfFruits.Select(f => f.ID).Where( ... )
-
-                //var user2 = db.SystemUsers.Select(u => u.Admin);
 
                 if (user != null)
                 {

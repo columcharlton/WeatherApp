@@ -13,6 +13,19 @@ namespace WeatherApp.Tests.Controllers
     public class ImageControllerTest
     {
         [TestMethod]
+
+        public void Add()
+        {
+            // Arrange
+            ImageController controller = new ImageController();
+
+            // Act
+            ViewResult result = controller.Add() as ViewResult;
+
+            // Assert
+            Assert.IsNotNull(result);
+        }
+
         public void View()
         {
             // Arrange

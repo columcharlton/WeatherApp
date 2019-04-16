@@ -11,39 +11,41 @@
 @using (Html.BeginForm("Add", "Image", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
+    <!--Cross-Site Request Forgery (CSRF) is an attack where a malicious site sends a request to a vulnerable site where the user is currently logged in -->
+<div class="form-horizontal">
+    <h4>Image</h4>
+    <hr />
+    <!--Use ValidationSummary to display all the error messages in the view -->
+    @Html.ValidationSummary(true)
 
-    <div class="form-horizontal">
-        <h4>Image</h4>
-        <hr />
-        @Html.ValidationSummary(true)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Title)
-                @Html.ValidationMessageFor(model => model.Title)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ImagePath, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="file" name="ImageFile" required>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+    <div class="form-group">
+        <!--LabelFor helper method is a strongly typed extension method. It generates a html label element for the model object property specified using a lambda expression-->
+        @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <!--EditorFor() method is a strongly typed method. It requires the lambda expression to specify a property of the model object-->
+            @Html.EditorFor(model => model.Title)
+            <!--That is a loosely typed method. It displays a validation message if an error exists for the specified field in the ModelStateDictionary object.-->
+            @Html.ValidationMessageFor(model => model.Title)
         </div>
     </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ImagePath, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="file" name="ImageFile" required>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
 }
 
 <div>
+    <!-- Returns an anchor element (a element) for the specified link text and action.-->
     @Html.ActionLink("Back to List", "Index")
 </div>
-
-@*@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}*@

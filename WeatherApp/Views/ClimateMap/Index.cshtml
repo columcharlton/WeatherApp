@@ -40,323 +40,39 @@
 </style>
 
 
-<style>
+@*<style>
     span.tempfont {
         font-size: 120%;
         color: black;
     }
 </style>
 
-
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
-
-</head>
-<body>
-
-    <!--I have to press it twice for some reason
-    function getReverseGeocodingData(lat, lng) {
-    var latlng = new google.maps.LatLng(lat, lng);
-    // This is making the Geocode request
-    var geocoder = new google.maps.Geocoder();
-    geocoder.geocode({ 'latLng': latlng }, function (results, status) {
-    if (status !== google.maps.GeocoderStatus.OK) {
-    alert(status);
+<style>
+    span.summaryfont {
+        font-size: 160%;
+        color: black;
     }
-    // This is checking to see if the Geoeode Status is OK before proceeding
-    if (status == google.maps.GeocoderStatus.OK) {
-    console.log(results);
-    var address = (results[0].formatted_address);
-    }
-    });
-    }
+</style>*@
 
+<link href="~/Content/css/StyleSheet.css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
 
-    function showAddress(position) {
-    x.innerHTML = "Latitude: " + position.coords.latitude +
-    "<br>Longitude: " + position.coords.longitude;
-    }
 
-        -->
-    @*Now I need to store the result in my model so I can access it in my api controller*@
-    @*<script>
-            type = "text/javascript" src = "https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=AIzaSyCY4XX-om0CBwXnmF0XbqM2M1kiUcOsZ3Q" >
 
-            </script>
 
 
-        <script>
-                function getReverseGeocodingData(lat, lng) {
-                    var latlng = new google.maps.LatLng(lat, lng);
-                    // This is making the Geocode request
-                    var geocoder = new google.maps.Geocoder();
-                    geocoder.geocode({ 'latLng': latlng }, function (results, status) {
-                        if (status !== google.maps.GeocoderStatus.OK) {
-                            alert(status);
-                        }
-                        // This is checking to see if the Geoeode Status is OK before proceeding
-                        if (status == google.maps.GeocoderStatus.OK) {
-                            console.log(results);
-                            var address = (results[0].formatted_address);
-                        }
-                    });
-                }*@
+<br />
 
+<h2 style="background-color: white;color: black; text-align: center; font-style: oblique">Weather API </h2>
 
-    @*</script>*@
 
 
-    <!--
-    <div class="container">
-        <div class="row">
-             <a class="backToForecast" href="/forecast/53.2842,-9.0378/si12/en">← Go Back</a>
 
-                <form id="searchForm">
-                    <a class="currentLocationButton" style="">
-                        <img width="16" height="16" src="/images/current-location.png" alt="Current Location Button">
-                    </a>
-
-                    <input type="text" value="">
-
-                    <a class="searchButton">
-                        <img width="16" height="16" src="/images/search.png" alt="Search Button">
-                    </a>
-
-                    <div id="savedLocations" style="display: none;">
-                        <div class="inner"></div>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-
-    <!--
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm">
-                        <span class="tempfont">Wind:</span>
-                        <span class="val swap">
-                            <span class="num swip">7</span>
-                            <span class="unit swap">m/s</span>
-                    </div>
-                    <div class="col-sm">
-                        <span class="tempfont">Humidity:</span>
-                        <span class="val swap">
-                            <span class="num swip">76</span><span class="unit swap">%</span>
-                        </span>
-                    </div>
-                    <div class="col-sm">
-                        <span class="tempfont">Pressure:</span>
-                        <span class="val swap">
-                            <span class="num swip">1008</span>
-                            <span class="unit swap">hPa</span>
-                    </div>
-                </div>
-            </div>
-
-            <!--
-                <div id="currentDetails">
-                    <div class="wind">
-                        <span class="tempfont">Wind:</span>
-                        <span class="val swap">
-                            <span class="num swip">7</span>
-                            <span class="unit swap">m/s</span>
-
-                            <span class="direction" title="E" style="display:inline-block;-ms-transform:rotate(93deg);-webkit-transform:rotate(93deg);transform:rotate(93deg);">↑</span>
-                        </span>
-                    </div>
-
-                    <div class="humidity">
-                        <span class="tempfont">Humidity:</span>
-                        <span class="val swap">
-                            <span class="num swip">76</span><span class="unit swap">%</span>
-                        </span>
-                    </div>
-                </div>
-
-            <div class="current_details_break"></div>
-
-
-            <div class="pressure">
-                <span class="tempfont">Pressure:</span>
-                <span class="val swap">
-                    <span class="num swip">1008</span>
-                    <span class="unit swap">hPa</span>
-                </span>
-            </div>
-                -->
-
-
-
-    <br />
-
-    <h2 style="background-color: white;color: black; text-align: center; font-style: oblique">Weather API </h2>
-
-
-    @*<p>Click the button to get your coordinates.</p>
-
-        <button onclick="getLocation()">Try It</button>
-
-        <p id="demo"></p>
-
-
-        <script>
-            var x = document.getElementById("demo");
-
-            function getLocation() {
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(showPosition, showError);
-                } else {
-                    x.innerHTML = "Geolocation is not supported by this browser.";
-                }
-            }
-
-            function showPosition(position) {
-                x.innerHTML = "Latitude: " + position.coords.latitude +
-                    "<br>Longitude: " + position.coords.longitude;
-
-            }
-
-            function showError(error) {
-                switch (error.code) {
-                    case error.PERMISSION_DENIED:
-                        x.innerHTML = "User denied the request for Geolocation."
-                        break;
-                    case error.POSITION_UNAVAILABLE:
-                        x.innerHTML = "Location information is unavailable."
-                        break;
-                    case error.TIMEOUT:
-                        x.innerHTML = "The request to get user location timed out."
-                        break;
-                    case error.UNKNOWN_ERROR:
-                        x.innerHTML = "An unknown error occurred."
-                        break;
-                }
-            }
-
-
-        </script>*@
-    <!--
-    <script>
-
-        function success(pos) {
-            var crd = pos.coords;
-
-            console.log('Your current position is:');
-            console.log(`Latitude : ${//crd.latitude}`);
-            console.log(`Longitude: ${//crd.longitude}`);
-        }
-
-
-        navigator.geolocation.getCurrentPosition(success);
-
-    </script>
-        -->
-    @*<script>
-
-            function success(pos) {
-                var crd = pos.coords;
-
-                console.log('Your current position is:');
-                console.log(`Latitude : ${crd.latitude}`);
-                console.log(`Longitude: ${crd.longitude}`);
-
-
-                var model = new Object();
-                model.Latitude = crd.latitude;
-                model.Longitude = crd.longitude;
-
-                alert(model.Latitude);
-
-                jQuery.ajax({
-                    type: "POST",
-                    url: "@Url.Action("Index")",
-                    dataType: "json",
-                    contentType: "application/json; charset=utf-8",
-                    data: JSON.stringify({ co: model }),
-                    success: function (data) {
-                        alert(data);
-                    },
-                    failure: function (errMsg) {
-                        alert(errMsg);
-                    }
-                });
-            }
-
-
-            navigator.geolocation.getCurrentPosition(success);
-
-        </script>*@
-
-    <!--
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-
-    <script>
-
-        function submitForm() {
-
-            navigator.geolocation.getCurrentPosition(success);
-
-
-            var model = new Object();
-            model.Latitude = 260;
-            model.Longitude = 240;
-
-            alert(model.Latitude);
-
-            jQuery.ajax({
-                type: "POST",
-                url: "Url.Action("Coordinates")",
-                dataType: "json",
-                contentType: "application/json; charset=utf-8",
-                data: JSON.stringify({ co: model }),
-                success: function (data) {
-                    alert(data);
-                },
-                failure: function (errMsg) {
-                    alert(errMsg);
-                }
-            });
-        }
-    </script>
-
-    <input type="button" value="Click" onclick="submitForm()" />
-        -->
-    <!--
-        <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-
-        <script>
-            function submitForm() {
-
-                var model = new Object();
-                model.Latitude = 120;
-                model.Longitude = 240;
-
-
-                jQuery.ajax({
-                    type: "POST",
-                    url: "Url.Action("Coordinates")",
-                    dataType: "json",
-                    contentType: "application/json; charset=utf-8",
-                    data: JSON.stringify({ co: model }),
-                    success: function (data) {
-                        alert(data);
-                    },
-                    failure: function (errMsg) {
-                        alert(errMsg);
-                    }
-                });
-            }
-        </script>
-
-        <input type="button" value="Click" onclick="submitForm()" />
-        -->
+<div class="jumbotron">
 
 
     <div class="row">
@@ -366,7 +82,7 @@
         @using (Html.BeginForm())
         {
             <input type="text" value="Search" name="reportName" />
-            <input type="submit" value="Search"  />
+            <input type="submit" value="Search" />
         }
 
     </div>
@@ -378,7 +94,8 @@
             <div class="col-sm-2">
                 <span class='tempfont'>WindSpeed:</span>
                 @ViewBag.CWindspeed m/s
-                @ViewBag.CWindbearing direction later
+                @*@ViewBag.CWindbearing direction later*@
+                <i class="wi wi-night-sleet"></i>
             </div>
             <div class="col-sm-2">
                 <span class='tempfont'>Humidity:</span>
@@ -405,7 +122,8 @@
 
     <br>
     <br>
-
+    
+    
 
     <div class="container">
         <div class="centered text-center">
@@ -416,25 +134,20 @@
                 </span>
                     if is then else then ....@ViewBag.Cicon -->
 
-            <span class='tempfont'>@ViewBag.Ctemperature&#176;  </span>
-            <span class='tempfont'>@ViewBag.CSummary</span>
+            <span class='summaryfont'>@ViewBag.Ctemperature&#176;  </span>
+            <span class='summaryfont'>@ViewBag.CSummary</span>
         </div>
     </div>
 
 
-
-
     <br>
     <br>
-
-
-
+    
+    @*Script for changing the fonts based on icons issued from API*@
+    @*<script src="~/Scripts/Conditions.js"></script>
     <div class="container">
-        <div class="centered text-center">
-
-
-        </div>
     </div>
+    <div id="Conditions" style="height: 200px;"></div>*@
 
 
     <!--
@@ -506,6 +219,8 @@
 
     @* @Html.Partial("_ViewPartial");*@
 
+    <br>
+    <br>
 
 
 
@@ -568,7 +283,7 @@
 
 
     <div class="container">
-        <h2>Weekly data</h2>
+        <h2>Weekly review</h2>
         <div class="panel-group" id="accordion">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -583,13 +298,7 @@
                         <table class="table">
                             <tr>
                                 <th>
-                                    @ViewBag.DailyTime1
-                                </th>
-                                <th>
                                     @ViewBag.DailySummary1;
-                                </th>
-                                <th>
-                                    @ViewBag.DailyIcon1;
                                 </th>
 
                             </tr>
@@ -601,7 +310,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">@ViewBag.DailyTime2</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">@ViewBag.Day1 @ViewBag.DailyTime2</a>
                     </h4>
                 </div>
                 <div id="collapse2" class="panel-collapse collapse">
@@ -609,13 +318,7 @@
                         <table class="table">
                             <tr>
                                 <th>
-                                    @ViewBag.DailyTime2
-                                </th>
-                                <th>
                                     @ViewBag.DailySummary2;
-                                </th>
-                                <th>
-                                    @ViewBag.DailyIcon2;
                                 </th>
 
                             </tr>
@@ -626,22 +329,16 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">@ViewBag.DailyTime3</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">@ViewBag.DailyIcon3 @ViewBag.Day2 @ViewBag.DailyTime3</a>
                     </h4>
                 </div>
                 <div id="collapse3" class="panel-collapse collapse">
                     <div class="panel-body">
                         <table class="table">
                             <tr>
-                                <th>
-                                    @ViewBag.DailyTime3
-                                </th>
                                 <th>
                                     @ViewBag.DailySummary3;
                                 </th>
-                                <th>
-                                    @ViewBag.DailyIcon3;
-                                </th>
 
                             </tr>
                         </table>
@@ -651,21 +348,16 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">@ViewBag.DailyTime4</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">@ViewBag.Day3 @ViewBag.DailyTime4</a>
                     </h4>
                 </div>
-                <div id="collapse3" class="panel-collapse collapse">
+                <div id="collapse4" class="panel-collapse collapse">
                     <div class="panel-body">
                         <table class="table">
                             <tr>
                                 <th>
-                                    @ViewBag.DailyTime4
-                                </th>
-                                <th>
+
                                     @ViewBag.DailySummary4;
-                                </th>
-                                <th>
-                                    @ViewBag.DailyIcon4;
                                 </th>
 
                             </tr>
@@ -675,22 +367,16 @@
             </div><div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">@ViewBag.DailyTime5</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">@ViewBag.Day4 @ViewBag.DailyTime5</a>
                     </h4>
                 </div>
-                <div id="collapse3" class="panel-collapse collapse">
+                <div id="collapse5" class="panel-collapse collapse">
                     <div class="panel-body">
                         <table class="table">
                             <tr>
-                                <th>
-                                    @ViewBag.DailyTime5
-                                </th>
                                 <th>
                                     @ViewBag.DailySummary5;
                                 </th>
-                                <th>
-                                    @ViewBag.DailyIcon5;
-                                </th>
 
                             </tr>
                         </table>
@@ -699,22 +385,16 @@
             </div><div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">@ViewBag.DailyTime6</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse6">@ViewBag.Day5 @ViewBag.DailyTime6</a>
                     </h4>
                 </div>
-                <div id="collapse3" class="panel-collapse collapse">
+                <div id="collapse6" class="panel-collapse collapse">
                     <div class="panel-body">
                         <table class="table">
                             <tr>
-                                <th>
-                                    @ViewBag.DailyTime6
-                                </th>
                                 <th>
                                     @ViewBag.DailySummary6;
                                 </th>
-                                <th>
-                                    @ViewBag.DailyIcon6;
-                                </th>
 
                             </tr>
                         </table>
@@ -723,21 +403,15 @@
             </div><div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">@ViewBag.DailyTime7</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse7">@ViewBag.Day6 @ViewBag.DailyTime7</a>
                     </h4>
                 </div>
-                <div id="collapse3" class="panel-collapse collapse">
+                <div id="collapse7" class="panel-collapse collapse">
                     <div class="panel-body">
                         <table class="table">
                             <tr>
                                 <th>
-                                    @ViewBag.DailyTime7
-                                </th>
-                                <th>
                                     @ViewBag.DailySummary7;
-                                </th>
-                                <th>
-                                    @ViewBag.DailyIcon7;
                                 </th>
 
                             </tr>
@@ -748,79 +422,76 @@
         </div>
     </div>
 
-</body>
-</html>
 
 
 
 
 
 
-@*@{
-        ViewBag.Title = "Index";
-    }*@
-
-<footer>
-    <p style="background-color: black; font-weight: bold; color:green; text-align: center; font-style: oblique">© @DateTime.Now.ToLocalTime()</p> Add Date Time calender
-</footer>
+    @*@{
+            ViewBag.Title = "Index";
+        }*@
 
 
 
 
 
 
-@*<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    @*<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        @*<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-    <script type="text/javascript">
-        google.charts.load("current", { packages: ["timeline"] });
-        google.charts.setOnLoadCallback(drawChart);
-        function drawChart() {
+            <script type="text/javascript">
+                google.charts.load("current", { packages: ["timeline"] });
+                google.charts.setOnLoadCallback(drawChart);
+                function drawChart() {
 
-            var container = document.getElementById('example3.1');
+                    var container = document.getElementById('example3.1');
 
-            var chart = new google.visualization.Timeline(container);
+                    var chart = new google.visualization.Timeline(container);
 
-            var dataTable = new google.visualization.DataTable();
-            dataTable.addColumn({ type: 'string', id: 'Position' });
-            dataTable.addColumn({ type: 'string', id: 'Name' });
-            dataTable.addColumn({ type: 'date', id: 'Start' });
-            dataTable.addColumn({ type: 'date', id: 'End' });
-            dataTable.addRows([
+                    var dataTable = new google.visualization.DataTable();
+                    dataTable.addColumn({ type: 'string', id: 'Position' });
+                    dataTable.addColumn({ type: 'string', id: 'Name' });
+                    dataTable.addColumn({ type: 'date', id: 'Start' });
+                    dataTable.addColumn({ type: 'date', id: 'End' });
+                    dataTable.addRows([
 
-                ['Today', 'Mostly cloudy', new Date(1789, 3, 30), new Date(1797, 2, 4)],
-                ['Today', 'Overcast', new Date(1797, 2, 4), new Date(1801, 2, 4)],
-                ['Today', 'Sunny', new Date(1801, 2, 4), new Date(1809, 2, 4)],
+                        ['Today', 'Mostly cloudy', new Date(1789, 3, 30), new Date(1797, 2, 4)],
+                        ['Today', 'Overcast', new Date(1797, 2, 4), new Date(1801, 2, 4)],
+                        ['Today', 'Sunny', new Date(1801, 2, 4), new Date(1809, 2, 4)],
 
-            ]);
+                    ]);
 
-            chart.draw(dataTable);
-        }
-    </script>*@
-
-
-
-
-<fieldset>
-    <legend style="font-family:Arial Black;color:black"></legend>
-    <div id="SatyaDiv">
-        <h4 style="color:black"></h4>
-
-        <!-- Html.Partial("PartialView")-->
-        <div id="message">@(new HtmlString(@ViewBag.a))</div>
-
-        @*<div id="message"> @Html.Raw(ViewBag.a)</div>
-
-            <p>@Html.Raw(ViewBag.a as string)</p>
-
-            <p><strong>Tag: @TempData["Tag"]</strong></p>*@
-
-        @* <div id="message">(new HtmlString(Model.apiResponse))</div>*@
-        @*<div id="message">@(new HtmlString(Model.rawJSON))</div>*@
-
-        @*            <p> @Html.DisplayFor(m => m.rawJSON)</p>;*@
+                    chart.draw(dataTable);
+                }
+            </script>*@
 
 
 
-    </div>
-</fieldset>
 
+    <fieldset>
+        <legend style="font-family:Arial Black;color:black"></legend>
+        <div id="SatyaDiv">
+            <h4 style="color:black"></h4>
+
+            <!-- Html.Partial("PartialView")-->
+            <div id="message">@(new HtmlString(@ViewBag.a))</div>
+
+            @*<div id="message"> @Html.Raw(ViewBag.a)</div>
+
+                <p>@Html.Raw(ViewBag.a as string)</p>
+
+                <p><strong>Tag: @TempData["Tag"]</strong></p>*@
+
+            @* <div id="message">(new HtmlString(Model.apiResponse))</div>*@
+            @*<div id="message">@(new HtmlString(Model.rawJSON))</div>*@
+
+            @*            <p> @Html.DisplayFor(m => m.rawJSON)</p>;*@
+
+
+
+        </div>
+    </fieldset>
+
+
+</div>

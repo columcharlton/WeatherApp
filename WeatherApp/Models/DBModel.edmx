@@ -12,6 +12,7 @@
           <Property Name="ImageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="varchar" MaxLength="50" />
           <Property Name="ImagePath" Type="varchar" MaxLength="50" />
+          <Property Name="AdminId" Type="int" />
         </EntityType>
         <EntityType Name="SystemUsers">
           <Key>
@@ -24,9 +25,25 @@
           <Property Name="Admin" Type="bit" />
           <Property Name="AdminId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Image_ToTable">
+          <End Role="SystemUsers" Type="Self.SystemUsers" Multiplicity="0..1" />
+          <End Role="Image" Type="Self.Image" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SystemUsers">
+              <PropertyRef Name="AdminId" />
+            </Principal>
+            <Dependent Role="Image">
+              <PropertyRef Name="AdminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="MvcImageDBModelStoreContainer">
           <EntitySet Name="Image" EntityType="Self.Image" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SystemUsers" EntityType="Self.SystemUsers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Image_ToTable" Association="Self.FK_Image_ToTable">
+            <End Role="SystemUsers" EntitySet="SystemUsers" />
+            <End Role="Image" EntitySet="Image" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -39,6 +56,8 @@
           <Property Name="ImageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ImagePath" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AdminId" Type="Int32" />
+          <NavigationProperty Name="SystemUser" Relationship="MvcImageDBModel.FK_Image_ToTable" FromRole="Image" ToRole="SystemUser" />
         </EntityType>
         <EntityType Name="SystemUser">
           <Key>
@@ -50,11 +69,28 @@
           <Property Name="PasswordSalt" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Admin" Type="Boolean" />
           <Property Name="AdminId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Images" Relationship="MvcImageDBModel.FK_Image_ToTable" FromRole="SystemUser" ToRole="Image" />
         </EntityType>
         <EntityContainer Name="MvcImageDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Images" EntityType="Self.Image" />
           <EntitySet Name="SystemUsers" EntityType="Self.SystemUser" />
+          <AssociationSet Name="FK_Image_ToTable" Association="MvcImageDBModel.FK_Image_ToTable">
+            <End Role="SystemUser" EntitySet="SystemUsers" />
+            <End Role="Image" EntitySet="Images" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_Image_ToTable">
+          <End Type="MvcImageDBModel.SystemUser" Role="SystemUser" Multiplicity="0..1" />
+          <End Type="MvcImageDBModel.Image" Role="Image" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SystemUser">
+              <PropertyRef Name="AdminId" />
+            </Principal>
+            <Dependent Role="Image">
+              <PropertyRef Name="AdminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -64,6 +100,7 @@
           <EntitySetMapping Name="Images">
             <EntityTypeMapping TypeName="MvcImageDBModel.Image">
               <MappingFragment StoreEntitySet="Image">
+                <ScalarProperty Name="AdminId" ColumnName="AdminId" />
                 <ScalarProperty Name="ImageId" ColumnName="ImageId" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />

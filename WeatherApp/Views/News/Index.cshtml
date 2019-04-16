@@ -2,27 +2,52 @@
         @ViewBag.Title = "Index";
     }*@
 
-<h2>News</h2>
+
+<div class="jumbotron">
+    <div class="centered text-center">
+
+        <div class="container">
+
+            <h2>News</h2>
 
 
-@using (Html.BeginForm())
-{
+            @using (Html.BeginForm())
+            {
 
-    <input type="date" name="reportDate" />
-    <input type="submit" />
-}
-<br>
+                <input type="date" name="reportDate" />
+                <input type="submit" />
+            }
+            <br>
 
-@ViewBag.date
-<br>
+            @ViewBag.date
+            <br>
 
-<br>
-<div id="message">@(new HtmlString(@ViewBag.headline))</div>
-<br>
-<div id="message">@(new HtmlString(@ViewBag.lead))</div>
-<br>
-<div id="message">@(new HtmlString(@ViewBag.snippet))</div>
-<br>
-<div id="message">@(new HtmlString(@ViewBag.url))</div>
+            <br>
 
 
+
+
+            @*            <h3>@ViewBag.headline</h3>*@
+  @*          <span class='summaryfont'>@ViewBag.headline)</span>*@
+            <br>
+            <h4>@ViewBag.lead </h4>
+            @*    <div id="message">@(new HtmlString(@ViewBag.lead))</div>*@
+
+
+            <br>
+            <h5>@ViewBag.snippet</h5>
+            @*<div id="message">@(new HtmlString(@ViewBag.snippet))</div>*@
+            @*            <div id="message">@(new HtmlString(@ViewBag.snippet))</div>*@
+            <br>
+            <br>
+
+            <h5>To see the full article see below</h5>
+            <h6>@ViewBag.url</h6>
+
+        </div>
+    </div>
+
+
+
+
+</div>

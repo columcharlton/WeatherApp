@@ -14,11 +14,20 @@ namespace WeatherApp.Models
     
     public partial class SystemUser
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public SystemUser()
+        {
+            this.Images = new HashSet<Image>();
+        }
+    
         public System.Guid UserId { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
         public string PasswordSalt { get; set; }
         public Nullable<bool> Admin { get; set; }
         public int AdminId { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Image> Images { get; set; }
     }
 }

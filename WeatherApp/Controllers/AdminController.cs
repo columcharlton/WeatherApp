@@ -9,7 +9,7 @@ namespace WeatherApp.Controllers
     public class AdminController : Controller
     {
         // GET: Admin
-        public ActionResult AdminIndex()
+        public ActionResult Admin()
         {
             return View();
         }

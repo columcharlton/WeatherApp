@@ -141,13 +141,13 @@
     <Compile Include="Controllers\ClimateMapController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImageController.cs" />
-    <Compile Include="Controllers\ImagesController.cs" />
+    <Compile Include="Controllers\AdminImagesController.cs" />
     <Compile Include="Models\DataPoint.cs" />
     <Compile Include="Models\News.cs" />
     <Compile Include="Models\NewsApi.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\PastWeatherController.cs" />
-    <Compile Include="Controllers\SystemUsersController.cs" />
+    <Compile Include="Controllers\AdminUsersController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -203,6 +203,11 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\StyleSheet.css" />
+    <Content Include="Content\css\weather-icons-wind.css" />
+    <Content Include="Content\css\weather-icons-wind.min.css" />
+    <Content Include="Content\css\weather-icons.css" />
+    <Content Include="Content\css\weather-icons.min.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -246,20 +251,10 @@
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\fonts\weathericons-regular-webfont.svg" />
+    <Content Include="fonts\weathericons-regular-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Image\IMG_0002193042905.JPG" />
-    <Content Include="Image\IMG_0002194831716.JPG" />
-    <Content Include="Image\IMG_0002195116139.JPG" />
-    <Content Include="Image\IMG_0002195931820.JPG" />
-    <Content Include="Image\IMG_0005190328553.JPG" />
-    <Content Include="Image\IMG_0005190904844.JPG" />
-    <Content Include="Image\IMG_0005191354670.JPG" />
-    <Content Include="Image\IMG_0005191928194.JPG" />
-    <Content Include="Image\IMG_0005192031892.JPG" />
-    <Content Include="Image\IMG_0005193101471.JPG" />
-    <Content Include="Image\IMG_0005193521768.JPG" />
-    <Content Include="Image\IMG_0005195141318.JPG" />
     <Content Include="Models\DBModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DBModel.Context.cs</LastGenOutput>
@@ -270,6 +265,8 @@
       <DependentUpon>DBModel.edmx</DependentUpon>
       <LastGenOutput>DBModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\b.js" />
+    <Content Include="Scripts\GoogleGeo.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\DBModel.edmx">
@@ -279,7 +276,17 @@
     <Content Include="Models\DBModel.edmx.diagram">
       <DependentUpon>DBModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\fonts\weathericons-regular-webfont.eot" />
+    <Content Include="Content\fonts\weathericons-regular-webfont.ttf" />
+    <Content Include="Content\fonts\weathericons-regular-webfont.woff" />
+    <Content Include="Content\fonts\weathericons-regular-webfont.woff2" />
+    <Content Include="fonts\weathericons-regular-webfont.eot" />
+    <Content Include="fonts\weathericons-regular-webfont.ttf" />
+    <Content Include="fonts\weathericons-regular-webfont.woff" />
+    <Content Include="fonts\weathericons-regular-webfont.woff2" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\Conditions.js" />
+    <Content Include="Scripts\GoogleCharts.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -315,19 +322,18 @@
     <Content Include="Views\PastWeather\Index.cshtml" />
     <Content Include="Views\Image\View.cshtml" />
     <Content Include="Views\Image\Display.cshtml" />
-    <Content Include="Views\Images\Create.cshtml" />
-    <Content Include="Views\Images\Delete.cshtml" />
-    <Content Include="Views\Images\Details.cshtml" />
-    <Content Include="Views\Images\Edit.cshtml" />
-    <Content Include="Views\Images\Index.cshtml" />
-    <Content Include="Views\SystemUsers\Create.cshtml" />
-    <Content Include="Views\SystemUsers\Delete.cshtml" />
-    <Content Include="Views\SystemUsers\Details.cshtml" />
-    <Content Include="Views\SystemUsers\Edit.cshtml" />
-    <Content Include="Views\SystemUsers\Index.cshtml" />
-    <Content Include="Views\SystemUsers\_AdminSystem.cshtml" />
-    <Content Include="Views\Images\_AdminImages.cshtml" />
-    <Content Include="Views\Admin\AdminIndex.cshtml" />
+    <Content Include="Views\AdminImages\Delete.cshtml" />
+    <Content Include="Views\AdminImages\Details.cshtml" />
+    <Content Include="Views\AdminImages\Edit.cshtml" />
+    <Content Include="Views\AdminImages\Index.cshtml" />
+    <Content Include="Views\AdminUsers\Create.cshtml" />
+    <Content Include="Views\AdminUsers\Delete.cshtml" />
+    <Content Include="Views\AdminUsers\Details.cshtml" />
+    <Content Include="Views\AdminUsers\Edit.cshtml" />
+    <Content Include="Views\AdminUsers\Index.cshtml" />
+    <Content Include="Views\AdminUsers\_AdminSystem.cshtml" />
+    <Content Include="Views\AdminImages\_AdminImages.cshtml" />
+    <Content Include="Views\Admin\Admin.cshtml" />
     <Content Include="Views\Admin\_View.cshtml" />
     <Content Include="Views\News\NewsIndex.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
@@ -338,7 +344,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\css\" />
+    <Folder Include="Image\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

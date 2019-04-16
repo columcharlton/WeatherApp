@@ -16,11 +16,16 @@ namespace WeatherApp.Models
 
     public partial class Image
     {
-
         public int ImageId { get; set; }
         public string Title { get; set; }
         [DisplayName("Upload File")]
         public string ImagePath { get; set; }
+
         public HttpPostedFileBase ImageFile { get; set; }
+
+
+        public Nullable<int> AdminId { get; set; }
+    
+        public virtual SystemUser SystemUser { get; set; }
     }
 }

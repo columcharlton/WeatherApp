@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "Admin Index";
+}
+
+<h2>Administration Index</h2>
+
+
+
+<br>
+<!--Routes to the SystemUsers folder-->
+@Html.RouteLink("Users table", "Default",
+    new { action = "Index", controller = "AdminUsers" })
+
+<br>
+<br>
+<!--Routes to the Images folder-->
+@Html.RouteLink("Images table", "Default",
+    new { action = "Index", controller = "AdminImages" })
+
+
+
+<!--Routes to the Images folder-->
+@*@Html.Partial("_View")
+
+    @{Html.RenderPartial("_View");}*@
+
+@*@Html.Partial("/Views/Image/_ViewPartial")*@
+
+
+<br>
+<br>
+<!--Routes to the Images folder-->
+@*@Html.RouteLink("All Images" , "Default",
+    new { action = "_AdminImages", controller = "Images" })*@
