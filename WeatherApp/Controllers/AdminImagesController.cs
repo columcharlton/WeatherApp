@@ -12,7 +12,7 @@ namespace WeatherApp.Controllers
 {
     public class AdminImagesController : Controller
     {
-        private MvcImageDBEntities db = new MvcImageDBEntities();
+        private DBModelEntities db = new DBModelEntities();
 
         // GET: Images
         public ActionResult Index()

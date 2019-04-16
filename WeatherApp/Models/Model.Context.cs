@@ -13,10 +13,10 @@ namespace WeatherApp.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class MvcImageDBEntities : DbContext
+    public partial class DBModelEntities : DbContext
     {
-        public MvcImageDBEntities()
-            : base("name=MvcImageDBEntities")
+        public DBModelEntities()
+            : base("name=DBModelEntities")
         {
         }
     

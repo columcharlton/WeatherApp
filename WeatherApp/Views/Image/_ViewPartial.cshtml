@@ -9,7 +9,7 @@
             @Html.DisplayNameFor(model => model.Title)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ImagePath)
+    @*        @Html.DisplayNameFor(model => model.ImagePath)*@
         </th>
         <th></th>
     </tr>
@@ -22,10 +22,8 @@
             @Model.Title
         </td>
         <td>
-            @Model.ImagePath
-
-            <p>
-                @Html.ActionLink("Full sized Image", "View/" + @Model.ImageId)
+             <p>
+                @Html.ActionLink("View full sized Image", "View/" + @Model.ImageId)
             </p>
         </td>
 
@@ -34,11 +32,6 @@
 
         </td>
 
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = @Model.ImageId }) |
-            @Html.ActionLink("Details", "Details", new { id = @Model.ImageId }) |
-            @Html.ActionLink("Delete", "Delete", new { id = @Model.ImageId })
-        </td>
     </tr>
 
 </table>

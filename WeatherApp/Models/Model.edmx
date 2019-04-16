@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="MvcImageDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DBModelModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Image">
           <Key>
             <PropertyRef Name="ImageId" />
@@ -37,7 +37,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="MvcImageDBModelStoreContainer">
+        <EntityContainer Name="DBModelModelStoreContainer">
           <EntitySet Name="Image" EntityType="Self.Image" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SystemUsers" EntityType="Self.SystemUsers" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Image_ToTable" Association="Self.FK_Image_ToTable">
@@ -48,7 +48,7 @@
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="MvcImageDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="DBModelModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Image">
           <Key>
             <PropertyRef Name="ImageId" />
@@ -57,7 +57,7 @@
           <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ImagePath" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="AdminId" Type="Int32" />
-          <NavigationProperty Name="SystemUser" Relationship="MvcImageDBModel.FK_Image_ToTable" FromRole="Image" ToRole="SystemUser" />
+          <NavigationProperty Name="SystemUser" Relationship="DBModelModel.FK_Image_ToTable" FromRole="Image" ToRole="SystemUser" />
         </EntityType>
         <EntityType Name="SystemUser">
           <Key>
@@ -69,19 +69,19 @@
           <Property Name="PasswordSalt" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Admin" Type="Boolean" />
           <Property Name="AdminId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Images" Relationship="MvcImageDBModel.FK_Image_ToTable" FromRole="SystemUser" ToRole="Image" />
+          <NavigationProperty Name="Images" Relationship="DBModelModel.FK_Image_ToTable" FromRole="SystemUser" ToRole="Image" />
         </EntityType>
-        <EntityContainer Name="MvcImageDBEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DBModelEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Images" EntityType="Self.Image" />
           <EntitySet Name="SystemUsers" EntityType="Self.SystemUser" />
-          <AssociationSet Name="FK_Image_ToTable" Association="MvcImageDBModel.FK_Image_ToTable">
+          <AssociationSet Name="FK_Image_ToTable" Association="DBModelModel.FK_Image_ToTable">
             <End Role="SystemUser" EntitySet="SystemUsers" />
             <End Role="Image" EntitySet="Images" />
           </AssociationSet>
         </EntityContainer>
         <Association Name="FK_Image_ToTable">
-          <End Type="MvcImageDBModel.SystemUser" Role="SystemUser" Multiplicity="0..1" />
-          <End Type="MvcImageDBModel.Image" Role="Image" Multiplicity="*" />
+          <End Type="DBModelModel.SystemUser" Role="SystemUser" Multiplicity="0..1" />
+          <End Type="DBModelModel.Image" Role="Image" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SystemUser">
               <PropertyRef Name="AdminId" />
@@ -96,9 +96,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="MvcImageDBModelStoreContainer" CdmEntityContainer="MvcImageDBEntities">
+        <EntityContainerMapping StorageEntityContainer="DBModelModelStoreContainer" CdmEntityContainer="DBModelEntities">
           <EntitySetMapping Name="Images">
-            <EntityTypeMapping TypeName="MvcImageDBModel.Image">
+            <EntityTypeMapping TypeName="DBModelModel.Image">
               <MappingFragment StoreEntitySet="Image">
                 <ScalarProperty Name="AdminId" ColumnName="AdminId" />
                 <ScalarProperty Name="ImageId" ColumnName="ImageId" />
@@ -108,7 +108,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SystemUsers">
-            <EntityTypeMapping TypeName="MvcImageDBModel.SystemUser">
+            <EntityTypeMapping TypeName="DBModelModel.SystemUser">
               <MappingFragment StoreEntitySet="SystemUsers">
                 <ScalarProperty Name="AdminId" ColumnName="AdminId" />
                 <ScalarProperty Name="Admin" ColumnName="Admin" />

@@ -4,12 +4,28 @@
     ViewBag.Title = "Display";
 }
 
-<h2>Display</h2>
+<h2>Images in system</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Add")
+    @Html.ActionLink("Add", "Add")
 </p>
-<table class="table">
+
+
+
+
+@foreach (var item in Model)
+{
+
+    @Html.Partial("_ViewPartial", item)
+}
+
+
+
+
+
+
+
+@*<table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.ImageId)
@@ -18,57 +34,38 @@
             @Html.DisplayNameFor(model => model.Title)
         </th>
         <th>
+
             @Html.DisplayNameFor(model => model.ImagePath)
         </th>
-        <th></th>
-    </tr>
+
+    </tr>*@
 
 
 
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @item.ImageId
-            </td>
+    @*@foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.ImageId
+                </td>
+                <td>
+                    @item.Title
+                </td>
+                <td>
+                    @item.ImagePath
 
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>*@
-            <td>
-                @item.Title
-            </td>
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.ImagePath)
+                    <p>
+                        @Html.ActionLink("Full Image", "View/" + @item.ImageId)
+                    </p>
+                </td>
 
-                </td>*@
-            <td>
-                @item.ImagePath
+                <td>
+                    <img src="@Url.Content(item.ImagePath)" alt="item.AlternateText" width="250" height="250" multiple />
 
-                <p>
-                    @Html.ActionLink("Full Image", "View/" + @item.ImageId)
-                </p>
-            </td>
+                </td>
 
-            <td>
-                <img src="@Url.Content(item.ImagePath)" alt="item.AlternateText" width="250" height="250" multiple />
+            </tr>
+        }*@
 
-            </td>
-
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ImageId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ImageId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ImageId })
-            </td>
-        </tr>
-    }
-
-</table>    
-
-
-@foreach (var item in Model)
-{
-
-    @Html.Partial("_ViewPartial", item)
-}
+@*</table>*@

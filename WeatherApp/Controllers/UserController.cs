@@ -41,7 +41,7 @@ namespace WeatherApp.Controllers
 
                     }
 
-                    else       ////False for others :(
+                    else       ////False for others 
 
                         FormsAuthentication.SetAuthCookie(user.Email, user.RememberMe);   //Needs security namespace //Setting this cookie was to true was an issue had to add a method to do so in the Global.asax file, Application_PostAuthenticateRequest()
 
@@ -71,7 +71,7 @@ namespace WeatherApp.Controllers
         {
             if (ModelState.IsValid) //Checks if the view is valid
             {
-                using (var db  = new MvcImageDBEntities())    //Create a new instance of our main db context, check EF
+                using (var db  = new DBModelEntities())    //Create a new instance of our main db context, check EF
                 {
                     var crypto = new SimpleCrypto.PBKDF2(); //Create a new instance of our crypo
 
@@ -117,7 +117,7 @@ namespace WeatherApp.Controllers
 
             bool isValid = false;
 
-            using (var db = new MvcImageDBEntities())
+            using (var db = new DBModelEntities())
             {
                 var user = db.SystemUsers.FirstOrDefault(u => u.Email == email);
 
@@ -137,10 +137,10 @@ namespace WeatherApp.Controllers
         {
             bool isValid = false;
 
-            using (var db = new MvcImageDBEntities())
+            using (var db = new DBModelEntities())
             {
-                
-             var user = db.SystemUsers.FirstOrDefault(u => u.Email == email);
+
+                var user = db.SystemUsers.FirstOrDefault(u => u.Email == email);
 
 
                 if (user != null)

@@ -22,7 +22,7 @@ namespace WeatherApp.Controllers
             [HttpPost]
             public ActionResult Add(Image imageModel)
             {
-            Image image = new Image();    
+            //Image imageModel = new Image();    
 
                 string fileName = Path.GetFileNameWithoutExtension(imageModel.ImageFile.FileName);
                 string extension = Path.GetExtension(imageModel.ImageFile.FileName);
@@ -32,9 +32,9 @@ namespace WeatherApp.Controllers
                 imageModel.ImageFile.SaveAs(fileName);
 
             
-            using (MvcImageDBEntities db = new MvcImageDBEntities())
+            using (DBModelEntities db = new DBModelEntities())
                 {
-                    db.Images.Add(image);
+                    db.Images.Add(imageModel);
                     db.SaveChanges();
                 }
                 ModelState.Clear();
@@ -48,7 +48,7 @@ namespace WeatherApp.Controllers
             Image imageModel = new Image();
 
             //Searching the data base for the first instance with the desired id
-            using (MvcImageDBEntities db = new MvcImageDBEntities())
+            using (DBModelEntities db = new DBModelEntities())
             {
                 imageModel = db.Images.Where(x => x.ImageId == id).FirstOrDefault();
             }
@@ -62,7 +62,7 @@ namespace WeatherApp.Controllers
         {
             Image imageModel = new Image();
 
-            MvcImageDBEntities db = new MvcImageDBEntities();
+            DBModelEntities db = new DBModelEntities();
             
             return View(db.Images.ToList()); //Returns a list of images
         }

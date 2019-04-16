@@ -23,7 +23,6 @@ namespace WeatherApp.Models
 
         public HttpPostedFileBase ImageFile { get; set; }
 
-
         public Nullable<int> AdminId { get; set; }
     
         public virtual SystemUser SystemUser { get; set; }
