@@ -211,7 +211,7 @@ namespace WeatherApp.Controllers
             }
 
 
-            //Returning data to view
+            //Returning data to view for weekly data
             ViewBag.Day0 = Day(DailyTime[0]);
             ViewBag.Date0 = date(DailyTime[0]);
             ViewBag.DailyTime0 = DailyTime[0];
@@ -266,7 +266,7 @@ namespace WeatherApp.Controllers
 
 
 
-
+                //Creating lists for modle Datapoints data contract
                 List<DataPoint> Pressure = new List<DataPoint>();
                 List<DataPoint> Temperature = new List<DataPoint>();
                 List<DataPoint> Dewpoint = new List<DataPoint>();
@@ -307,7 +307,7 @@ namespace WeatherApp.Controllers
                 }
 
 
-
+                //Returning serialized json to view
                 ViewBag.Pressure = JsonConvert.SerializeObject(Pressure);
                 ViewBag.Temperature = JsonConvert.SerializeObject(Temperature);
                 ViewBag.Dewpoint = JsonConvert.SerializeObject(Dewpoint);
@@ -468,7 +468,8 @@ namespace WeatherApp.Controllers
                     
             }
 
-            
+
+                //Returning data for googlecharts hourly
             ViewBag.Hourly0 = Day(HourlyTime[0]);
             ViewBag.HourlyDate0 = dateHours(HourlyTime[0]);
             ViewBag.HourlyTime0 = HourlyTime[0];
@@ -543,7 +544,7 @@ namespace WeatherApp.Controllers
 
             }
 
-
+            //Returning data for googlecharts weekly
             ViewBag.Day0 = Day(DailyTime[0]);
             ViewBag.Date0 = date(DailyTime[0]);
             ViewBag.DailyTime0 = DailyTime[0];
@@ -606,7 +607,60 @@ namespace WeatherApp.Controllers
             ViewBag.a = a;
 
 
-        }
+
+
+                //Returning date to view ChartsJS
+                List<DataPoint> Pressure = new List<DataPoint>();
+                List<DataPoint> Temperature = new List<DataPoint>();
+                List<DataPoint> Dewpoint = new List<DataPoint>();
+                List<DataPoint> Humitity = new List<DataPoint>();
+                List<DataPoint> Uv = new List<DataPoint>();
+                List<DataPoint> Wind = new List<DataPoint>();
+
+
+                foreach (HourlyWeatherItem item2 in dto.hourly.data)
+
+                {
+
+
+                    //    dataPoints.Add(new DataPoint(item2.time, item2.pressure));
+                    //    //dataPoints2.Add(new DataPoint(item2.time, new double[] { item2.temperature, item2.apparentTemperature }));
+                    //    //dataPoints3.Add(new DataPoint(item2.time, ));
+
+                    Pressure.Add(new DataPoint(UnixTime(item2.time), item2.pressure));
+                    Temperature.Add(new DataPoint(UnixTime(item2.time), item2.temperature));
+                    Dewpoint.Add(new DataPoint(UnixTime(item2.time), item2.dewPoint));
+                    Humitity.Add(new DataPoint(UnixTime(item2.time), item2.humidity));
+                    Uv.Add(new DataPoint(UnixTime(item2.time), item2.uvIndex));
+                    Wind.Add(new DataPoint(UnixTime(item2.time), item2.windSpeed));
+
+                    //dataPoints.Add(new DataPoint(UnixTime(item2.time), new double[] { item2.temperature, item2.apparentTemperature }));
+                    //    //dataPoints.Add(new DataPoint(item2.time, new double[] { item2.temperature, item2.apparentTemperature }));
+
+
+
+                }
+
+                double UnixTime(double unixTimeStamp)
+                {
+                    // Unix timestamp is seconds past epoch
+
+                    double dtDateTime = unixTimeStamp * 1000;
+                    return dtDateTime;
+                }
+
+
+                //Returning serialized json objects to view
+                ViewBag.Pressure = JsonConvert.SerializeObject(Pressure);
+                ViewBag.Temperature = JsonConvert.SerializeObject(Temperature);
+                ViewBag.Dewpoint = JsonConvert.SerializeObject(Dewpoint);
+                ViewBag.Humitity = JsonConvert.SerializeObject(Humitity);
+                ViewBag.Uv = JsonConvert.SerializeObject(Uv);
+                ViewBag.Wind = JsonConvert.SerializeObject(Wind);
+
+
+
+            }
             catch (FileNotFoundException e)
             {
                 Console.WriteLine($"Connection to API invalid: '{e}'");
@@ -616,7 +670,7 @@ namespace WeatherApp.Controllers
             return View(coordinates);
         }
 
-        
+        //Google reverse geocoding api
         public List<double> GoogleReverse(string reportName)
         {
 
