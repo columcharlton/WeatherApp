@@ -1,59 +1,6 @@
 ﻿@model WeatherApp.Models.Coordinates
 
 
-<style>
-
-    #SatyaDiv {
-        padding-left: 20px;
-    }
-
-        #SatyaDiv select, #SatyaDiv button {
-            background-color: #4CAF50;
-            border: none;
-            color: white;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-            border-radius: 50%;
-        }
-
-        #SatyaDiv #message table {
-            width: 100%;
-            border: solid 3px green;
-            color: black;
-            font-style: oblique;
-            font-family: Georgia;
-            font-weight: bold;
-            background: white;
-        }
-
-            #SatyaDiv #message table th {
-                text-align: left;
-                color: white;
-                font-style: oblique;
-                background: green;
-            }
-</style>
-
-
-@*<style>
-    span.tempfont {
-        font-size: 120%;
-        color: black;
-    }
-</style>
-
-<style>
-    span.summaryfont {
-        font-size: 160%;
-        color: black;
-    }
-</style>*@
-
 <link href="~/Content/css/StyleSheet.css" rel="stylesheet" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -67,7 +14,6 @@
 
 <br />
 
-<h2 style="background-color: white;color: black; text-align: center; font-style: oblique">Weather API </h2>
 
 
 
@@ -81,8 +27,8 @@
 
         @using (Html.BeginForm())
         {
-            <input type="text" value="Search" name="reportName" />
-            <input type="submit" value="Search" />
+            <input type="text" value="Search" name="reportName" required />
+            <input type="submit" value="Search" required />
         }
 
     </div>
@@ -187,7 +133,7 @@
         }
     </script>
 
-
+    <!--Div for google hourly table -->
     <div class="container">
     </div>
     <div id="Hourly" style="height: 200px;"></div>
@@ -196,28 +142,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-    @*@foreach (DailyTime item in model)
-        {
-
-            @ViewBag[DailyTime]
-
-        }
-
-        @ViewBag[DailySummary]
-        @ViewBag[DailyIcon]*@
-
-
-    @* @Html.Partial("_ViewPartial");*@
 
     <br>
     <br>
@@ -249,25 +173,7 @@
                 ['This Week', '@ViewBag.DailySummary4', new Date(@ViewBag.Date4) , new Date(@ViewBag.Date5)],
                 ['This Week', '@ViewBag.DailySummary5', new Date(@ViewBag.Date5) , new Date(@ViewBag.Date6)],
                 ['This Week', '@ViewBag.DailySummary6', new Date(@ViewBag.Date6) , new Date(@ViewBag.Date7)],
-
-
-
-                @*['@ViewBag.Day0', '@ViewBag.DailySummary0', new Date(@ViewBag.Date0) , new Date(@ViewBag.Date1)],
-                ['@ViewBag.Day1', '@ViewBag.DailySummary1', new Date(@ViewBag.Date1) , new Date(@ViewBag.Date2)],
-                ['@ViewBag.Day2', '@ViewBag.DailySummary2', new Date(@ViewBag.Date2) , new Date(@ViewBag.Date3)],
-                ['@ViewBag.Day3', '@ViewBag.DailySummary3', new Date(@ViewBag.Date3) , new Date(@ViewBag.Date4)],
-                ['@ViewBag.Day4', '@ViewBag.DailySummary4', new Date(@ViewBag.Date4) , new Date(@ViewBag.Date5)],
-                ['@ViewBag.Day5', '@ViewBag.DailySummary5', new Date(@ViewBag.Date5) , new Date(@ViewBag.Date6)],
-                ['@ViewBag.Day6', '@ViewBag.DailySummary6', new Date(@ViewBag.Date6) , new Date(@ViewBag.Date7)],
-
-
-                ['Today', '@ViewBag.DailySummary2', new Date(1797, 2, 4), new Date(1801, 2, 4)],
-                ['Today', '@ViewBag.DailySummary3', new Date(1801, 2, 4), new Date(1809, 2, 4)],
-                ['Today', '@ViewBag.DailySummary4', new Date(1795, 2, 4) , new Date(1797, 2, 4)],
-                ['Today', '@ViewBag.DailySummary5', new Date(1797, 2, 4), new Date(1801, 2, 4)],
-                ['Today', '@ViewBag.DailySummary6', new Date(1801, 2, 4), new Date(1809, 2, 4)],
-                ['Today', '@ViewBag.DailySummary7', new Date(1801, 2, 4), new Date(1809, 2, 4)],*@
-
+                
             ]);
 
             chart.draw(dataTable);
@@ -288,7 +194,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Today @ViewBag.DailyTime1</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Today</a>
                     </h4>
                 </div>
                 <div id="collapse1" class="panel-collapse collapse in">
@@ -310,7 +216,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">@ViewBag.Day1 @ViewBag.DailyTime2</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">@ViewBag.Day1</a>
                     </h4>
                 </div>
                 <div id="collapse2" class="panel-collapse collapse">
@@ -329,7 +235,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">@ViewBag.DailyIcon3 @ViewBag.Day2 @ViewBag.DailyTime3</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3"> @ViewBag.Day2 </a>
                     </h4>
                 </div>
                 <div id="collapse3" class="panel-collapse collapse">
@@ -348,7 +254,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">@ViewBag.Day3 @ViewBag.DailyTime4</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">@ViewBag.Day3 </a>
                     </h4>
                 </div>
                 <div id="collapse4" class="panel-collapse collapse">
@@ -367,7 +273,7 @@
             </div><div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">@ViewBag.Day4 @ViewBag.DailyTime5</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">@ViewBag.Day4 </a>
                     </h4>
                 </div>
                 <div id="collapse5" class="panel-collapse collapse">
@@ -385,7 +291,7 @@
             </div><div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse6">@ViewBag.Day5 @ViewBag.DailyTime6</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse6">@ViewBag.Day5 </a>
                     </h4>
                 </div>
                 <div id="collapse6" class="panel-collapse collapse">
@@ -403,7 +309,7 @@
             </div><div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse7">@ViewBag.Day6 @ViewBag.DailyTime7</a>
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse7">@ViewBag.Day6 </a>
                     </h4>
                 </div>
                 <div id="collapse7" class="panel-collapse collapse">
@@ -428,70 +334,6 @@
 
 
 
-    @*@{
-            ViewBag.Title = "Index";
-        }*@
-
-
-
-
-
-
-    @*<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-        @*<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
-            <script type="text/javascript">
-                google.charts.load("current", { packages: ["timeline"] });
-                google.charts.setOnLoadCallback(drawChart);
-                function drawChart() {
-
-                    var container = document.getElementById('example3.1');
-
-                    var chart = new google.visualization.Timeline(container);
-
-                    var dataTable = new google.visualization.DataTable();
-                    dataTable.addColumn({ type: 'string', id: 'Position' });
-                    dataTable.addColumn({ type: 'string', id: 'Name' });
-                    dataTable.addColumn({ type: 'date', id: 'Start' });
-                    dataTable.addColumn({ type: 'date', id: 'End' });
-                    dataTable.addRows([
-
-                        ['Today', 'Mostly cloudy', new Date(1789, 3, 30), new Date(1797, 2, 4)],
-                        ['Today', 'Overcast', new Date(1797, 2, 4), new Date(1801, 2, 4)],
-                        ['Today', 'Sunny', new Date(1801, 2, 4), new Date(1809, 2, 4)],
-
-                    ]);
-
-                    chart.draw(dataTable);
-                }
-            </script>*@
-
-
-
-
-    <fieldset>
-        <legend style="font-family:Arial Black;color:black"></legend>
-        <div id="SatyaDiv">
-            <h4 style="color:black"></h4>
-
-            <!-- Html.Partial("PartialView")-->
-            <div id="message">@(new HtmlString(@ViewBag.a))</div>
-
-            @*<div id="message"> @Html.Raw(ViewBag.a)</div>
-
-                <p>@Html.Raw(ViewBag.a as string)</p>
-
-                <p><strong>Tag: @TempData["Tag"]</strong></p>*@
-
-            @* <div id="message">(new HtmlString(Model.apiResponse))</div>*@
-            @*<div id="message">@(new HtmlString(Model.rawJSON))</div>*@
-
-            @*            <p> @Html.DisplayFor(m => m.rawJSON)</p>;*@
-
-
-
-        </div>
-    </fieldset>
 
 
 </div>

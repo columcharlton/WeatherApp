@@ -14,4 +14,39 @@ span.summaryfont {
 }
 
 
+#SatyaDiv {
+    padding-left: 20px;
+}
+
+    #SatyaDiv select, #SatyaDiv button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 50%;
+    }
+
+    #SatyaDiv #message table {
+        width: 100%;
+        border: solid 3px green;
+        color: black;
+        font-style: oblique;
+        font-family: Georgia;
+        font-weight: bold;
+        background: white;
+    }
+
+        #SatyaDiv #message table th {
+            text-align: left;
+            color: white;
+            font-style: oblique;
+            background: green;
+        }
+
 

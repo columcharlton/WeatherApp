@@ -23,9 +23,11 @@ namespace WeatherApp.Tests.Controllers
 
             // Assert
             Assert.IsNotNull(result); //Checks the type being returned
-            //Assert.IsNotNull(result.Model); // add additional checks on the Model
             Assert.IsTrue(string.IsNullOrEmpty(result.ViewName) || result.ViewName == "Index");
         }
+
+
+
 
 
 

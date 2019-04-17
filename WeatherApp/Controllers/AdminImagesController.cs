@@ -20,7 +20,7 @@ namespace WeatherApp.Controllers
             return View(db.Images.ToList());
         }
 
-        // GET: Images/Details/5
+        // GET: Images/Details
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -41,24 +41,8 @@ namespace WeatherApp.Controllers
             return View();
         }
 
-        //// POST: Images/Create
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "ImageId,Title,ImagePath")] Image image)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Images.Add(image);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-
-        //    return View(image);
-        //}
-
-        // GET: Images/Edit/5
+        
+        // GET: Images/Edit
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -89,7 +73,7 @@ namespace WeatherApp.Controllers
             return View(image);
         }
 
-        // GET: Images/Delete/5
+        // GET: Images/Delete
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -104,7 +88,7 @@ namespace WeatherApp.Controllers
             return View(image);
         }
 
-        // POST: Images/Delete/5
+        // POST: Images/Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

@@ -38,7 +38,9 @@ namespace WeatherApp.Controllers
                 + year + "/" + month + ".json?api-key=ZNClJjWLl8jmdrUDf8wFD34zhiGt7sjo") as HttpWebRequest;
             
             string rawJSONNews = "";
-            
+
+            try { 
+
             using (HttpWebResponse response = apiRequest.GetResponse() as HttpWebResponse)
             {
                 StreamReader reader = new StreamReader(response.GetResponseStream());
@@ -88,7 +90,14 @@ namespace WeatherApp.Controllers
             ViewBag.snippet = i.Snippet;
             ViewBag.url = i.Web_url;
 
-            
+
+            }
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine($"Connection to API invalid: '{e}'");
+            }
+
+
             return View(); //returns the model data to the view
 
         }

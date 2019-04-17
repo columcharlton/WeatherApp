@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -84,8 +85,17 @@ namespace WeatherApp.Controllers
                     sysUser.PasswordSalt = crypto.Salt;
                     sysUser.UserId = Guid.NewGuid();    //And store them all
 
+                    try {
+                        
                     db.SystemUsers.Add(sysUser);    //Add the entity back into the context 
                     db.SaveChanges();
+
+
+                    }
+                    catch (FileNotFoundException e)
+                    {
+                        Console.WriteLine($"Connection to DB invalid: '{e}'");
+                    }
 
                     //return RedirectToAction("Index", "Home");   //And then redirect to the main page
                     return RedirectToAction("Index", "ClimateMap");   //And then redirect to the main page
@@ -117,6 +127,7 @@ namespace WeatherApp.Controllers
 
             bool isValid = false;
 
+            try { 
             using (var db = new DBModelEntities())
             {
                 var user = db.SystemUsers.FirstOrDefault(u => u.Email == email);
@@ -130,6 +141,13 @@ namespace WeatherApp.Controllers
                         }
                     }
             }
+
+            }
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine($"Connection to Db invalid: '{e}'");
+            }
+
             return isValid;
         }
 
@@ -137,6 +155,7 @@ namespace WeatherApp.Controllers
         {
             bool isValid = false;
 
+            try { 
             using (var db = new DBModelEntities())
             {
 
@@ -152,6 +171,13 @@ namespace WeatherApp.Controllers
 
                 }
             }
+
+            }
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine($"Connection to Db invalid: '{e}'");
+            }
+
             return isValid;
         }
 

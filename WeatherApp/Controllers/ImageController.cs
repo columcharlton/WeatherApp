@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WeatherApp.Models;
@@ -31,26 +32,52 @@ namespace WeatherApp.Controllers
                 fileName = Path.Combine(Server.MapPath("~/Image/"), fileName);
                 imageModel.ImageFile.SaveAs(fileName);
 
-            
+            try { 
             using (DBModelEntities db = new DBModelEntities())
                 {
                     db.Images.Add(imageModel);
                     db.SaveChanges();
                 }
-                ModelState.Clear();
+
+            }
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine($"Connection to Database invalid: '{e}'");
+            }
+
+            ModelState.Clear();
                 return View();
             }
 
         //Action result to display an individual image
         [HttpGet]
-        public ActionResult View(int id)
+        public ActionResult View(int? id)
         {
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            
+            
             Image imageModel = new Image();
 
+            
             //Searching the data base for the first instance with the desired id
+            try
+            { 
             using (DBModelEntities db = new DBModelEntities())
             {
                 imageModel = db.Images.Where(x => x.ImageId == id).FirstOrDefault();
+
+              
+                }
+
+
+            }
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine($"Connection to Db invalid: '{e}'");
             }
 
             return View(imageModel);

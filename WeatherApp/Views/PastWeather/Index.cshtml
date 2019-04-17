@@ -18,9 +18,9 @@
             {
                 <br />
 
-                <input type="text" value="Location" name="reportLocation" />
+                <input type="text" value="Location" name="reportLocation" required />
 
-                <input type="date" name="reportDate" />
+                <input type="date" name="reportDate" required/>
 
                 @*@Html.EditorFor(model => model.dtmDate, new { htmlAttributes = new { @class = "datepicker" } })*@
                 <br />
@@ -43,7 +43,7 @@
 
             <div>
 
-
+                <!--Outputs the Api's basic data-->
                 <div id="message">@(new HtmlString(@ViewBag.a))</div>
                 <br />
                 <br />

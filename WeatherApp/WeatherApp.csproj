@@ -139,7 +139,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ClimateMapController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\AdminImagesController.cs" />
     <Compile Include="Models\DataPoint.cs" />
@@ -300,7 +299,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Views\Image\_ViewPartial.cshtml" />
-    <Content Include="Views\PastWeather\Backuptomybackup.html" />
     <Content Include="Views\Shared\HtmlPage1.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -320,7 +318,6 @@
     <Content Include="Views\User\Registration.cshtml" />
     <Content Include="Views\ClimateMap\Index.cshtml" />
     <Content Include="Views\PastWeather\Index.cshtml" />
-    <Content Include="Views\Image\View.cshtml" />
     <Content Include="Views\Image\Display.cshtml" />
     <Content Include="Views\AdminImages\Delete.cshtml" />
     <Content Include="Views\AdminImages\Details.cshtml" />
@@ -331,16 +328,8 @@
     <Content Include="Views\AdminUsers\Details.cshtml" />
     <Content Include="Views\AdminUsers\Edit.cshtml" />
     <Content Include="Views\AdminUsers\Index.cshtml" />
-    <Content Include="Views\AdminUsers\_AdminSystem.cshtml" />
-    <Content Include="Views\AdminImages\_AdminImages.cshtml" />
     <Content Include="Views\Admin\Admin.cshtml" />
-    <Content Include="Views\Admin\_View.cshtml" />
-    <Content Include="Views\News\NewsIndex.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
-    <Content Include="Views\PastWeather\View2.cshtml" />
-    <Content Include="Views\PastWeather\_PartialIndex.cshtml" />
-    <Content Include="Views\ClimateMap\index4.cshtml" />
-    <Content Include="Views\PastWeather\Backup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
