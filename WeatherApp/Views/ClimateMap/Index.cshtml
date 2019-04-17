@@ -4,9 +4,10 @@
 <link href="~/Content/css/StyleSheet.css" rel="stylesheet" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+@*<script src="http://maps.google.com/maps/api/js?sensor=false"></script>*@
+<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
 
 
@@ -68,8 +69,8 @@
 
     <br>
     <br>
-    
-    
+
+
 
     <div class="container">
         <div class="centered text-center">
@@ -88,12 +89,12 @@
 
     <br>
     <br>
-    
+
     @*Script for changing the fonts based on icons issued from API*@
     @*<script src="~/Scripts/Conditions.js"></script>
-    <div class="container">
-    </div>
-    <div id="Conditions" style="height: 200px;"></div>*@
+        <div class="container">
+        </div>
+        <div id="Conditions" style="height: 200px;"></div>*@
 
 
     <!--
@@ -139,7 +140,109 @@
     <div id="Hourly" style="height: 200px;"></div>
 
 
+    <br>
 
+    @*<button onclick="myFunction()">See graphs</button>*@
+
+
+    <div id="chartPressure"></div>
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br /><br />
+
+    <div id="chartHumitity"></div>
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br /><br />
+
+    <div id="chartTemperature"></div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br /><br />
+
+    <div id="chartDewpoint"></div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br /><br />
+
+    <div id="chartUv"></div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br /><br />
+
+
+    <div id="chartWind"></div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br /><br />
 
 
 
@@ -147,8 +250,11 @@
     <br>
 
 
+    <br>
+    <br>
 
 
+        <h2>This weeks weather</h2>
     <script type="text/javascript">
         google.charts.load("current", { packages: ["timeline"] });
         google.charts.setOnLoadCallback(drawChart);
@@ -173,7 +279,7 @@
                 ['This Week', '@ViewBag.DailySummary4', new Date(@ViewBag.Date4) , new Date(@ViewBag.Date5)],
                 ['This Week', '@ViewBag.DailySummary5', new Date(@ViewBag.Date5) , new Date(@ViewBag.Date6)],
                 ['This Week', '@ViewBag.DailySummary6', new Date(@ViewBag.Date6) , new Date(@ViewBag.Date7)],
-                
+
             ]);
 
             chart.draw(dataTable);
@@ -184,9 +290,6 @@
     <div class="container">
     </div>
     <div id="Weekly" style="height: 200px;"></div>
-
-
-
 
     <div class="container">
         <h2>Weekly review</h2>
@@ -328,6 +431,234 @@
         </div>
     </div>
 
+
+
+
+
+
+    <script type="text/javascript">
+
+
+        window.onload = function () {
+
+    //    document.getElementById("demo").addEventListener("click", myFunction);
+
+    //function myFunction() {
+
+
+        //var Pressure = [ViewBag.Pressure];
+        var chart1 = new CanvasJS.Chart("chartPressure", {
+                theme: "light2",
+                zoomEnabled: true,
+                animationEnabled: true,
+                title: {
+                    text: "Time vs Pressure"
+                },
+
+                height: 260,
+                //width: 320,
+                subtitles: [
+                    {
+                        text: "Time vs Pressure"
+                    }
+                ],
+                axisY: {
+                    includeZero: false,
+
+
+                },
+                data: [
+                    {
+                        type: "line",
+                        xValueFormatString: "MMM D",
+                        yValueFormatString: "# c",
+                        toolTipContent: "{x}<br><b>Time:</b> {y}<br><b>Pressurel:</b>",
+                        xValueType: "dateTime",
+
+                        dataPoints: @Html.Raw(ViewBag.Pressure),
+                    }
+                ]
+            });
+
+
+
+            //var Temperature = [ViewBag.Temperature];
+            var chart2 = new CanvasJS.Chart("chartTemperature", {
+                theme: "light2",
+                zoomEnabled: true,
+                animationEnabled: true,
+                title: {
+                    text: "Time vs Temperature"
+                },
+
+                height: 260,
+                //width: 320,
+                subtitles: [
+                    {
+                        text: "Time vs Temperature"
+                    }
+                ],
+                axisY: {
+                    includeZero: false,
+
+
+                },
+                data: [
+                    {
+                        type: "line",
+                        xValueFormatString: "MMM D",
+                        yValueFormatString: "# c",
+                        toolTipContent: "{x}<br><b>Time:</b> {y}<br><b>Temperature:</b>",
+                        xValueType: "dateTime",
+                        dataPoints: @Html.Raw(ViewBag.Temperature),
+                    }
+                ]
+            });
+
+
+            //var Dewpoint = [ViewBag.Dewpoint];
+            var chart3 = new CanvasJS.Chart("chartDewpoint", {
+                theme: "light2",
+                zoomEnabled: true,
+                animationEnabled: true,
+                title: {
+                    text: "Time vs Dewpoint"
+                },
+
+                height: 260,
+                //width: 320,
+                subtitles: [
+                    {
+                        text: "Time vs Dewpoint"
+                    }
+                ],
+                axisY: {
+                    includeZero: false,
+                },
+                data: [
+                    {
+                        type: "line",
+                        xValueFormatString: "MMM D",
+                        yValueFormatString: "# c",
+                        toolTipContent: "{x}<br><b>Time:</b> {y}<br><b>Pressurel:</b>",
+                        xValueType: "dateTime",
+
+                        dataPoints: @Html.Raw(ViewBag.Dewpoint),
+                    }
+                ]
+            });
+
+            //var Humitity = [ViewBag.Humitity]
+            var chart4 = new CanvasJS.Chart("chartHumitity", {
+                theme: "light2",
+                zoomEnabled: true,
+                animationEnabled: true,
+                title: {
+                    text: "Time vs Humitity"
+                },
+
+                height: 260,
+                //width: 320,
+                subtitles: [
+                    {
+                        text: "Time vs Humitity"
+                    }
+                ],
+                axisY: {
+                    includeZero: false,
+
+                },
+                data: [
+                    {
+                        type: "line",
+                        xValueFormatString: "MMM D",
+                        yValueFormatString: "# c",
+                        toolTipContent: "{x}<br><b>Time:</b> {y}<br><b>Pressurel:</b>",
+                        xValueType: "dateTime",
+
+                        dataPoints: @Html.Raw(ViewBag.Humitity),
+                    }
+                ]
+            });
+
+            var chart5 = new CanvasJS.Chart("chartUv", {
+                theme: "light2",
+                zoomEnabled: true,
+                animationEnabled: true,
+                title: {
+                    text: "Time vs Uv"
+                },
+
+                height: 260,
+                //width: 320,
+                subtitles: [
+                    {
+                        text: "Time vs Uv"
+                    }
+                ],
+                axisY: {
+                    includeZero: false,
+
+
+                },
+                data: [
+                    {
+                        type: "line",
+                        xValueFormatString: "MMM D",
+                        yValueFormatString: "# c",
+                        toolTipContent: "{x}<br><b>Time:</b> {y}<br><b>Pressurel:</b>",
+                        xValueType: "dateTime",
+
+                        dataPoints: @Html.Raw(ViewBag.Uv),
+                    }
+                ]
+            });
+
+            var chart6 = new CanvasJS.Chart("chartWind", {
+                theme: "light2",
+                zoomEnabled: true,
+                animationEnabled: true,
+                title: {
+                    text: "Time vs Wind"
+                },
+
+                height: 260,
+                //width: 320,
+                subtitles: [
+                    {
+                        text: "Time vs Wind"
+                    }
+                ],
+                axisY: {
+                    includeZero: false,
+
+
+                },
+                data: [
+                    {
+                        type: "line",
+                        xValueFormatString: "MMM D",
+                        yValueFormatString: "# c",
+                        toolTipContent: "{x}<br><b>Time:</b> {y}<br><b>Pressurel:</b>",
+                        xValueType: "dateTime",
+
+                        dataPoints: @Html.Raw(ViewBag.Wind)  ,
+                    }
+                ]
+            });
+
+            chart1.render();
+            chart2.render();
+            chart3.render();
+            chart4.render();
+            chart5.render();
+            chart6.render();
+
+    }
+
+    </script>
+
+    }
 
 
 

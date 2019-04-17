@@ -264,7 +264,58 @@ namespace WeatherApp.Controllers
             ViewBag.DailyIcon7 = DailyIcon[7];
 
 
-            
+
+
+
+                List<DataPoint> Pressure = new List<DataPoint>();
+                List<DataPoint> Temperature = new List<DataPoint>();
+                List<DataPoint> Dewpoint = new List<DataPoint>();
+                List<DataPoint> Humitity = new List<DataPoint>();
+                List<DataPoint> Uv = new List<DataPoint>();
+                List<DataPoint> Wind = new List<DataPoint>();
+
+
+                foreach (HourlyWeatherItem item2 in dto.hourly.data)
+
+                {
+
+
+                    //    dataPoints.Add(new DataPoint(item2.time, item2.pressure));
+                    //    //dataPoints2.Add(new DataPoint(item2.time, new double[] { item2.temperature, item2.apparentTemperature }));
+                    //    //dataPoints3.Add(new DataPoint(item2.time, ));
+
+                    Pressure.Add(new DataPoint(UnixTime(item2.time), item2.pressure));
+                    Temperature.Add(new DataPoint(UnixTime(item2.time), item2.temperature));
+                    Dewpoint.Add(new DataPoint(UnixTime(item2.time), item2.dewPoint));
+                    Humitity.Add(new DataPoint(UnixTime(item2.time), item2.humidity));
+                    Uv.Add(new DataPoint(UnixTime(item2.time), item2.uvIndex));
+                    Wind.Add(new DataPoint(UnixTime(item2.time), item2.windSpeed));
+
+                    //dataPoints.Add(new DataPoint(UnixTime(item2.time), new double[] { item2.temperature, item2.apparentTemperature }));
+                    //    //dataPoints.Add(new DataPoint(item2.time, new double[] { item2.temperature, item2.apparentTemperature }));
+
+
+
+                }
+
+                double UnixTime(double unixTimeStamp)
+                {
+                    // Unix timestamp is seconds past epoch
+
+                    double dtDateTime = unixTimeStamp * 1000;
+                    return dtDateTime;
+                }
+
+
+
+                ViewBag.Pressure = JsonConvert.SerializeObject(Pressure);
+                ViewBag.Temperature = JsonConvert.SerializeObject(Temperature);
+                ViewBag.Dewpoint = JsonConvert.SerializeObject(Dewpoint);
+                ViewBag.Humitity = JsonConvert.SerializeObject(Humitity);
+                ViewBag.Uv = JsonConvert.SerializeObject(Uv);
+                ViewBag.Wind = JsonConvert.SerializeObject(Wind);
+
+
 
 
             }

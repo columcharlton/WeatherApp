@@ -83,7 +83,7 @@ namespace WeatherApp.Controllers
                     sysUser.Email = user.Email;
                     sysUser.Password = encroPass;
                     sysUser.PasswordSalt = crypto.Salt;
-                    sysUser.UserId = Guid.NewGuid();    //And store them all
+                    sysUser.UserId = Guid.NewGuid();    // Global Unique Identifier
 
                     try {
                         
